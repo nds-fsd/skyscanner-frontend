@@ -1,11 +1,12 @@
-
+import React from 'react';
 import './App.css';
+import Result from './pages/Results';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hola</p>
+    <div>
+      <header>
+        <Result></Result>
       </header>
     </div>
   );
