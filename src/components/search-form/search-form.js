@@ -1,21 +1,34 @@
-import React from "react";
+import React , {useState} from "react";
 import { useForm } from "react-hook-form";
 
 const Search = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const [searchedData, setSearchedData] = useState();
     const onSubmit = data => {
-    // fetch('http://localhost:5001/flights', {
+    fetch(`http://localhost:5001/flights/search?from=${data.from}&to=${data.to}&dedate=${data.dedate}&arrdate=${data.arrdate}`)
+
+
     //   method: 'GET',
     //   headers: {
     //     'Content-Type': 'application/json'
     //   },
     //   body: JSON.stringify(data)
     // })
-    //   .then(response => {
-    //     if (!response.ok) throw new Error("Couldn't upload")
-    //     return response.json();
-    //   })
+    .then(response => {
+        if (!response.ok) throw new Error("Couldn't ")
+         return response.json();
+    
+        })
+    .then((json) => {
+        setSearchedData(json)
+    });
+console.log(response.json())
+
+
+
+
+
+
     //   .then(json => {
     //     alert(JSON.stringify(json));
     //   })
