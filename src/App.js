@@ -1,22 +1,19 @@
-
+import React from 'react';
+import { Routes, Route, Link } from 'react-router';
 import './App.css';
+import Header from './components/header/header';
+import Home from './pages/home';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Skyreader app Front page
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <Header />
+      <p>Skyreader App</p>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/results" element={"Resultados"} />
+        </Routes>
       </header>
     </div>
   );
