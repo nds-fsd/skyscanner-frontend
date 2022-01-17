@@ -1,11 +1,15 @@
 import React , {useState} from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 const Search = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
     const [searchedData, setSearchedData] = useState();
+    const navigate = useNavigate();
     const onSubmit = data => {
-    fetch(`http://localhost:5001/flights/search?from=${data.from}&to=${data.to}&dedate=${data.dedate}&arrdate=${data.arrdate}`)
+        navigate(`/flights/${data?.from}/${data?.to}/${data?.dedate}/${data?.arrdate}`);
+        
+    // fetch(`http://localhost:5001/flights/search?from=${data.from}&to=${data.to}&dedate=${data.dedate}&arrdate=${data.arrdate}`)
 
 
     //   method: 'GET',
@@ -14,20 +18,15 @@ const Search = () => {
     //   },
     //   body: JSON.stringify(data)
     // })
-    .then(response => {
-        if (!response.ok) throw new Error("Couldn't ")
-         return response.json();
-    
-        })
-    .then((json) => {
-        setSearchedData(json)
-    });
-console.log(response.json())
-
-
-
-
-
+    // .then(response => {
+        // if (!response.ok) throw new Error("Couldn't ")
+        //  return response.json();
+    // 
+        // })
+    // .then((json) => {
+        // setSearchedData(json)
+    // });
+// console.log(response.json())
 
     //   .then(json => {
     //     alert(JSON.stringify(json));
