@@ -1,0 +1,10 @@
+.homepage {
+    background: #E5E5E5;
+    height: 100vh;
+    width: 100vh;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

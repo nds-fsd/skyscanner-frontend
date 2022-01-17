@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <header className="App-header">
       <Header />
-      <p>Skyreader App</p>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/results" element={"Resultados"} />
