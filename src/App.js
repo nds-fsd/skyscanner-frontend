@@ -6,6 +6,7 @@ import Home from './pages/home';
 import { Resultados } from './components/resultados/resultados';
 
 function App() {
+  document.title = "Skyreader"
   return (
     <div className="App">
       <header className="App-header">
