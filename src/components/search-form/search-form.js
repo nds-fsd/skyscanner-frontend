@@ -52,7 +52,6 @@ const Search = () => {
                 <span className="form-enviar">
                     <input type="submit" value="See flights"/>
                 </span>
-                {/* <button>See flights</button> */}
             </form>
         </div>
     );
