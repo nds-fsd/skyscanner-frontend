@@ -5,6 +5,7 @@ import "./home.css"
 const Home = () => {
     return (
         <div className="homepage">
+            <h2 className="title-homepage">Find the best flight and save</h2>
             <Search />
         </div>
     );

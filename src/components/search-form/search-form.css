@@ -1,7 +1,7 @@
 .form-box {
     background: #17385C;
     height: 151px;
-    width: 842px;
+    width: 900px;
     color: white;
     display: flex;
     flex-wrap: wrap;
@@ -23,6 +23,7 @@
 
 .form input {
     margin: 5px;
+    border-radius: 5px;
 }
 
 .form div {
@@ -37,9 +38,10 @@
     color: white !important;
     border: none !important;
     width: 138px;
-    height: 40px;
-    margin-right: 20px;
+    height: 48px;
+    /* margin-right: 20px; */
     text-align: center;
     box-sizing: border-box;
     border-radius: 4px;
+    cursor: pointer;
 }
