@@ -1,0 +1,12 @@
+.total-page{
+    display: flex;
+    background-color: rgb(219, 234, 248);
+    height: 900%;
+}
+.sidebar-content{
+    background-color: red;
+}
+.card.content{
+   margin: 37%;
+}
+    

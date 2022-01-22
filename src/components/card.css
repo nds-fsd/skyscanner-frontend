@@ -1,0 +1,19 @@
+.card-total{
+    width:839px;
+    height: 150px;
+    background-color: white; 
+    border-radius: 14px;
+    margin: 30px;
+
+    
+}
+
+.yellow{
+    background-color:#FBE666;
+    width: 839px;
+    height: 42px;
+    border-radius: 14px;
+}
+.name-result{
+    padding: 30px;
+}

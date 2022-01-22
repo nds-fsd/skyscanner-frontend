@@ -1,6 +1,7 @@
 import React , {useState} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import "./search-form.css"
 
 const Search = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -38,19 +39,19 @@ const Search = () => {
   };
 
     return (
-        <div>
-            <p>Buscar</p>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label for="from">From</label>
-                <input type="search" {...register("from")}/>
-                <label for="To">To</label>
-                <input type="search" {...register("to")}/>
-                <label for="To">Departure date</label>
-                <input type="date" {...register("dedate")}/>
-                <label for="To">Return date</label>
-                <input type="date" {...register("arrdate")}/>
-                <input type="submit" />
-                {/* <button>See flights</button> */}
+        <div className="form-box">
+            <form onSubmit={handleSubmit(onSubmit)} className="form">
+                {/* <label for="from">From</label> */}
+                <input type="search" {...register("from")} placeholder="From" />
+                <label for="To"></label>
+                <input type="search" {...register("to")} placeholder="To" />
+                <div><label for="To">Departure date</label>
+                <input type="date" {...register("dedate")}/></div>
+                <div><label for="To">Return date</label>
+                <input type="date" {...register("arrdate")}/></div>
+                <span className="form-enviar">
+                    <input type="submit" value="See flights"/>
+                </span>
             </form>
         </div>
     );

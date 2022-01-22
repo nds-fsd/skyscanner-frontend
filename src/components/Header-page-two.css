@@ -36,6 +36,7 @@
     right: 0px;
     top: calc(50% - 24px/2 - 2px);
 
+    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -74,6 +75,8 @@
     right: 0px;
     top: 0px;
 
+
+    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -89,3 +92,4 @@
     flex-grow: 0;
     margin: 0px 8px;
 }
+
