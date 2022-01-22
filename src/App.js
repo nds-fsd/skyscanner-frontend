@@ -23,7 +23,7 @@ import { Routes, Route, Link } from 'react-router';
 import './App.css';
 import Header from './components/header/header';
 import Home from './pages/home';
-import Results from './pages/results';
+import Results from './pages/Results';
 
 function App() {
   document.title = "Skyreader"

@@ -4,7 +4,6 @@ import './sidebar.css';
 const Sidebar =() => {
   return (
     <div className="sidebar-container">
-      <p className="filtered">Filtered</p>
       <div className="departure-times">
             <p>Departure times</p>
             <input type="range"></input>

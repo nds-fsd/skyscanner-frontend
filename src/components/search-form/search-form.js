@@ -1,7 +1,7 @@
 import React , {useState} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import "../search-form/search-form.css"
+import "./search-form.css"
 
 const Search = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
