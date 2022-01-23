@@ -12,7 +12,7 @@ import { useLocation } from 'react-router'
 function Results () {
     const location = useLocation();
     const [params, setParams] = useState(location.pathname.split("/"));
-    const [DataCard, setDataCard] = useState ([]);
+    const [flightCard, setFlightCard] = useState ([]);
 
         //navigate(`/flights/${data?.from}/${data?.to}/${data?.dedate}/${data?.arrdate}`)
 
@@ -26,7 +26,7 @@ function Results () {
         
         })
         .then((json) => {
-        setDataCard(json)
+            setFlightCard(json)
         }
         );
         console.log("esto es flight", DataCard )
@@ -39,8 +39,16 @@ function Results () {
             <div className="total-page">
             <Sidebar className="sidebar-content"></Sidebar>
             
-            {DataCard.map((flight) => (
-            <DataCard from={flight.from} to={flight.to} dedate={flight.dedate} arrdate={flight.arrdate} price={flight.price} airline={flight.airline}/>))}
+            {flightCard.map((flight) => (
+                <DataCard 
+                    from={flight.from} 
+                    to={flight.to} 
+                    dedate={flight.dedate} 
+                    arrdate={flight.arrdate} 
+                    price={flight.price} 
+                    airline={flight.airline}/>
+                ))
+            }
             </div>
         </section>
     )
