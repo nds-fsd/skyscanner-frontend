@@ -3,17 +3,25 @@
     height: 150px;
     background-color: white; 
     border-radius: 14px;
-    margin: 30px;
-
-    
+    margin: 0%;
 }
 
 .yellow{
     background-color:#FBE666;
-    width: 839px;
     height: 42px;
-    border-radius: 14px;
+    border-radius: 12px 12px 0px 0px;
+    display: flex;
+    padding: 10px;
+}
+
+.white-zone{
+    display: flex;
+    justify-content: space-between;
 }
 .name-result{
     padding: 30px;
+}
+.airline-yellow{
+    display: contents;
+    
 }
