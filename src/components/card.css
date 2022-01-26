@@ -1,9 +1,11 @@
 .card-total{
-    width:839px;
+    width:950px;
     height: 150px;
     background-color: white; 
     border-radius: 14px;
-    margin: 0%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 18px;
 }
 
 .yellow{
@@ -17,6 +19,7 @@
 .white-zone{
     display: flex;
     justify-content: space-between;
+    padding: 5px;
 }
 .name-result{
     padding: 30px;
