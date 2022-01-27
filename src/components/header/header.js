@@ -1,5 +1,5 @@
 import React from "react";
-//import logo from "../../files/logo.png"
+import { Link } from "react-router-dom";
 import "../header/header.css"
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
         <div className="header">
             
             <div className="login"><p>Login</p></div>
-            <div className="register"><p>Register</p></div>
+            <div className="register"><Link to="/signup"><p>Register</p></Link></div>
         </div>
     );
 };

@@ -88,3 +88,6 @@
     flex-grow: 0;
     margin: 0px 8px;
 }
+a:link {
+    text-decoration: none;
+  }
