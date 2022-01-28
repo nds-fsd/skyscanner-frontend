@@ -8,7 +8,7 @@ const Register = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
-  }, []);
+  }, );
   const {register, handleSubmit,formState: { errors },} = useForm();
 
   const onSubmit = async (data) => {
@@ -18,7 +18,7 @@ const Register = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    console.log(data);
+    //console.log(data);
     if (!response.ok) {
       alert("Response wasn't ok");
       return;
@@ -50,7 +50,7 @@ const Register = () => {
         {errors.email && <span>This field is required</span>}
         <input placeholder="password" type="password"{...register("password", { required: true })}/>
         {errors.password && <span>This field is required</span>}
-        {/*<input placeholder="confirma password" type="password" {...register,("password2", { required: true })}/>*/}
+        <input placeholder="confirma password" type="password" {...register("password2")}/>
         {errors.password2 && <span>This field is required</span>}
         <input type="submit" value="Registro" />
       </form>
