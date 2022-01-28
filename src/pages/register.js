@@ -11,13 +11,14 @@ const Register = () => {
   }, []);
   const {register, handleSubmit,formState: { errors },} = useForm();
 
-  const onSubmit = async (data, e) => {
+  const onSubmit = async (data) => {
 
-    const response = await fetch("http://localhost:5001/register", {
+    const response = await fetch("http://localhost:5001/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    console.log(data);
     if (!response.ok) {
       alert("Response wasn't ok");
       return;
@@ -27,13 +28,12 @@ const Register = () => {
     localStorage.setItem("token", json.token);
 
     navigate("/");
-    console.log(data);
+    
+    
 
-    e.target.reset();
+    //e.target.reset();
   }
 
-  
-  
   return (
   
   
@@ -50,7 +50,7 @@ const Register = () => {
         {errors.email && <span>This field is required</span>}
         <input placeholder="password" type="password"{...register("password", { required: true })}/>
         {errors.password && <span>This field is required</span>}
-        <input placeholder="confirma password" type="password" {...register("password2", { required: true })}/>
+        {/*<input placeholder="confirma password" type="password" {...register,("password2", { required: true })}/>*/}
         {errors.password2 && <span>This field is required</span>}
         <input type="submit" value="Registro" />
       </form>
