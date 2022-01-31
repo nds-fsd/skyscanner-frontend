@@ -1,0 +1,59 @@
+.header {
+    position: absolute;
+    height: 76px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.logo {
+    color:rgb(52, 122, 196);
+}
+
+h2 { 
+    margin-top: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+}
+
+.link {
+    text-decoration: none; 
+    text-align: center; 
+    margin: auto;
+    padding: 6px 10px;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+.login {
+    color:rgb(52, 122, 196);
+    cursor: pointer;
+}
+
+.login:hover {
+    color:rgb(13, 59, 109);
+    transition: ease-in-out 0.25s;
+}
+
+.register {
+    border: 2px solid ;
+    border-radius: 5px;
+    border-color: rgba(52, 122, 196, 0.377);
+    color:rgb(141, 141, 141);
+    cursor: pointer;
+}
+
+.register:hover {
+    color:rgb(235, 235, 235);
+    background-color: rgb(52, 122, 196);;
+    transition: ease-in-out 0.25s;
+}
