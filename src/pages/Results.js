@@ -2,7 +2,7 @@ import React from "react"
 import { useEffect } from "react";
 import { useState } from "react";
 import DataCard from "../components/data-card"
-import SearchResult from "../components/search-result"
+import SearchHeader from "../components/searchHeder"
 import Sidebar from "../components/sidebar"
 import './Results.css'
 
@@ -13,7 +13,7 @@ function Results () {
     const location = useLocation();
     const [params, setParams] = useState(location.pathname.split("/"));
     const [flightCard, setFlightCard] = useState ([]);
-    //const headerData = flightCard[flightCard.lenght-1];
+    
     //const [selectedCard, setSelectedCard] = useState([]);
 
     useEffect( () => {
@@ -31,7 +31,8 @@ function Results () {
         });
         
     },[]);
-       
+
+    const headerData = flightCard[flightCard.lenght-1];  
     return (
 
         <div className="wrapper">
@@ -41,15 +42,9 @@ function Results () {
             <div className="total-page">
                 
             {/* si queremos que solo salga una vez el encabezado SearchResult tenemos que hacer un lenght-1 (está definido en la const de arriba) y pasar por props data.
-            headerData &&<SearchResult data={headerData}/>* el problema es que headerData me devuelve un undefined y no se pq*/}
+            headerData &&<SearchResult data={headerData}/>*/}
 
-            {/*de la siguiente forma SearchResult se repite tantas veces como arrays encuentra en la base de datos: por lo q interesa hacerlo como está arriba*/}
-
-            {flightCard.map((flight)=>(
-                <SearchResult from = {flight.from}
-                to={flight.to}
-                flight={flight} id={flight._id} key={flight._id}/>
-            ))}
+            {headerData &&<SearchHeader data={headerData}/>}
               
                 {/* para poder seleccionar una card y utilizar el botón de ver vuelo{flightCard && flightCard.length > 0 && flightCard.map((flight) =>
                 <DataCard flight={flight} id={flight._id} key={flight._id} onClick={() => {setSelectedCard(flight) }} />)}*/}

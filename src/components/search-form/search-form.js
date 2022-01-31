@@ -19,11 +19,11 @@ const Search = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="form">
                 {/* <label for="from">From</label> */}
                 <input type="search" {...register("from")} placeholder="From" />
-                <label for="To"></label>
+                <label htmlFor="To"></label>
                 <input type="search" {...register("to")} placeholder="To" />
-                <div><label for="To">Departure date</label>
+                <div><label htmlFor="To">Departure date</label>
                 <input type="date" {...register("dedate")}/></div>
-                <div><label for="To">Return date</label>
+                <div><label htmlFor="To">Return date</label>
                 <input type="date" {...register("arrdate")}/></div>
                 <span className="form-enviar">
                     <input type="submit" value="See flights"/>
