@@ -11,20 +11,12 @@ const Register = () => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
   }, );
-  const {register, handleSubmit, formState: { errors }, watch} = useForm({mode: 'onBlur'});
+  const {register, handleSubmit, formState: { errors }, watch} = useForm({mode: 'onBlur', shouldUseNativeValidation: true});
   password.current = watch("password", "");
 
   const onSubmit = async (data) => {
 
-    /*const FormValid = () => {
-        
-       if ( data.password !== data.password2 ) {
-          console.log('El Password ha de ser igual');
-          return false
-      }
-    }*/
-
-    const response = await fetch("http://localhost:5001/users", {
+      const response = await fetch("http://localhost:5001/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -40,18 +32,9 @@ const Register = () => {
 
     navigate("/");
    
-
     //e.target.reset();
   }
-  console.log(errors);
-
-  /*<input ... />
-{errors.name && errors.name.type === "required" && (
-  <div className="error">You must enter your name</div>
-)}
-{errors.name && errors.name.type === "minLength" && (
-  <div className="error">Your name must be at least 2 characters</div>
-)}*/
+  //console.log(errors);
 
   return (
   
@@ -61,28 +44,38 @@ const Register = () => {
     <p>SingUp</p>
     <form className='formreg' onSubmit={handleSubmit(onSubmit)}>
      
-        <input placeholder="nombre" {...register("firstname", { required: true , minLength:3} )} />
-        {errors.firstname && <span>This field is required</span>}
-        {errors.firstname && errors.firstname.type === "minLength" && (<span>Your name must be at least 3 characters</span>)}
+        <input placeholder="nombre" {...register("firstname", { 
+          required: "Please enter your first name." , 
+          minLength:{
+          value:3,
+          message:"Name must have at least 3 characters"}} )} />
+        
+        <input placeholder="apellidos" {...register("lastname", { 
+          required: "Please enter your last name." , 
+          minLength:{
+          value:3,
+          message:"Name must have at least 3 characters"
+        }
+        })} />
+        
+        <input placeholder="email" {...register("email", { 
+          required: "Please enter your email."})} />
+        
+        <input placeholder="password" type="password" {...register("password",{
+          required:"Please enter your password.",
+          minLength:{
+            value:8,
+            message:"Password must have at least 8 characters, one digit [0-9], At least one lowercase character, at least one uppercase character, at least one special character "
+          }})} />
       
-        <input placeholder="apellidos" {...register("lastname", { required: true , minLength:3})} />
-        {errors.lastname && <span>This field is required</span>}
-        {errors.lastname && errors.lastname.type === "minLength" && (<span>Your name must be at least 3 characters</span>)}
-        <input placeholder="email" {...register("email", { required: true })} />
-        {errors.email && <span>This field is required</span>}
-      
-        <input placeholder="password" type="password" {...register("password",{required:true, minLength: 8 })} />
-        {errors.password && <span>This field is required</span>}
-        {errors.password && errors.password.type === "minLenght" && (<span>Your password must be at least 8 characters</span>) }
-
       <input placeholder='Repeat password' type="password" {...register("password2", {
           validate: value =>
-            value === password.current
+            value === password.current || "The passwords do not match"
         })}
       />
-      {errors.password2 && errors.password.type === "validate" && <p> The passwords do not match</p>}
+          {errors.password2 &&  <p>{errors.password2.message}</p>}
 
-      <input type="submit" value="Registro" />
+      <input type="submit" value="Regístrate" />
       </form>
 
   </div>
