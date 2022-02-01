@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./register.css";
 
 const Register = () => {
@@ -12,6 +12,7 @@ const Register = () => {
     if (token) navigate("/");
   }, );
   const {register, handleSubmit, formState: { errors }, watch} = useForm({mode: 'onBlur', shouldUseNativeValidation: true});
+  
   password.current = watch("password", "");
 
   const onSubmit = async (data) => {
@@ -23,13 +24,15 @@ const Register = () => {
     });
     //console.log(data);
     if (!response.ok) {
-      alert("Response wasn't ok");
+      alert("Error: check the form data");
+      
       return;
     }
     const json = await response.json();
 
     localStorage.setItem("token", json.token);
-
+    alert("Registered ok!");
+    
     navigate("/");
    
     //e.target.reset();
@@ -37,7 +40,6 @@ const Register = () => {
   //console.log(errors);
 
   return (
-  
   
   <div className='formregister'>
 
@@ -59,7 +61,12 @@ const Register = () => {
         })} />
         
         <input placeholder="email" {...register("email", { 
-          required: "Please enter your email."})} />
+          required: "Please enter your email.",
+          pattern: {
+          value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+          message: "Please enter a valid email"}
+          
+          })} />
         
         <input placeholder="password" type="password" {...register("password",{
           required:"Please enter your password.",
@@ -73,9 +80,16 @@ const Register = () => {
             value === password.current || "The passwords do not match"
         })}
       />
-          {errors.password2 &&  <p>{errors.password2.message}</p>}
+          
 
       <input type="submit" value="Regístrate" />
+
+          <Link 
+                    to="/login"
+                    className="linkreg"
+                >
+                    ¿Ya estás registrado?
+          </Link>
       </form>
 
   </div>
