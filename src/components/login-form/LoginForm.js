@@ -5,21 +5,21 @@ import styles from './loginForm.module.css';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
-
     const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem("user-session")?.token;
-        if (token) navigate("/");
+        if (token) {
+            navigate("/")
+        };
     }, []);
 
     const onSubmit = (data) => {
-        fetch("*URL_BACKEND*", {
+        fetch("http://localhost:3020/login", {
             method: 'POST',
             mode: 'cors',
             headers: {
-                "content-type": 'application/json',
-                /*"authorization": `Bearer ${getUserToken()}`*/
+                "content-type": 'application/json'
             },
             body: JSON.stringify(data)
         })
