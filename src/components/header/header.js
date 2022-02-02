@@ -1,9 +1,9 @@
 import React, {useState, useEffect}from "react";
 import { Link } from "react-router-dom";
+import logo from "../../files/logo.png";
 import "../header/header.css"
 
 const Header = () => {
-
 
     const [currentUser, setCurrentUser]= useState(undefined);
 
@@ -15,10 +15,14 @@ const Header = () => {
       }, [currentUser]);
     const Logout = () => {
         localStorage.removeItem('token');
-       setCurrentUser(null);
+        setCurrentUser(null);
     }
     return (
         <div className="header">
+            <div>
+            <Link to="/" ><img className="logo" src={logo} alt="logo"/></Link>
+
+            </div>
             {currentUser ? 
             <>
             <button className="btn-1"onClick={ Logout }>Logout</button>
@@ -26,13 +30,11 @@ const Header = () => {
             </>
             :
             <>
-            <div className="login"><p>Login</p></div>
+            <div className="login"><Link to="/login"><p>Login</p></Link></div>
             <div className="register"><Link to="/signup"><p>Register</p></Link></div>
             
             </>
         }
-            
-            
             
         </div>
     );

@@ -91,3 +91,19 @@
 a:link {
     text-decoration: none;
   }
+.btn-1 {
+
+  margin-left: 95%;
+  margin-top: 2%;
+  background:url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login-hover.png') no-repeat 5px 5px transparent;
+  transition: color .9s ease-in-out;
+  cursor:pointer;
+  border-radius:30px;
+  font-size: 14px;
+  
+}
+.btn-1:hover {
+    background-image: url( 'https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login.png' );
+    background-position: 65px 5px;
+    text-indent: 15px;  
+  }

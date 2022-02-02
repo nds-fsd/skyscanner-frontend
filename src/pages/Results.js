@@ -32,7 +32,7 @@ function Results () {
         
     },[]);
 
-    const headerData = flightCard[flightCard.lenght-1];  
+    const headerData = flightCard[flightCard.length-1];  
     return (
 
         <div className="wrapper">

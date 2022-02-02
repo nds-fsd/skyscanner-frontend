@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+//import {ApiError} from "../api/index"
 import "./register.css";
 
 const Register = () => {
@@ -11,7 +12,7 @@ const Register = () => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
   }, );
-  const {register, handleSubmit, formState: { errors }, watch} = useForm({mode: 'onBlur', shouldUseNativeValidation: true});
+  const {register, handleSubmit, formState: { errors }, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
   
   password.current = watch("password", "");
 
@@ -24,15 +25,15 @@ const Register = () => {
     });
     //console.log(data);
     if (!response.ok) {
-      alert("Error: check the form data");
+      alert("the email already exists");
       
       return;
     }
+  
     const json = await response.json();
 
     localStorage.setItem("token", json.token);
     alert("Registered ok!");
-    
     navigate("/");
    
     //e.target.reset();
@@ -70,10 +71,11 @@ const Register = () => {
         
         <input placeholder="password" type="password" {...register("password",{
           required:"Please enter your password.",
-          minLength:{
-            value:8,
-            message:"Password must have at least 8 characters, one digit [0-9], At least one lowercase character, at least one uppercase character, at least one special character "
-          }})} />
+          pattern: {
+            value:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+            message: "Password must have at least 8 characters, one digit [0-9], At least one lowercase character, at least one uppercase character, at least one special character "}
+
+          })} />
       
       <input placeholder='Repeat password' type="password" {...register("password2", {
           validate: value =>
