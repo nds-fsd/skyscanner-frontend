@@ -12,31 +12,35 @@ const Register = () => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
   }, );
-  const {register, handleSubmit, formState: { errors }, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
+  const {register, handleSubmit, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
   
   password.current = watch("password", "");
+  //console.log(password.current)
 
-  const onSubmit = async (data) => {
+  const onSubmit =  (data) => {
 
-      const response = await fetch("http://localhost:5001/users", {
+      fetch("http://localhost:3020/user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    });
-    //console.log(data);
-    if (!response.ok) {
-      alert("the email already exists");
+    })
+    .then((response) => {
+      if (response.status !== 201) {
+        alert("Coudn't Sing Up");
+      }
       
-      return;
-    }
-  
-    const json = await response.json();
-
-    localStorage.setItem("token", json.token);
-    alert("Registered ok!");
-    navigate("/");
-   
-    //e.target.reset();
+      return response.json();
+    })
+    .then((json) => {
+      localStorage.setItem("token", json.token);
+      alert("Registration successful")
+      navigate("/");
+    })
+    .catch((errors) => {
+      
+      console.error(errors);
+    });
+    
   }
   //console.log(errors);
 

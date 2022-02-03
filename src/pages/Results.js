@@ -18,7 +18,7 @@ function Results () {
 
     useEffect( () => {
        
-        fetch(`http://localhost:5001/flights/search?from=${params[2]}&to=${params[3]}&dedate=${params[4]}&arrdate=${params[5]}`)
+        fetch(`http://localhost:3020/flights/search?from=${params[2]}&to=${params[3]}&dedate=${params[4]}&arrdate=${params[5]}`)
 
         .then(response => {
             if (!response.ok) throw new Error("Couldn't ")
