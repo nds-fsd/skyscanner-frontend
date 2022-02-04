@@ -5,8 +5,8 @@ import DataCard from "../components/data-card"
 import SearchHeader from "../components/searchHeder"
 import Sidebar from "../components/sidebar"
 import './Results.css'
-
 import { useLocation } from 'react-router'
+import NavBar from "../components/Navbar/navbar";
 
 
 function Results () {
@@ -36,7 +36,7 @@ function Results () {
     return (
 
         <div className="wrapper">
-        
+        <NavBar/>
         <Sidebar className="sidebar-content"/>
         
             <div className="total-page">

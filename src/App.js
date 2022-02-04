@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route} from 'react-router';
 import './App.css';
-import Header from './components/header/header'
+import NavBar from './components/Navbar/navbar';
 import Home from './pages/home';
 import { Login } from './pages/login';
 import Register from './pages/register';
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <header>
-      <Header />
+      <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Register/>} />

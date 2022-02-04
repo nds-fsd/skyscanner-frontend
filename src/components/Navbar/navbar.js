@@ -1,9 +1,9 @@
 import React, {useState, useEffect}from "react";
 import { Link } from "react-router-dom";
 import logo from "../../files/logo.png";
-import "../header/header.css"
+import "../Navbar/navbar.css"
 
-const Header = () => {
+const NavBar = () => {
 
     const [currentUser, setCurrentUser]= useState(undefined);
 
@@ -40,4 +40,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default NavBar;

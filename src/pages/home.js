@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header/header";
+import NavBar from "../components/Navbar/navbar";
 import Search from "../components/search-form/search-form";
 import "./home.css"
 
@@ -7,7 +7,7 @@ const Home = () => {
     
     return (
         <div className="homepage">
-            <Header/>
+            <NavBar/>
             <h2 className="title-homepage">Find the best flight and save</h2>
             <Search />
         </div>
