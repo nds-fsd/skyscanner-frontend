@@ -17,29 +17,29 @@ const Register = () => {
   password.current = watch("password", "");
   //console.log(password.current)
 
-  const onSubmit =  (data) => {
+  const onSubmit =  async (data) => {
 
-      fetch("http://localhost:3020/user", {
+    const response = await fetch("http://localhost:3020/user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    })
-    .then((response) => {
-      if (response.status !== 201) {
-        alert("Coudn't Sing Up");
-      }
-      
-      return response.json();
-    })
-    .then((json) => {
-      localStorage.setItem("token", json.token);
-      alert("Registration successful")
-      navigate("/");
-    })
-    .catch((errors) => {
-      
-      console.error(errors);
     });
+    
+      if (response.status === 409) {
+        alert("email already exists");
+      
+      
+      return;
+    }
+    
+    const json = await response.json();
+
+    localStorage.setItem("token", json.token);
+    alert("Registration successful")
+    navigate("/");
+    
+    
+    
     
   }
   //console.log(errors);
