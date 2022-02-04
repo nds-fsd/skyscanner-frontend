@@ -1,19 +1,30 @@
 .card-total{
-    width:839px;
+    width:950px;
     height: 150px;
     background-color: white; 
     border-radius: 14px;
-    margin: 30px;
-
-    
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 18px;
 }
 
 .yellow{
     background-color:#FBE666;
-    width: 839px;
     height: 42px;
-    border-radius: 14px;
+    border-radius: 12px 12px 0px 0px;
+    display: flex;
+    padding: 10px;
+}
+
+.white-zone{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 }
 .name-result{
     padding: 30px;
+}
+.airline-yellow{
+    display: contents;
+    
 }

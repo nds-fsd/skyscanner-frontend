@@ -2,47 +2,68 @@ import React from "react"
 import { useEffect } from "react";
 import { useState } from "react";
 import DataCard from "../components/data-card"
-import SearchResult from "../components/search-result"
+import SearchHeader from "../components/searchHeder"
 import Sidebar from "../components/sidebar"
 import './Results.css'
-import Header from "../components/Header-page-two";
 import { useLocation } from 'react-router'
+import NavBar from "../components/Navbar/navbar";
 
 
 function Results () {
     const location = useLocation();
     const [params, setParams] = useState(location.pathname.split("/"));
-    const [DataCard, setDataCard] = useState ([]);
+    const [flightCard, setFlightCard] = useState ([]);
+    
+    //const [selectedCard, setSelectedCard] = useState([]);
 
-        //navigate(`/flights/${data?.from}/${data?.to}/${data?.dedate}/${data?.arrdate}`)
+    useEffect( () => {
+       
+        fetch(`http://localhost:3020/flights/search?from=${params[2]}&to=${params[3]}&dedate=${params[4]}&arrdate=${params[5]}`)
 
-    console.log(params)
-    useEffect(() => {
-        const request = fetch(`http://localhost:5001/flights/search?from=${params[2]}&to=${params[3]}&dedate=${params[4]}&arrdate=${params[5]}`)
-        console.log("console log de params", params)
-        request.then(response => {
-        if (!response.ok) throw new Error("Couldn't ")
-         return response.json();
-        
-        })
+        .then(response => {
+            if (!response.ok) throw new Error("Couldn't ")
+             return response.json();
+            })
         .then((json) => {
-        setDataCard(json)
-        }
-        );
-        console.log("esto es flight", DataCard )
-    })
-  
+            console.log(json);
+            setFlightCard(json);
+           
+        });
+        
+    },[]);
+
+    const headerData = flightCard[flightCard.length-1];  
     return (
-        <section >
-            <Header/>
-            <SearchResult className="from-to"/>
+
+        <div className="wrapper">
+        <NavBar/>
+        <Sidebar className="sidebar-content"/>
+        
             <div className="total-page">
-            <Sidebar className="sidebar-content"></Sidebar>
-            
-            {DataCard.map((flight) => (
-            <DataCard from={flight.from} to={flight.to} dedate={flight.dedate} arrdate={flight.arrdate} price={flight.price} airline={flight.airline}/>))}
+                
+            {/* si queremos que solo salga una vez el encabezado SearchResult tenemos que hacer un lenght-1 (está definido en la const de arriba) y pasar por props data.
+            headerData &&<SearchResult data={headerData}/>*/}
+
+            {headerData &&<SearchHeader data={headerData}/>}
+              
+                {/* para poder seleccionar una card y utilizar el botón de ver vuelo{flightCard && flightCard.length > 0 && flightCard.map((flight) =>
+                <DataCard flight={flight} id={flight._id} key={flight._id} onClick={() => {setSelectedCard(flight) }} />)}*/}
+
+                {flightCard.map((flight) => (
+                    <DataCard 
+                        from={flight.from} 
+                        to={flight.to} 
+                        dedate={flight.dedate} 
+                        arrdate={flight.arrdate} 
+                        price={flight.price} 
+                        airline={flight.airline}
+                        flight={flight} id={flight._id} key={flight._id}/>
+                    ))
+                }
+ 
             </div>
-        </section>
+        </div>
+    
     )
     };  
 export default Results
