@@ -27,9 +27,7 @@ const Register = () => {
     
       if (response.status === 409) {
         alert("email already exists");
-      
-      
-      return;
+        return;
     }
     
     const json = await response.json();
@@ -37,10 +35,7 @@ const Register = () => {
     localStorage.setItem("token", json.token);
     alert("Registration successful")
     navigate("/");
-    
-    
-    
-    
+   
   }
   //console.log(errors);
 
