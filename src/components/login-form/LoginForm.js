@@ -34,16 +34,16 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.inputDiv}>
-                <label>Introduce tu nombre de usuario</label>
-                <input {...register("username", { required: true })} placeholder="Usuario" type="text"/>
-                {errors.email && <span>This field is required</span>}
+                <label className={styles.infoLabel}>Introduce tu nombre de usuario</label>
+                <input className={styles.credentialsInput} {...register("username", { required: true })} placeholder="Usuario" type="text"/>
+                {errors.email && <span className={styles.errorLabel}>This field is required</span>}
             </div>
             <div className={styles.inputDiv}>
-                <label>Introduce tu contraseña</label>
-                <input {...register("password", { required: true })} placeholder="Contraseña" type="password" />
-                {errors.password && <span>This field is required</span>}
+                <label className={styles.infoLabel}>Introduce tu contraseña</label>
+                <input className={styles.credentialsInput} {...register("password", { required: true })} placeholder="Contraseña" type="password" />
+                {errors.password && <span className={styles.errorLabel}>This field is required</span>}
             </div>
-            <input type="submit" />
+            <input type="submit" className={styles.loginSubmit}/>
         </form>
     );
 };

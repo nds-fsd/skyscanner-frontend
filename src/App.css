@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies&display=swap');
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -6,14 +7,8 @@
 }
 
 .App-header {
-<<<<<<< HEAD
-  background-color: #ffffff;
-  min-height: 100vh;
-=======
   min-height: 80px;
   min-width: 100%;
-  
->>>>>>> f4b36303 (add loginform and navigation bar)
 }
 
 .App{

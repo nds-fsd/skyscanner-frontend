@@ -16,23 +16,39 @@
     margin: 10px 0;
 }
 
-input {
+.credentialsInput {
     border: 0;
     border-radius: 6px;
     padding: 10px;
     max-width: 400px;
 }
 
-label {
+.infoLabel {
     font-size: small;
     max-width: 400px;
     color: rgba(71, 71, 71, 0.918);
 }
 
-input[type="submit"] {
+.loginSubmit {
     width: 200px;
     margin-top: 20px;
     margin: 10px auto;
+    padding: 5px;
     float: right;
+    border: 0 solid;
+    border-radius: 3px;
     color: rgb(66, 113, 175);
+    background-color: rgb(231, 231, 231);
+    cursor: pointer;
+}
+
+.loginSubmit:hover { 
+    background-color: rgb(199, 199, 199);
+    color: white;
+    transition: all 0.25s;
+}
+
+.errorLabel {
+    font-size: x-small;
+    color: rgb(134, 3, 3);
 }
