@@ -8,7 +8,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("user-session")?.token;
+        const token = localStorage.getItem("token")?.token;
         if (token) {
             navigate("/")
         };
@@ -24,7 +24,7 @@ const LoginForm = () => {
             body: JSON.stringify(data)
         })
         .then(userSession => {
-            localStorage.setItem("user-session", userSession);
+            localStorage.setItem("token", userSession);
             navigate("/");
         }).catch(error => {
           console.error(error);
