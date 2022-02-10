@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 //import {ApiError} from "../api/index"
@@ -7,7 +7,7 @@ import "./register.css";
 const Register = () => {
   const navigate = useNavigate();
   const password = useRef({});
-  
+  const [notRegistered, setNotRegistered] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
@@ -26,14 +26,15 @@ const Register = () => {
     });
     
       if (response.status === 409) {
-        alert("email already exists");
+        //alert("email already exists");
+          setNotRegistered(true)
         return;
     }
     
     const json = await response.json();
 
     localStorage.setItem("token", json.token);
-    alert("Registration successful")
+    //alert("Registration successful")
     navigate("/");
    
   }
@@ -44,6 +45,10 @@ const Register = () => {
   <div className='formregister'>
 
     <p>SingUp</p>
+
+    
+
+  
     <form className='formreg' onSubmit={handleSubmit(onSubmit)}>
      
         <input placeholder="nombre" {...register("firstname", { 
@@ -85,14 +90,25 @@ const Register = () => {
 
       <input type="submit" value="Regístrate" />
 
-          <Link 
+          
+      </form>
+      {notRegistered ?
+    <div id="InfoBanner">
+      <span class="reversed reversedRight">
+        <span>&#9888;</span>
+      </span>
+      <span className='reversed reversedLeft'>Tu email ya está registrado</span>
+      
+      <> <Link 
                     to="/login"
                     className="linkreg"
                 >
-                    ¿Ya estás registrado?
-          </Link>
-      </form>
-
+                    Haz login aquí.
+          </Link></>
+    </div>  : <>
+   
+    </>
+  }
   </div>
   );
 };
