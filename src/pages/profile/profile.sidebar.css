@@ -1,0 +1,93 @@
+.header-profile-img {
+    width: 50px;
+    height: 50px;
+  }
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-text {
+    text-align: center;
+  }
+  
+  .profile-text span {
+    font-size: 30px;
+  }
+  
+  .profile-text p {
+    margin-top: 0;
+    color: grey
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+  .option-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .option-info p{
+    margin-left: 15px;
+  }
+  
+  .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(88, 147, 248);
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .option:first-child {
+    border-top: 1px solid rgb(88, 147, 248);
+  }
+  
+  .option-my-account{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+  }
+  .option-reservation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .list {
+     width: 100%;
+
+  }
+  
+  .option:hover {
+    background-color: rgb(88, 147, 248);
+    transition: .5s;
+  }
+
+  .btn-1 {
+    margin-left: 95%;
+    margin-top: 2%;
+    background:url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login-hover.png') no-repeat 5px 5px transparent;
+    transition: color .9s ease-in-out;
+    cursor:pointer;
+    border-radius:30px;
+    font-size: 14px;
+    
+  }
+  .btn-1:hover {
+      background-image: url( 'https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login.png' );
+      background-position: 65px 5px;
+      text-indent: 15px;  
+    }
