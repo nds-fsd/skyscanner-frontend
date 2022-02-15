@@ -2,7 +2,7 @@ import React from "react"
 import { useEffect } from "react";
 import { useState } from "react";
 import DataCard from "../components/data-card"
-import SearchHeader from "../components/searchHeder"
+import SearchHeader from "../components/searchHeader"
 import Sidebar from "../components/sidebar"
 import './Results.css'
 import { useLocation } from 'react-router'
