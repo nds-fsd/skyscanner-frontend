@@ -1,11 +1,8 @@
 import React from "react";
+import Footer from "../components/footer/Footer";
 import NavBar from "../components/Navbar/navbar";
 import Search from "../components/search-form/search-form";
 import "./home.css"
-import instagram_logo from "../images/instagram_logo.png";
-import facebook_logo from "../images/facebook_logo.png";
-import twiter_logo from "../images/twiter_logo.png";
-import logo from "../images/logo.jpg";
 
 const Home = () => {
     
@@ -83,15 +80,7 @@ const Home = () => {
                 
             </section>
             <section className="footer">
-                <div className="footer-logo">
-                    <img src={logo} alt="logo"/>
-                </div>
-                <p className="footer-text">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam eget nullam pellentesque aliquam curabitur cociis.</p>
-                <div className="footer-social-media">
-                    <img src={facebook_logo} alt="Facebook logo"/>
-                    <img src={instagram_logo} alt="Instagram, logo"/>
-                    <img src={twiter_logo}alt="Twiter logo" />
-                </div>
+                <Footer />
             </section>
         </div>
     );
