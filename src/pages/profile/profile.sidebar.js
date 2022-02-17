@@ -1,9 +1,15 @@
-import React from 'react';import ProfileIcon from '../../components/icons/profile-icon'
+import React , {useState} from 'react';
+import ProfileIcon from '../../components/icons/profile-icon'
 import TravelerIcon from '../../components/icons/traveler-icon';
-import CositoIcon from '../../components/icons/cosito-icono';
-import './profile.sidebar.css'
+import ArrowIcon from '../../components/icons/arrow-icono';
+import './profile.sidebar.css';
+import travel from "../../files/travel.png";
+import AccountData from '../../components/profile-data/account-data';
 
-const ProfileSidebar = () => {
+
+const ProfileSidebar = ({setComponent}) => {
+    const [showAccount, setShowAccount] = useState(false);
+    // document.getElementById("optionInfo").style.display='block'
 
 
   return (
@@ -12,33 +18,38 @@ const ProfileSidebar = () => {
                        <TravelerIcon/>
                         <div className="profile-text">
                             <span><strong>Hello,</strong></span>
-                            <p>carolinamarianela@hotmail.com</p>
+                            <p>gallegos.carolina@outlook.com</p>
                         </div>
                     </div>
                     <div className="list">
-                        <div className="option">
+                        <div onClick={()=> setComponent('favorite')} className="option">
                             <div className="option-info">
                                 <ProfileIcon/>
                                 <p>Favorite flights</p>
                             </div>
-                            <CositoIcon/>
+                            <ArrowIcon/>
                         </div>
-                        <div className="option">
+                        <div onClick={()=> setComponent('reservations')} className="option">
                             <div className='option-info'>
                                 <ProfileIcon/>
                                 <p>My reservations</p>
                             </div>
-                            <CositoIcon/>
+                            <ArrowIcon/>
                         </div>
-                        <div className="option">
+                        <div className="option" onClick={() => {setComponent('account')}}>
                             <div className="option-info">
-                            <ProfileIcon/>
+                                <ProfileIcon/>
                                 <p>My account</p>
+                                {showAccount === true &&  
+                                <AccountData setShowAccount={setShowAccount}/>
+		                        } 
+                                <ArrowIcon/>
                             </div>
-                            <CositoIcon/>
                         </div>
-                        <button className="btn-1">Logout</button>
+                        <button className="button-profile">Logout</button>
+                        <div> <img className="travel" src={ travel } alt="travel"/></div>
                     </div>
+                   
             </section>
 
   );

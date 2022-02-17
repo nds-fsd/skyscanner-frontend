@@ -7,8 +7,10 @@ import ProfileSidebar from './profile.sidebar';
 import AccountData from '../../components/profile-data/account-data';
 
 
+
 const Profile = () => {
     const [currentProfile, setCurrentProfile]= useState(undefined);
+    const [component, setComponent]= useState('hola');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,13 +21,27 @@ const Profile = () => {
         }
       }, [currentProfile]);
     
+     
+      const renderSwitch = (component) => {
+        console.log(component)
+        switch(component) {
+          case 'account':
+            return <AccountData />;
+            // case 'account':
+            // return <AccountData />;
+          default:
+            return 'foo';
+        }
+      }
+      
+
 
     return (
         <section className='profile-wrapper'>
-            <div className='side-bar'><ProfileSidebar/></div>
+            <div className='side-bar'><ProfileSidebar setComponent={setComponent} /></div>
             {/* Aqui irian los componente condicionales */}
             <div className='options'>
-                <AccountData/>
+                {renderSwitch(component)}
             </div>
         </section>
     );
