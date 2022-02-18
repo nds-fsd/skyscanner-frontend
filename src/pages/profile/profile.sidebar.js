@@ -5,12 +5,20 @@ import ArrowIcon from '../../components/icons/arrow-icono';
 import './profile.sidebar.css';
 import travel from "../../files/travel.png";
 import AccountData from '../../components/profile-data/account-data';
+import Reservation from '../../components/profile-data/reservation-result';
+import FavoriteResult from '../../components/profile-data/favorite-result';
 
 
 const ProfileSidebar = ({setComponent}) => {
     const [showAccount, setShowAccount] = useState(false);
-    // document.getElementById("optionInfo").style.display='block'
+    const [showReservation, setShowReservation] = useState(false);
+    const [showFavorite, setShowFavorite] = useState(false);
+   
 
+    // const Logout = () => {
+    //     localStorage.removeItem('token');
+    //     setCurrentUser(null);
+    // }
 
   return (
      <section className="wrapper">
@@ -26,6 +34,9 @@ const ProfileSidebar = ({setComponent}) => {
                             <div className="option-info">
                                 <ProfileIcon/>
                                 <p>Favorite flights</p>
+                                {showFavorite === true &&
+                                <FavoriteResult setShowFavorite={setShowFavorite}/>
+                                }
                             </div>
                             <ArrowIcon/>
                         </div>
@@ -33,6 +44,9 @@ const ProfileSidebar = ({setComponent}) => {
                             <div className='option-info'>
                                 <ProfileIcon/>
                                 <p>My reservations</p>
+                                {showReservation === true &&
+                                <Reservation setShowReservation={setShowReservation}/>
+                                }
                             </div>
                             <ArrowIcon/>
                         </div>
@@ -46,7 +60,7 @@ const ProfileSidebar = ({setComponent}) => {
                                 <ArrowIcon/>
                             </div>
                         </div>
-                        <button className="button-profile">Logout</button>
+                        {/* <button className="button-profile" onClick={ Logout }>Logout</button> */}
                         <div> <img className="travel" src={ travel } alt="travel"/></div>
                     </div>
                    

@@ -5,12 +5,14 @@ import NavBar from '../../components/Navbar/navbar';
 import './Profile.css';
 import ProfileSidebar from './profile.sidebar';
 import AccountData from '../../components/profile-data/account-data';
+import Reservation from '../../components/profile-data/reservation-result';
+import FavoriteResult from '../../components/profile-data/favorite-result';
 
 
 
 const Profile = () => {
     const [currentProfile, setCurrentProfile]= useState(undefined);
-    const [component, setComponent]= useState('hola');
+    const [component, setComponent]= useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,15 +25,14 @@ const Profile = () => {
     
      
       const renderSwitch = (component) => {
-        console.log(component)
+          console.log(component);
         switch(component) {
           case 'account':
-            return <AccountData />;
-            // case 'account':
-            // return <AccountData />;
-          default:
-            return 'foo';
-        }
+            return <AccountData/>;
+          case 'reservations':
+             return <Reservation/>;
+          case 'favorite':
+            return <FavoriteResult/>;}
       }
       
 
