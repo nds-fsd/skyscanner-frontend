@@ -1,6 +1,7 @@
 import React, {useState, useEffect}from "react";
 import { Link } from "react-router-dom";
 import logo from "../../files/logo.png";
+import TravelerIcon from "../icons/traveler-icon";
 import "../Navbar/navbar.css"
 
 const NavBar = () => {
@@ -19,6 +20,7 @@ const NavBar = () => {
     }
     return (
         <div className="header">
+            <div className="navbar-container">
             <div>
             <Link to="/" ><img className="logo" src={logo} alt="logo"/></Link>
 
@@ -26,7 +28,9 @@ const NavBar = () => {
             {currentUser ? 
             <>
             <button className="btn-1"onClick={ Logout }>Logout</button>
-            
+            <div className="navbar-icon">
+                <TravelerIcon/>
+            </div>
             </>
             :
             <>
@@ -34,7 +38,10 @@ const NavBar = () => {
             <div className="register"><Link to="/signup"><p>Register</p></Link></div>
             
             </>
-        }
+            }
+
+            </div>
+           
             
         </div>
     );

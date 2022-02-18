@@ -6,6 +6,9 @@
     top: 0px;
     background: #FFFFFF;
 }
+.navbar-container{
+    display: flex;
+}
 
 .logo {
     position: absolute;
