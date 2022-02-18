@@ -15,10 +15,10 @@ const ProfileSidebar = ({setComponent}) => {
     const [showFavorite, setShowFavorite] = useState(false);
    
 
-    // const Logout = () => {
-    //     localStorage.removeItem('token');
-    //     setCurrentUser(null);
-    // }
+    const Logout = () => {
+        localStorage.removeItem('token');
+        // setCurrentUser(null);
+    }
 
   return (
      <section className="wrapper">
@@ -60,7 +60,7 @@ const ProfileSidebar = ({setComponent}) => {
                                 <ArrowIcon/>
                             </div>
                         </div>
-                        {/* <button className="button-profile" onClick={ Logout }>Logout</button> */}
+                        <button className="button-profile" onClick={ Logout }>Logout</button>
                         <div> <img className="travel" src={ travel } alt="travel"/></div>
                     </div>
                    

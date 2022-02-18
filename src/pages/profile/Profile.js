@@ -11,17 +11,17 @@ import FavoriteResult from '../../components/profile-data/favorite-result';
 
 
 const Profile = () => {
-    const [currentProfile, setCurrentProfile]= useState(undefined);
+    // const [currentProfile, setCurrentProfile]= useState(undefined);
     const [component, setComponent]= useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const user = localStorage.getItem("token");
-        if (user) {
-            setCurrentProfile(user);
-            console.log("donde estas user", user)
-        }
-      }, [currentProfile]);
+    // useEffect(() => {
+    //     const user = localStorage.getItem("token");
+    //     if (user) {
+    //         setCurrentProfile(user);
+    //         console.log("donde estas user", user)
+    //     }
+    //   }, [currentProfile]);
     
      
       const renderSwitch = (component) => {
