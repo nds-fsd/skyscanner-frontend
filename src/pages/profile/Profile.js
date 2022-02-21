@@ -23,7 +23,6 @@ const Profile = () => {
     //     }
     //   }, [currentProfile]);
     
-     
       const renderSwitch = (component) => {
           console.log(component);
         switch(component) {
@@ -35,14 +34,11 @@ const Profile = () => {
             return <FavoriteResult/>;}
       }
       
-
-
     return (
         <section className='profile-wrapper'>
             <div className='side-bar'><ProfileSidebar setComponent={setComponent} /></div>
-            {/* Aqui irian los componente condicionales */}
             <div className='options'>
-                {renderSwitch(component)}
+              {renderSwitch(component)}
             </div>
         </section>
     );

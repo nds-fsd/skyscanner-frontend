@@ -21,27 +21,25 @@ const NavBar = () => {
     return (
         <div className="header">
             <div className="navbar-container">
-            <div>
-            <Link to="/" ><img className="logo" src={logo} alt="logo"/></Link>
-
-            </div>
-            {currentUser ? 
-            <>
-            <button className="btn-1"onClick={ Logout }>Logout</button>
-            <div className="navbar-icon">
-                <TravelerIcon/>
-            </div>
-            </>
-            :
-            <>
-            <div className="login"><Link to="/login"><p>Login</p></Link></div>
-            <div className="register"><Link to="/signup"><p>Register</p></Link></div>
+                    <div>
+                        <Link to="/" ><img className="logo" src={logo} alt="logo"/></Link>
+                    </div>
+                {currentUser ? 
+                <>
+                <button className="btn-1"onClick={ Logout }>Logout</button>
+                <div className="navbar-icon">
+                <Link to="/profile"> <TravelerIcon /> </Link>
+                </div>
+                </>
+                 :
+                 <>
+                <div className="login"><Link to="/login"><p>Login</p></Link></div>
+                <div className="register"><Link to="/signup"><p>Register</p></Link></div>
             
-            </>
-            }
+                </>
+                }
 
             </div>
-           
             
         </div>
     );

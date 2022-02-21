@@ -38,10 +38,13 @@
 .header-account-data{
     font-size: 1.875rem;
     text-align: center;
+    font-family:sans-serif;
+    font-weight: 600;
 }
 .remove-account-profile{
     display: flex;
     margin-top: 20px;
+    margin-bottom: 20px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -64,4 +67,14 @@
 .account{
     justify-content: space-between;
 
+}
+.edit-account{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid #dddde5;
 }
