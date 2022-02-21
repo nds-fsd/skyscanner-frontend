@@ -7,6 +7,7 @@ import ReturnFlight from './ReturnFlight';
 import NavBar from '../components/Navbar/navbar';
 import Home from './home';
 import './layout.css'
+import Filters from '../components/filters/Filters';
 
 const Layout = () => {
   return (
@@ -18,10 +19,10 @@ const Layout = () => {
                 <Route path="/signup" element={<Register/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/return" element={<ReturnFlight/>} />
+                <Route path="/filters" element={<Filters/>} />
                 <Route path="/flights/:from/:to/:dedate" element={<Results/>} />
             </Routes>
         </div>
-        
     </div>
   )
 }
