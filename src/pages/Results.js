@@ -7,6 +7,7 @@ import Sidebar from "../components/sidebar"
 import './Results.css'
 import { useLocation } from 'react-router'
 import NavBar from "../components/Navbar/navbar";
+import Filters from "../components/filters/Filters";
 
 
 function Results () {
@@ -37,7 +38,7 @@ function Results () {
 
         <div className="wrapper">
         <NavBar/>
-        <Sidebar className="sidebar-content"/>
+        <Filters />
         
             <div className="total-page">
                 

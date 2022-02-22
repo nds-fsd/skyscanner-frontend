@@ -8,28 +8,21 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("token")?.token;
-        if (token) {
-            navigate("/")
-        };
+        const token = getUserToken()
+        if (token) navigate("/protected");
     }, []);
 
+
     const onSubmit = (data) => {
-        fetch("http://localhost:3020/login", {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                "content-type": 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        customFetch("POST", "login", {body: data})
         .then(userSession => {
-            localStorage.setItem("token", userSession);
-            navigate("/");
+            setUserSession(userSession);
+            navigate("/protected");
         }).catch(error => {
-          console.error(error);
+            // Ideally, we should show an error message to the user
+            console.error(error);
         });
-      };
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
