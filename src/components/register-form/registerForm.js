@@ -8,10 +8,12 @@ const Register = () => {
   const navigate = useNavigate();
   const password = useRef({});
   const [notRegistered, setNotRegistered] = useState(false);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) navigate("/");
+      const token = localStorage.getItem("token");
+      if (token) navigate("/");
   }, );
+  
   const {register, handleSubmit, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
   
   password.current = watch("password", "");
