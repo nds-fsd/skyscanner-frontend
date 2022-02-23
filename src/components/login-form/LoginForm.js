@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from './loginForm.module.css';
+import { setUserSession, getUserToken } from '../../api/auth';
+import customFetch from '../../api';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
@@ -9,17 +11,17 @@ const LoginForm = () => {
 
     useEffect(() => {
         const token = getUserToken()
-        if (token) navigate("/protected");
+        if (token) navigate("/");
     }, []);
 
 
     const onSubmit = (data) => {
+        console.log(data);
         customFetch("POST", "login", {body: data})
         .then(userSession => {
             setUserSession(userSession);
-            navigate("/protected");
+            navigate("/");
         }).catch(error => {
-            // Ideally, we should show an error message to the user
             console.error(error);
         });
     };
@@ -28,7 +30,7 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.inputDiv}>
                 <label className={styles.infoLabel}>Introduce tu nombre de usuario</label>
-                <input className={styles.credentialsInput} {...register("username", { required: true })} placeholder="Usuario" type="text"/>
+                <input className={styles.credentialsInput} {...register("email", { required: true })} placeholder="Email" type="text"/>
                 {errors.email && <span className={styles.errorLabel}>This field is required</span>}
             </div>
             <div className={styles.inputDiv}>
