@@ -1,13 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useContext} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-//import {ApiError} from "../api/index"
+import { UserContext } from '../../context/userContext';
 import "./register.css";
 
 const Register = () => {
   const navigate = useNavigate();
   const password = useRef({});
   const [notRegistered, setNotRegistered] = useState(false);
+  const [user, setUser] = useContext(UserContext);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
@@ -35,6 +36,11 @@ const Register = () => {
 
     localStorage.setItem("token", json.token);
     //alert("Registration successful")
+
+    const datauser = await fetch(`http://localhost:3020/profile/datauser/${data.email}`);
+      console.log(datauser);
+      setUser(datauser);
+
     navigate("/");
    
   }

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Routes, Route} from 'react-router';
+import { UserContext } from './context/userContext';
 import './App.css';
 import NavBar from './components/Navbar/navbar';
 import Home from './pages/home';
@@ -9,8 +10,13 @@ import Register from './pages/register';
 import Results from './pages/Results';
 
 function App() {
-  document.title = "Skyreader"
+  document.title = "Skyreader";
+  const [user, setUser] = useState ({});
   return (
+    <UserContext.Provider value={{
+      user,
+      setUser
+  }}>
     <div className="App">
       <NavBar />
         <Routes>
@@ -21,6 +27,7 @@ function App() {
           <Route path="/profile" element ={<Profile/>} />
         </Routes>
     </div>
+    </UserContext.Provider>
   );
 }
 
