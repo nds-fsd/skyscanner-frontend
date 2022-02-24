@@ -1,7 +1,7 @@
 import React from 'react';
 //import { useNavigate } from "react-router-dom";
 import { useState} from 'react';
-//import NavBar from '../../components/Navbar/navbar';
+import NavBar from '../../components/Navbar/navbar';
 import './Profile.css';
 import ProfileSidebar from './profile.sidebar';
 import AccountData from '../../components/profile-data/account-data';
@@ -36,7 +36,9 @@ const Profile = () => {
       }
       
     return (
+     
         <section className='profile-wrapper'>
+          <NavBar/>
             <div className='side-bar'><ProfileSidebar setComponent={setComponent} /></div>
             <div className='options'>
               {renderSwitch(component)}
