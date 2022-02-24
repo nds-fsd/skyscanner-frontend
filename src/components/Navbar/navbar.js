@@ -1,5 +1,5 @@
 import React, {useState, useEffect}from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../../files/logo.png";
 import TravelerIcon from "../icons/traveler-icon";
 import "../Navbar/navbar.css"
@@ -7,6 +7,7 @@ import "../Navbar/navbar.css"
 const NavBar = () => {
 
     const [currentUser, setCurrentUser]= useState(undefined);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const user = localStorage.getItem("token");
@@ -16,7 +17,9 @@ const NavBar = () => {
       }, [currentUser]);
     const Logout = () => {
         localStorage.removeItem('token');
+        navigate("/");
         setCurrentUser(null);
+        
     }
     return (
         <div className="header">
