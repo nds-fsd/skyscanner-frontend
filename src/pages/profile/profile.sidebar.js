@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useContext, useState} from 'react';
 import ProfileIcon from '../../components/icons/profile-icon'
 import TravelerIcon from '../../components/icons/traveler-icon';
 import ArrowIcon from '../../components/icons/arrow-icono';
@@ -7,26 +7,27 @@ import travel from "../../files/travel.png";
 import AccountData from '../../components/profile-data/account-data';
 import Reservation from '../../components/profile-data/reservation-result';
 import FavoriteResult from '../../components/profile-data/favorite-result';
+import { UserContext } from '../../context/userContext';
 
 
 const ProfileSidebar = ({setComponent}) => {
     const [showAccount, setShowAccount] = useState(false);
     const [showReservation, setShowReservation] = useState(false);
     const [showFavorite, setShowFavorite] = useState(false);
-   
+    const {user} = useContext(UserContext);
 
     const Logout = () => {
         localStorage.removeItem('token');
         // setCurrentUser(null);
     }
-
+    console.log(user);
   return (
      <section className="wrapper">
                     <div className="profile">
                        <TravelerIcon/>
                         <div className="profile-text">
                             <span><strong>Hello,</strong></span>
-                            <p>gallegos.carolina@outlook.com</p>
+                            <p>{user.firstname} {""} {user.lastname}</p>
                         </div>
                     </div>
                     <div className="list">

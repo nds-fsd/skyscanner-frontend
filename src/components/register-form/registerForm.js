@@ -8,7 +8,8 @@ const Register = () => {
   const navigate = useNavigate();
   const password = useRef({});
   const [notRegistered, setNotRegistered] = useState(false);
-  const [user, setUser] = useContext(UserContext);
+  const {setUser} = useContext(UserContext);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
@@ -37,9 +38,14 @@ const Register = () => {
     localStorage.setItem("token", json.token);
     //alert("Registration successful")
 
-    const datauser = await fetch(`http://localhost:3020/profile/datauser/${data.email}`);
-      console.log(datauser);
-      setUser(datauser);
+    
+      console.log(data);
+      setUser({
+        email: data.email,
+        firstname: data.firstname,
+        lastname: data.lastname
+
+      });
 
     navigate("/");
    
@@ -100,7 +106,7 @@ const Register = () => {
       </form>
       {notRegistered ?
     <div id="InfoBanner">
-      <span class="reversed reversedRight">
+      <span className="reversed reversedRight">
         <span>&#9888;</span>
       </span>
       <span className='reversed reversedLeft'>Tu email ya está registrado</span>

@@ -1,14 +1,18 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './acount-data.css';
 import ArrowIcon from '../icons/arrow-icono';
 import Modal from './modal-aeroport';
 import ModalRemove from './modal-remove';
 import ModalEdit from './modal-edit';
+import { UserContext } from '../../context/userContext';
 
 const AccountData = () => {
     const [showModal, setShowModal] = useState(false);
     const [showModalRemove, setShowModalRemove] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
+
+    const {user} = useContext(UserContext);
+    console.log(user);
     
   return (
    <section className='account-data-container'>
@@ -20,7 +24,7 @@ const AccountData = () => {
                <p>General information</p>
            </div>
            <p className='email-information'>Email address</p>
-           <p>gallegos.carolina@outlook.com</p>
+           <p>{user.email}</p>
         </div>
        <div className='suscription'>
             <div className='header-title-profile'>
