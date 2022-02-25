@@ -1,28 +1,26 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import "./modal-remove.css";
-import jwt_decode from "jwt-decode";
 import { useNavigate} from "react-router-dom";
+import customFetch from "../../api";
+import { removeSession } from "../../api/auth";
+import { UserContext } from '../../context/userContext';
 
 
 const ModalRemove = ({setShowModalRemove }) => {
 
-  const token = localStorage.getItem("token");
-  const decoded = jwt_decode(token);
   const navigate = useNavigate();
-  console.log(decoded);
+  const {user} = useContext(UserContext);
+
   const RemoveAccount = () =>{
-    fetch(`http://localhost:3020/profile/${decoded.id}`, {
+    fetch(`http://localhost:3020/profile/${user.id}`, {
       method: "DELETE"
       
     })
             .then(res => res.json())
-            .then(() => localStorage.removeItem('token'))
+            .then(() => removeSession())
             .then(()=> navigate("/"))
             .then(()=> alert("deleted"))
             .catch(err => console.error(err))
-
-  
-
 
   }
 

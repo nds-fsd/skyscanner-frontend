@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState, useContext} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from '../../context/userContext';
+import customFetch from "../../api";
+import { setUserSession, getUserToken } from "../../api/auth";
 import "./register.css";
 
 const Register = () => {
@@ -11,15 +13,43 @@ const Register = () => {
   const {setUser} = useContext(UserContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getUserToken()
     if (token) navigate("/");
-  }, );
+  }, []);
   const {register, handleSubmit, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
   
   password.current = watch("password", "");
   //console.log(password.current)
 
-  const onSubmit =  async (data) => {
+  const onSubmit = (data) => {
+    customFetch("POST", "user", {body: data})
+    
+    .then(userSession => {
+      setUserSession(userSession);
+
+      setUser({
+        email: userSession.user.email,
+        firstname: userSession.user.firstname,
+        lastname: userSession.user.lastname,
+        fav: userSession.user.fav,
+        id : userSession.user._id
+       
+      });
+      navigate("/");
+
+    }).catch(error => {
+      
+      console.error(error);
+      if (error.status === 409) {
+        setNotRegistered(true);
+          
+        return;
+      }
+
+    });
+  };
+
+  /*const onSubmit =  async (data) => {
 
     const response = await fetch("http://localhost:3020/user", {
       method: "POST",
@@ -29,7 +59,8 @@ const Register = () => {
     
       if (response.status === 409) {
         //alert("email already exists");
-          setNotRegistered(true)
+          setNotRegistered(true);
+          
         return;
     }
     
@@ -38,7 +69,6 @@ const Register = () => {
     localStorage.setItem("token", json.token);
     //alert("Registration successful")
 
-    
       console.log(data);
       setUser({
         email: data.email,
@@ -49,7 +79,7 @@ const Register = () => {
 
     navigate("/");
    
-  }
+  }*/
   //console.log(errors);
 
   return (

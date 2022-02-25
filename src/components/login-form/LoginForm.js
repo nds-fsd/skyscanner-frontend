@@ -1,41 +1,52 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from './loginForm.module.css';
+import { UserContext } from "../../context/userContext";
+import customFetch from "../../api";
+import { setUserSession, getUserToken } from "../../api/auth";
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
-
+    const {setUser} = useContext(UserContext);
+    
     useEffect(() => {
-        const token = localStorage.getItem("token")?.token;
-        if (token) {
-            navigate("/")
-        };
-    }, []);
+        const token = getUserToken()
+        if (token) navigate("/");
+      }, []);
 
     const onSubmit = (data) => {
-        fetch("http://localhost:3020/login", {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                "content-type": 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        customFetch("POST", "login", {body: data})
+        
         .then(userSession => {
-            localStorage.setItem("token", userSession);
-            navigate("/");
+          setUserSession(userSession);
+          setUser({
+            email: userSession.user.email,
+            firstname: userSession.user.firstname,
+            lastname: userSession.user.lastname,
+            fav: userSession.user.fav,
+            id : userSession.user._id
+           
+          });
+          navigate("/");
+
         }).catch(error => {
+          
           console.error(error);
+          if (error.status === 400) {
+            alert("invalid email or password");
+          }
+
         });
       };
 
     return (
+        
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.inputDiv}>
                 <label className={styles.infoLabel}>Introduce tu nombre de usuario</label>
-                <input className={styles.credentialsInput} {...register("username", { required: true })} placeholder="Usuario" type="text"/>
+                <input className={styles.credentialsInput} {...register("email", { required: true })} placeholder="Your email" type="text"/>
                 {errors.email && <span className={styles.errorLabel}>This field is required</span>}
             </div>
             <div className={styles.inputDiv}>
@@ -44,7 +55,11 @@ const LoginForm = () => {
                 {errors.password && <span className={styles.errorLabel}>This field is required</span>}
             </div>
             <input type="submit" className={styles.loginSubmit}/>
-        </form>
+            
+       
+        
+         </form>
+        
     );
 };
 

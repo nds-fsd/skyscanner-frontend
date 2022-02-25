@@ -2,7 +2,8 @@ import React, {useState, useEffect}from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../../files/logo.png";
 import TravelerIcon from "../icons/traveler-icon";
-import "../Navbar/navbar.css"
+import "../Navbar/navbar.css";
+import { removeSession, getUserToken } from "../../api/auth";
 
 const NavBar = () => {
 
@@ -10,13 +11,13 @@ const NavBar = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const user = localStorage.getItem("token");
+        const user = getUserToken();
         if (user) {
           setCurrentUser(user);
         }
       }, [currentUser]);
     const Logout = () => {
-        localStorage.removeItem('token');
+        removeSession();
         navigate("/");
         setCurrentUser(null);
         
