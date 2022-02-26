@@ -4,6 +4,7 @@
     justify-content: center;
     align-content: center;
     margin: 0 auto;
+    font-family: 'Cabin';
 }
 
 .inputDiv {
@@ -24,27 +25,29 @@
 }
 
 .infoLabel {
-    font-size: small;
+    font-size: medium;
     max-width: 400px;
     color: rgba(71, 71, 71, 0.918);
+    
 }
 
 .loginSubmit {
-    width: 200px;
+    width: 150px;
     margin-top: 20px;
     margin: 10px auto;
-    padding: 5px;
+    padding: 10px 5px;
     float: right;
     border: 0 solid;
-    border-radius: 3px;
-    color: rgb(66, 113, 175);
-    background-color: rgb(231, 231, 231);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #3182CE;
     cursor: pointer;
 }
 
 .loginSubmit:hover { 
-    background-color: rgb(199, 199, 199);
-    color: white;
+    background-color: #286cac;
     transition: all 0.25s;
 }
 

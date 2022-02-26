@@ -1,0 +1,56 @@
+.register-container {
+    min-width: 100vw;
+    min-height: 90.7vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.register-title {
+    font-family: 'Cabin', sans-serif;
+    color: #296eaf;
+    margin: auto;
+    width: 100%;
+    padding: 10px 25px;
+    text-align: left;
+    font-size: 36px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    min-width: 800px;
+    padding: 20px 25px;
+    background-color: rgba(255, 255, 255, 0.932);
+    border-radius: 20px;
+}
+
+.register-options {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    margin: auto auto auto 0;
+    min-width: 400px;
+    padding: 20px 25px;
+    background-color: rgba(255, 255, 255, 0.932);
+    border-radius: 20px;
+}
+
+.register-options-title {
+    font-family: 'Cabin', sans-serif;
+    color: #296eaf;
+    margin: auto;
+    width: 100%;
+    padding: 10px 25px;
+    text-align: left;
+    font-size: 24px;
+}
+
+svg {
+    margin: 5px auto;
+    width: 300px;
+}

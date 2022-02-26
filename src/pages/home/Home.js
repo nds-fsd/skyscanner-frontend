@@ -1,7 +1,7 @@
 import React from "react";
-import Footer from "../components/footer/Footer";
-import NavBar from "../components/Navbar/navbar";
-import Search from "../components/search-form/search-form";
+import Footer from "../../components/footer/Footer";
+import NavBar from "../../components/navbar/Navbar";
+import Search from "../../components/searchForm/SearchForm";
 import "./home.css"
 
 const Home = () => {

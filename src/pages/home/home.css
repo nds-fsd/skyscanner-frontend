@@ -14,7 +14,7 @@
     align-content: center;
     width: 100vw;
     height: 600px;
-    background-image: url("../images/hero-bg.jpeg");
+    background-image: url("../../images/hero-bg.jpeg");
     background-repeat: no-repeat;
     background-size: auto;
     background-position: center; 
@@ -45,7 +45,7 @@
 }
 
 .little-man-img {
-    background-image: url("../images//little-man.jpg");
+    background-image: url("../../images/little-man.png");
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;

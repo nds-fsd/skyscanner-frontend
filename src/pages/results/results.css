@@ -1,0 +1,29 @@
+.wrapper {
+    width: 100vw;
+}
+
+.results-page {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.sidebar{
+    width: 20%;
+}
+
+.results-section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2%;
+}
+
+.results-cards {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.publi {
+    width: 20%;
+}

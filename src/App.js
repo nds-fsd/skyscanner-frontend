@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-
-import Layout from './pages/Layout';
-
+import Layout from './pages/layout/Layout';
 
 function App() {
   document.title = "Skyreader"

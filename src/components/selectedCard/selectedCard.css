@@ -1,0 +1,115 @@
+.selected-card {
+    width:950px;
+    height: 250px;
+    margin: 25px 0;
+    cursor: pointer;
+    box-shadow: 0 0px 0px 0 rgba(80, 80, 80, 0.2);
+}
+
+.selected-title {
+    display: flex;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.selected-title p {
+    margin-right: 8px
+}
+
+.selected-flight {
+    background-color: white;
+    border-radius: 14px;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(80, 80, 80, 0.2);
+
+}
+
+.card-color {
+    background-color:#FBE666;
+    height: 42px;
+    border-radius: 14px 14px 0px 0px;
+    display: flex;
+    padding: 10px;
+}
+
+.card-color img {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    margin-top: 0.5%;
+    height: 35px;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+}
+
+.left-content {
+    display: flex;
+    width: 10%;
+}
+
+.airline {
+    margin: 0%;
+}
+
+.flight-info {
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.trip {
+    margin-top: 8%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.divider {
+    border: 1px solid #E5E5E5;
+    height: 18vh;
+    margin: 0 -5%;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 12%;
+    margin: 2%;
+}
+
+.buttonSelect {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    background-color: #3182CE;
+    padding: 0% 8%;
+    border-radius: 4px;
+    color: white;
+    margin-top: -10%;
+}
+
+
+.form input {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    background-color: #3182CE;
+    /* padding-right: 20%; */
+    border-radius: 4px;
+    color: white;
+    margin-top: -10%;
+}
+
+.left-content {
+
+}
