@@ -1,0 +1,52 @@
+[
+	{
+		"from": "Barcelona",
+		"to": "London",
+		"dedate": "2022-02-25T21:18:00.000+00:00",
+		"flighttime": 150, 
+		"price": 80,
+		"seats": 3,
+		"airline": "Iberia"
+		
+	},
+	{
+		"from": "Barcelona",
+		"to": "Paris",
+		"dedate": "2022-02-25T21:18:00.000+00:00",
+		"flighttime": 130, 
+		"price": 80,
+		"seats": 60,
+		"airline": "Iberia"
+		
+	},
+	{
+		"from": "Barcelona",
+		"to": "Madrid",
+		"dedate": "2022-02-25T21:18:00.000+00:00",
+		"flighttime": 350, 
+		"price": 50,
+		"seats": 1,
+		"airline": "Air Europa"
+	
+	},
+	{
+		"from": "Barcelona",
+		"to": "Sevilla",
+		"dedate": "2022-02-25T21:18:00.000+00:00",
+		"flighttime": 5, 
+		"price": 3,
+		"seats": 3,
+		"airline": "Ryanair"
+		
+	},
+	{
+		"from": "Barcelona",
+		"to": "Roma",
+		"dedate": "2022-02-25T21:18:00.000+00:00",
+		"flighttime": 10, 
+		"price": 165,
+		"seats": 40,
+		"airline": "Vueling"
+		
+	}
+]

@@ -1,7 +1,7 @@
 import React from 'react'
-import instagram_logo from "../../images/instagram_logo.png";
-import facebook_logo from "../../images/facebook_logo.png";
-import twiter_logo from "../../images/twiter_logo.png";
+import instagram_logo from "../../images/social_media/instagram_logo.png";
+import facebook_logo from "../../images/social_media/facebook_logo.png";
+import twiter_logo from "../../images/social_media/twiter_logo.png";
 import logo from "../../images/logo.png";
 import './footer.css'
 

@@ -1,25 +1,15 @@
 import React from 'react';
+import Filters from '../filters/Filters';
 import './sidebar.css';
 
-const Sidebar =() => {
+const Sidebar =(props) => {
+
+  const {filters, setFilters} = props;
+
   return (
     <div className="sidebar-container">
-      <div className="departure-times">
-            <p>Departure times</p>
-            <input type="range"></input>
-       </div>
-       <div className="price">
-            <p>Price</p>
-            <input type="range"></input>
-       </div>
-       <div className="airline">
-            <p>Airline</p>
-            <input type="range"></input>
-       </div>
-      <button className="button">Apply filters</button> 
+      <Filters filters={filters} setFilters={setFilters}/>
     </div>
-  
-
   );
 }
 export default Sidebar;

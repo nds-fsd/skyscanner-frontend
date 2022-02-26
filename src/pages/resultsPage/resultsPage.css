@@ -1,5 +1,6 @@
 .wrapper {
     width: 100vw;
+    font-family: 'Cabin', sans-serif;
 }
 
 .results-page {
@@ -8,15 +9,18 @@
     width: 100%;
 }
 
-.sidebar{
-    width: 20%;
+.right-section {
+    display: flex;
+    flex-direction: column;
 }
+
+
 
 .results-section {
     display: flex;
     flex-direction: column;
-    padding: 0 2%;
 }
+
 
 .results-cards {
     display: flex;
