@@ -1,4 +1,5 @@
 import React , {useContext, useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import ProfileIcon from '../../components/icons/profile-icon'
 import TravelerIcon from '../../components/icons/traveler-icon';
 import ArrowIcon from '../../components/icons/arrow-icono';
@@ -8,17 +9,23 @@ import AccountData from '../../components/profile-data/account-data';
 import Reservation from '../../components/profile-data/reservation-result';
 import FavoriteResult from '../../components/profile-data/favorite-result';
 import { UserContext } from '../../context/userContext';
+import { removeSession, getSessionUser } from "../../api/auth";
 
 
 const ProfileSidebar = ({setComponent}) => {
     const [showAccount, setShowAccount] = useState(false);
     const [showReservation, setShowReservation] = useState(false);
     const [showFavorite, setShowFavorite] = useState(false);
+    const navigate = useNavigate();
     const {user} = useContext(UserContext);
+    
+    console.log(getSessionUser(user));
 
     const Logout = () => {
-        localStorage.removeItem('token');
-        // setCurrentUser(null);
+        removeSession();
+        navigate("/");
+        
+        
     }
     console.log(user);
   return (

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import "./modal-remove.css";
 import { useNavigate} from "react-router-dom";
 import customFetch from "../../api";
@@ -9,20 +9,21 @@ import { UserContext } from '../../context/userContext';
 const ModalRemove = ({setShowModalRemove }) => {
 
   const navigate = useNavigate();
+  //const [confirmDeleted, setConfirmDeleted] = useState(false);
   const {user} = useContext(UserContext);
 
-  const RemoveAccount = () =>{
-    fetch(`http://localhost:3020/profile/${user.id}`, {
-      method: "DELETE"
-      
-    })
-            .then(res => res.json())
+
+  const RemoveAccount = () => {
+    
+   customFetch("DELETE", `profile/${user.id}`)
+            //.then(res => res.json())
             .then(() => removeSession())
             .then(()=> navigate("/"))
             .then(()=> alert("deleted"))
             .catch(err => console.error(err))
 
   }
+  
 
   return(
 
@@ -34,7 +35,7 @@ const ModalRemove = ({setShowModalRemove }) => {
             <p className='remove-info'>
             Your entire account, including payment details, <br/>search history, price alerts, and favorite flights,<br/> will be deleted. Once removed, there will be no going back.</p>
             <button type='submit' className='button-save-remove' onClick={RemoveAccount}>Remove Account</button>
-            <button type='submit' className='button-save-remove'>Cancel</button>
+            <button type='submit' className='button-save-remove' onClick={() => setShowModalRemove(false)}>Cancel</button>
         </div>
       
       </div>
