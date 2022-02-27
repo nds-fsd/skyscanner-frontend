@@ -1,0 +1,101 @@
+.header-profile-img {
+    width: 50px;
+    height: 50px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-text {
+    text-align:  center;
+}
+
+.profile-text span {
+    font-size: 30px;
+}
+
+.profile-text p {
+    margin-top: 0;
+    color: grey
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.option-info {
+    display: flex;
+    align-items: center;
+}
+
+.option-info p{
+    margin-left: 15px;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(88, 147, 248);
+    width: 100%;
+    cursor: pointer;
+}
+
+.option:first-child {
+    border-top: 1px solid rgb(88, 147, 248);
+}
+
+.option-my-account{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.option-reservation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.list {
+    width: 100%;
+}
+
+.option:hover {
+    background-color: rgb(88, 147, 248);
+    transition: .5s;
+}
+
+
+.travel{
+    height: 243px;
+}
+
+.button-profile{
+    background-color: white;
+    color: #0770e3;
+    border-radius: solid #dddde5;
+    font-size: 16px;
+    padding: 10px 25px;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    font-family: inherit;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.button-profile:hover{
+    background-color:#0770e3;
+    border-radius:#0770e3;
+    color: white;
+}

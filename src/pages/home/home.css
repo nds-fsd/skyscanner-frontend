@@ -94,10 +94,15 @@
 }
 
 .article-image {
-    height: 200px;
-    width: 200px;
+    height: 210px;
+    width: 210px;
     margin: auto;
     color: rgb(15, 105, 141);
+}
+
+.home-icon {
+    height: 100%;
+    width: 100%;
 }
 
 .article-text {

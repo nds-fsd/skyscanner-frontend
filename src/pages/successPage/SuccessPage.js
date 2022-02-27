@@ -21,3 +21,5 @@ export const SuccessPage = () => {
         
     )
 }
+
+export default SuccessPage;
