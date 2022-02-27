@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router';
 function FlightCard(props) {
     const params = useParams();
     const outboundFlight = params.outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
-//    const returnFlight = params.returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
+    const returnFlight = params.returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
     const {flight ,setSelectedFlight, searchParams} = props;
     const {from, to, price, airline, dedate, flighttime} = flight;
     const navigate = useNavigate();
@@ -27,10 +27,14 @@ function FlightCard(props) {
     const handleClick = () => {
         if(!outboundFlight) {
             //setSelectedFlight(flight);
-            navigate(`/flights/${searchParams.from}/${searchParams.to}/${searchParams.dedate}/${searchParams.retdate}/${JSON.stringify(flight)}`);
+            navigate(`/flights/${searchParams.from}/${searchParams.to}/${searchParams.dedate}/${searchParams.retdate}/${searchParams.passangers}/${JSON.stringify(flight)}`);
         } else {
-            navigate(`/flights/${JSON.stringify(outboundFlight)}/${JSON.stringify(flight)}`);
+            navigate(`/flights/${searchParams.passangers}/${JSON.stringify(outboundFlight)}/${JSON.stringify(flight)}`);
         }
+    }
+
+    const handleBookingClick = () => {
+        navigate("/success");
     }
 
     return (
@@ -67,16 +71,19 @@ function FlightCard(props) {
                 </div>
                 <div className="divider"></div>
                 <div className="actions">
-                    <p className="price">{price} €</p>
+                    <p className="price">{searchParams.passangers * price} €</p>
+                    {searchParams.passangers !== "1" && <p className="price-unitary">{price} €</p>}
                     <span className="price-info">Precio para 1 pasajero</span>
                     {flight.seats < 5 && <span className="seats-info">{flight.seats === 1 ? "Sólo queda 1 asiento disponible !" : flight.seats + " asientos disponibles !"}</span>}
-                    {outboundFlight ? 
-                    <button className="book-btn" onClick={handleClick}>
-                        Reservar vuelo
-                    </button> : 
-                    <button className="buttonSelect" onClick={handleClick}>
-                        Elegir vuelo
-                    </button>}
+                    {!returnFlight ? <div>
+                        {outboundFlight && flight._id === outboundFlight._id ? 
+                        <button className="book-btn" onClick={handleBookingClick}>
+                            Reservar vuelo
+                        </button> : 
+                        <button className="buttonSelect" onClick={handleClick}>
+                                Elegir vuelo
+                        </button>}
+                    </div> : <div></div> }
                 </div>
             </div>
         </div>

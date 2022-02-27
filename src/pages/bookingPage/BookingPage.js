@@ -4,44 +4,54 @@ import {useState} from 'react';
 import FlightCard from '../../components/flightCard/FlightCard'
 import Footer from '../../components/footer/Footer';
 import SearchHeader from '../../components/searchHeader/SearchHeader';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import moment from 'moment';
 import flights from '../../data/flights-data.json';
 import Results from '../../components/results/Results';
+import Modal from '../../components/modal/Modal';
 
 const BookingPage = () => {
-    const searchParams = useParams();
-    const {from, to, dedate, retdate, outboundFlightUnparsed} = searchParams;
-    const [returnFlights, setReturnFlights] = useState([]);
-    const selectedFlightParsed = JSON.parse(outboundFlightUnparsed);
+    const params = useParams();
+    const navigate = useNavigate();
+    const {outboundFlightUnparsed, returnFlightUnparsed} = params;
+    const outboundFlight = outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
+    const returnFlight = returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
+    const [bookingAccepted, setBookingAccepted] = useState(false);
+    const totalPrice = outboundFlight.price * params.passangers + returnFlight.price * params.passangers;
 
     const handleClick = () => {
-        //Fetch para buscar vuelos de vuelta
-        setReturnFlights(flights);
+        navigate('/success');
     }
 
     return (
         <div className="return-page-container">
-            <SearchHeader from={to} to={from} date={retdate}/>
-            <div className="selected-flight">
-                <h3 className="flight-direction">Ida<span className="date">{moment(selectedFlightParsed.dedate).format('LLLL')}</span></h3>
-                <div className="flight selected">
-                    <FlightCard 
-                        flight={selectedFlightParsed} 
-                        searchParams={searchParams}
-                        selected={true} />
+            <div>
+                <div className="booking-header">
+                    <h1 className="booking-title">Tu selección de vuelos actual</h1>
+                    <button className="booking-btn" onClick={handleClick}>Reserva los vuelos</button>
+                </div>
+                <div className="booking-subheader">
+                    <h2 className="booking-total-price">Precio total {totalPrice} €</h2>
+                </div>
+                <div className="selected-flight">
+                    <h3 className="flight-direction">Ida<span className="date">{moment(outboundFlight.dedate).format('LLLL')}</span></h3>
+                    <div className="flight selected">
+                        <FlightCard 
+                            flight={outboundFlight} 
+                            searchParams={params} />
+                    </div>
+                </div>
+                <div className="selected-flight">
+                    <h3 className="flight-direction">Vuelta<span className="date">{moment(returnFlight.dedate).format('LLLL')}</span></h3>
+                    <div className="flight selected">
+                        <FlightCard 
+                            flight={returnFlight} 
+                            searchParams={params} />
+                    </div>
                 </div>
             </div>
-            <div className="selected-flight">
-                <h3 className="flight-direction">Vuelta</h3>
-                {returnFlights.length === 0 ? <div className="flight">
-                    <h5 className="no-return-info">No has seleccionado ningun vuelo de vuelta, si quieres añadir uno dale al boton y te encontraremos el vuelo perfecto para ti</h5>
-                    <button className="search-btn" onClick={handleClick}>Buscar vuelos de vuelta</button>
-                </div> : 
-                <Results flights={returnFlights} filteredFlights={[]} order={"cheapest"}/> }
-            </div>
             <Footer />
-        </div>
+        </div> 
     )
 }
 

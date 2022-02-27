@@ -7,10 +7,9 @@ import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
 
 const Results = (props) => {
-    const {flights, filteredFlights, order, isReturn} = props;
+    const {flights, filteredFlights, order} = props;
     const searchParams = useParams();
     const [orderedFlights, setOrderedFlights] = useState([]);
-    const [returnFlights, setReturnFlights] = useState([]);
     const [cheapest, setCheapest] = useState([]);
     const [shortest, setShortest] = useState([]);
     const [lastSeats, setLastSeats] = useState([]);

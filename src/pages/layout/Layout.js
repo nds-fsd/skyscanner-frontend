@@ -8,6 +8,7 @@ import ReturnFlightPage from '../returnFlightPage/ReturnFlightPage'
 import NavBar from '../../components/navbar/Navbar';
 import Home from '../home/Home';
 import BookingPage from '../bookingPage/BookingPage';
+import { SuccessPage } from '../successPage/SuccessPage';
 
 const Layout = () => {
   return (
@@ -18,9 +19,10 @@ const Layout = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/signup" element={<Register />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/flights/:from/:to/:dedate/:retdate" element={<ResultsPage />} />
-                <Route path="/flights/:from/:to/:dedate/:retdate/:outboundFlightUnparsed" element={<ReturnFlightPage />} />
-                <Route path="/flights/:outboundFlightUnparsed/:returnFlightUnparsed" element={<BookingPage />} />
+                <Route path="/flights/:from/:to/:dedate/:retdate/:passangers" element={<ResultsPage />} />
+                <Route path="/flights/:from/:to/:dedate/:retdate/:passangers/:outboundFlightUnparsed" element={<ReturnFlightPage />} />
+                <Route path="/flights/:passangers/:outboundFlightUnparsed/:returnFlightUnparsed" element={<BookingPage />} />
+                <Route path="/success" element={<SuccessPage />} />
             </Routes>
         </div>
     </div>

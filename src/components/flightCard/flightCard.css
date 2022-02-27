@@ -161,6 +161,13 @@
 
 .price{
     margin: 5px auto;
+    font-weight: 900;
+}
+
+.price-unitary {
+    margin: 1px auto;
+    color: gray;
+    font-size: 12px;
 }
 
 .price-info {

@@ -19,7 +19,7 @@ function ResultsPage () {
         minHour: 0,
         selectedAirlines: []
     });
-    const {from, to, dedate, retdate, deid} = useParams();
+    const {from, to, dedate, retdate, deid, passangers} = useParams();
     const [order, setOrder] = useState();
 
     useEffect(() => {
@@ -56,23 +56,23 @@ function ResultsPage () {
     }, [deid]); */
 
     return (
-            <div className="wrapper">
-                <div className="results-page">
-                    <Sidebar filters={filters} setFilters={setFilters}/>
-                    <div className="right-section">
-                        <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
-                        <TopBar setOrder={setOrder}/>
-                        <div className="results-section">
-                            <Results 
-                                flights={flights} 
-                                filteredFlights={filteredFlights}
-                                order={order}
-                                isReturn={false}
-                            />
-                        </div>
+        <div className="wrapper">
+            <div className="results-page">
+                <Sidebar filters={filters} setFilters={setFilters}/>
+                <div className="right-section">
+                    <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
+                    <TopBar setOrder={setOrder}/>
+                    <div className="results-section">
+                        <Results 
+                            flights={flights} 
+                            filteredFlights={filteredFlights}
+                            order={order}
+                        />
                     </div>
                 </div>
             </div>
-        )
-    };  
+        </div>
+    )
+};  
+
 export default ResultsPage
