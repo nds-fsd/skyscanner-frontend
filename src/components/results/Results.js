@@ -2,16 +2,14 @@ import React from 'react'
 import './results.css'
 import { useState, useEffect } from "react";
 import FlightCard from "../../components/flightCard/FlightCard";
-import SelectedCard from "../../components/selectedCard/SelectedCard";
+import SelectedCard from "../selectedCard/SelectedFlightCard";
 import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
 
 const Results = (props) => {
-    
-    const {flights, filteredFlights, selectedFlight, setSelectedFlight, order} = props;
-    const {from, to, dedate, retdate, deid} = useParams();
+    const {flights, filteredFlights, order, isReturn} = props;
+    const searchParams = useParams();
     const [orderedFlights, setOrderedFlights] = useState([]);
-    const navigate = useNavigate();
     const [returnFlights, setReturnFlights] = useState([]);
     const [cheapest, setCheapest] = useState([]);
     const [shortest, setShortest] = useState([]);
@@ -60,13 +58,6 @@ const Results = (props) => {
 
     }, [flights])
 
-    const handleClick = (flightId) => {
-        if (!deid) {
-            setSelectedFlight(flights.find((flight) => flight._id === flightId ));
-            navigate(`/flights/${from}/${to}/${dedate}/${retdate}/${flightId}`);
-        }
-    }
-
     return (
         <div className="results-cards">
             {orderedFlights.map((flight) => {
@@ -78,9 +69,10 @@ const Results = (props) => {
                             {lastSeats.includes(flight) && <span className="tag lastseated-tag">Menos de 5 plazas!</span>}
                         </div>
                         <FlightCard
-                            flight={flight} 
                             key={flight._id}
-                            onClick={() => handleClick(flight._id)}
+                            flight={flight}
+                            searchParams={searchParams}
+                            //setSelectedFlight={setSelectedFlight}
                         />
                     </div>
                     

@@ -1,8 +1,10 @@
 import React from "react";
 import './searchHeader.css'
 
-function SearchHeader ({from, to, date}) {
+function SearchHeader (props) {
+    const {from, to, date} = props;
     const calendarDate = new Date(date).toLocaleDateString();
+   
     return(
         <div>
             <div className="flight-summary">

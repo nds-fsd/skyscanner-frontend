@@ -4,12 +4,10 @@ import {Routes, Route} from 'react-router';
 import Login from '../loginPage/LoginPage';
 import Register from '../registerPage/RegisterPage';
 import ResultsPage from '../resultsPage/ResultsPage';
-import ReturnPage from '../returnFlight/ReturnFlight'
-import ReturnFlight from '../returnFlight/ReturnFlight';
+import ReturnFlightPage from '../returnFlightPage/ReturnFlightPage'
 import NavBar from '../../components/navbar/Navbar';
 import Home from '../home/Home';
-
-import Filters from '../../components/filters/Filters';
+import BookingPage from '../bookingPage/BookingPage';
 
 const Layout = () => {
   return (
@@ -20,10 +18,9 @@ const Layout = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/signup" element={<Register />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/return" element={<ReturnFlight />} />
-                <Route path="/filters" element={<Filters />} />
                 <Route path="/flights/:from/:to/:dedate/:retdate" element={<ResultsPage />} />
-                <Route path="/flights/:from/:to/:dedate/:retdate/:deid" element={<ReturnPage />} />
+                <Route path="/flights/:from/:to/:dedate/:retdate/:outboundFlightUnparsed" element={<ReturnFlightPage />} />
+                <Route path="/flights/:outboundFlightUnparsed/:returnFlightUnparsed" element={<BookingPage />} />
             </Routes>
         </div>
     </div>

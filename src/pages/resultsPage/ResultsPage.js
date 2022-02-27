@@ -66,9 +66,8 @@ function ResultsPage () {
                             <Results 
                                 flights={flights} 
                                 filteredFlights={filteredFlights}
-                                selectedFlight={selectedFlight}
-                                setSelectedFlight={setSelectedFlight}
                                 order={order}
+                                isReturn={false}
                             />
                         </div>
                     </div>

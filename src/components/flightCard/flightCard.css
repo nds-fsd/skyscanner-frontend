@@ -141,6 +141,24 @@
     transition: all 0.25s ease-in-out;
 }
 
+
+.book-btn {
+    color: white;
+    background-color: #16A086;
+    border-radius: 4px;
+    padding: 10px 22px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    margin: 10px auto;
+}
+
+.book-btn:hover {
+    background-color: #0e705e;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
 .price{
     margin: 5px auto;
 }
