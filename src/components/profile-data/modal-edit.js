@@ -12,9 +12,13 @@ const ModalEdit = ({setShowModalEdit }) => {
         customFetch("PUT", `profile/${user.id}`, {body: data})
                 .then(()=> alert("Edit profile!"))
                 .then(()=> setShowModalEdit(false))
-                .catch(err => console.error(err))
-    
-      }
+                .catch(error => {
+                    console.error(error);
+                    if (error.status === 404 || error.status === 500) {
+                      alert("unable to update profile");
+                    }
+                 });
+     }
     
     return(
 

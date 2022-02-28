@@ -15,7 +15,14 @@ const Modal = ({setShowModal }) => {
     customFetch("PUT", `profile/favairport/${user.id}`, {body: data})
             .then(()=> alert("add airport"))
             .then(()=> setShowModal(false))
-            .catch(err => console.error(err))
+            .catch(error => {
+          
+              console.error(error);
+              if (error.status === 404 || error.status === 500) {
+                alert("impossible to update airport");
+              }
+    
+            });
 
   }
 

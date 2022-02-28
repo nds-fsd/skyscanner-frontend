@@ -20,8 +20,13 @@ const ModalRemove = ({setShowModalRemove }) => {
             .then(() => removeSession())
             .then(()=> navigate("/"))
             .then(()=> alert("deleted"))
-            .catch(err => console.error(err))
-
+            .catch(error => {
+              console.error(error);
+              if (error.status === 404 || error.status === 500) {
+                alert("impossible to delete account");
+              }
+    
+            });
   }
   
   return(
