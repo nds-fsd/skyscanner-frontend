@@ -9,7 +9,7 @@ import customFetch from '../../api';
 const Results = (props) => {
     const {flights, filteredFlights, order} = props;
     const searchParams = useParams();
-    const [orderedFlights, setOrderedFlights] = useState([]);
+    const [orderedFlights, setOrderedFlights] = useState(flights);
     const [cheapest, setCheapest] = useState([]);
     const [shortest, setShortest] = useState([]);
     const [lastSeats, setLastSeats] = useState([]);
@@ -18,19 +18,21 @@ const Results = (props) => {
         setOrderedFlights(
             filteredFlights.length === 0 ? flights : filteredFlights
         )
-    })
+    }, [flights, filteredFlights]);
 
     useEffect(() => {
+        let oFlights = [...orderedFlights];
+        console.log("useffect order", order);
         if (order === "cheaper") {
-            setOrderedFlights(flights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1));
+            console.log("entro en cheaper");
+            oFlights = oFlights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1);
         } else if (order === "shorter") {
             console.log("entro aqui")
-            setOrderedFlights(flights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1));
+            oFlights = oFlights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1);
         } else if (order === "recomended") {
-            setOrderedFlights(flights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1));   
-        } else {
-            return;
-        }
+            oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   
+        } 
+        setOrderedFlights(oFlights);
     }, [order])
 
     useEffect(() => {
@@ -74,7 +76,6 @@ const Results = (props) => {
                             //setSelectedFlight={setSelectedFlight}
                         />
                     </div>
-                    
                     )
                 }) 
             }
