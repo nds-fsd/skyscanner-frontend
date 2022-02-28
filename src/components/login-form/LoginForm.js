@@ -26,7 +26,8 @@ const LoginForm = () => {
             firstname: userSession.user.firstname,
             lastname: userSession.user.lastname,
             fav: userSession.user.fav,
-            id : userSession.user._id
+            id : userSession.user._id,
+            prefairport: userSession.user.prefairport
            
           });
           navigate("/");

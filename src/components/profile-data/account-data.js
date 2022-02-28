@@ -12,7 +12,7 @@ const AccountData = () => {
     const [showModalEdit, setShowModalEdit] = useState(false);
 
     const {user} = useContext(UserContext);
-    console.log(user);
+    //console.log(user);
     
   return (
    <section className='account-data-container'>
@@ -35,11 +35,17 @@ const AccountData = () => {
                 <p className="option-checkbox">I would like to receive the latest travel deals, news and tips by email.</p>
             </div>
             <div>
-               <p className='titile-aeroport'>Preferred Origin Airports</p>
-               <p className='info-aeroport'>Enter the airports you prefer so we can find the best deals and ideas for you.</p>
+               <p className='titile-aeroport'>Preferred Origin Airport</p>
+               <p className='info-aeroport'>Enter the airport you prefer so we can find the best deals and ideas for you.</p>
                {showModal}
-               <h6>Airports of origin (6 maximum)</h6>
-               <button onClick={() => {setShowModal(true)}} className="button-profile" type="button">Add an airport</button>
+               <h6>Airport of origin</h6>
+               { user.prefairport ?
+               <>
+               <p className='info-aeroport'> {user.prefairport} </p>
+               <button onClick={() => {setShowModal(true)}} className="button-profile" type="button">Change your preferred airport</button> 
+               </> :
+               <button onClick={() => {setShowModal(true)}} className="button-profile" type="button">Add an airport</button> 
+              }
                {showModal === true &&  
                 <Modal setShowModal={setShowModal}/>
 		    } 

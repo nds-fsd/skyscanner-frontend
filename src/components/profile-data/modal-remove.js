@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import "./modal-remove.css";
 import { useNavigate} from "react-router-dom";
 import customFetch from "../../api";
@@ -24,7 +24,6 @@ const ModalRemove = ({setShowModalRemove }) => {
 
   }
   
-
   return(
 
   <div className="modal-remove-container">

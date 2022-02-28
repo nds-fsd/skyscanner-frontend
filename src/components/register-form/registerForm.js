@@ -49,39 +49,6 @@ const Register = () => {
     });
   };
 
-  /*const onSubmit =  async (data) => {
-
-    const response = await fetch("http://localhost:3020/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    
-      if (response.status === 409) {
-        //alert("email already exists");
-          setNotRegistered(true);
-          
-        return;
-    }
-    
-    const json = await response.json();
-
-    localStorage.setItem("token", json.token);
-    //alert("Registration successful")
-
-      console.log(data);
-      setUser({
-        email: data.email,
-        firstname: data.firstname,
-        lastname: data.lastname
-
-      });
-
-    navigate("/");
-   
-  }*/
-  //console.log(errors);
-
   return (
   
   <div className='formregister'>

@@ -51,3 +51,8 @@
 .buttons-options{
     display: block;
 }
+.input-edit{
+    padding: 10px;
+    max-width: 500px;
+    width: 100%
+}

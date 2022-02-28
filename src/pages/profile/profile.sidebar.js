@@ -19,7 +19,7 @@ const ProfileSidebar = ({setComponent}) => {
     const navigate = useNavigate();
     const {user} = useContext(UserContext);
     
-    console.log(getSessionUser(user));
+    //console.log(getSessionUser(user));
 
     const Logout = () => {
         removeSession();
@@ -27,7 +27,7 @@ const ProfileSidebar = ({setComponent}) => {
         
         
     }
-    console.log(user);
+    //console.log(user);
   return (
      <section className="wrapper">
                     <div className="profile">

@@ -1,14 +1,14 @@
 import React, {useState, useEffect}from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../files/logo.png";
 import TravelerIcon from "../icons/traveler-icon";
 import "../Navbar/navbar.css";
-import { removeSession, getUserToken } from "../../api/auth";
+import { getUserToken } from "../../api/auth";
 
 const NavBar = () => {
 
     const [currentUser, setCurrentUser]= useState(undefined);
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         const user = getUserToken();
@@ -16,12 +16,12 @@ const NavBar = () => {
           setCurrentUser(user);
         }
       }, [currentUser]);
-    const Logout = () => {
+    /*const Logout = () => {
         removeSession();
         navigate("/");
         setCurrentUser(null);
-        
-    }
+      }*/
+
     return (
         <div className="header">
             <div className="navbar-container">
@@ -30,15 +30,18 @@ const NavBar = () => {
                     </div>
                 {currentUser ? 
                 <>
-                <button className="btn-1"onClick={ Logout }>Logout</button>
-                <div className="navbar-icon">
-                <Link to="/profile"> <TravelerIcon /> </Link>
-                </div>
+                    <div className="navbar-icon">
+                        <Link to="/profile"> <TravelerIcon /> </Link>
+                    </div>
                 </>
                  :
-                 <>
-                <div className="login"><Link to="/login"><p>Login</p></Link></div>
-                <div className="register"><Link to="/signup"><p>Register</p></Link></div>
+                <>
+                    <div className="login">
+                        <Link to="/login"><p>Login</p></Link>
+                    </div>
+                    <div className="register">
+                        <Link to="/signup"><p>Register</p></Link>
+                    </div>
             
                 </>
                 }
