@@ -5,14 +5,15 @@ import Results from "../../components/results/Results";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import Sidebar from "../../components/sideBar/Sidebar";
 import customFetch from '../../api';
-import mockFlights from '../../data/flights-data.json';
+//import mockFlights from '../../data/flights-data.json';
 import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
 import moment from 'moment';
 
 function ResultsPage () {
-    const [flights, setFlights] = useState(mockFlights);
+    //const [flights, setFlights] = useState(mockFlights);
+    const [flights, setFlights] = useState([]);
     const [filteredFlights, setFilteredFlights] = useState([]);
     const [filters, setFilters] = useState({
         minPrice: 0,
@@ -60,12 +61,9 @@ function ResultsPage () {
         }
     }, [filters.selectedAirlines])
 
-    /* useEffect( () => {
-        customFetch("POST", `flights/search?from=${from}&to=${to}&retdate=${dedate}`)
-        .then(res => {
-            if (!res.ok) throw new Error("Couldn't ")
-            return res.json();
-        }).then((json) => {
+    useEffect( () => {
+        customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
+        .then((json) => {
             console.log(json);
             setFlights(json);
         }).catch(error => {
@@ -74,7 +72,7 @@ function ResultsPage () {
     }, []);
 
     //Possible mal interpretació dels fetch
-    useEffect( () => {
+    /*useEffect( () => {
         if (deid) {
             customFetch("POST", `flights/search?from=${to}&to=${from}&retdate=${retdate}`)
             .then(response => {
