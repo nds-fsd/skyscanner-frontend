@@ -5,6 +5,7 @@ import customFetch from "../../api";
 import { UserContext } from '../../context/userContext';
 import './modal-aeroport.css';
 import aeroportImage from "../../files/aeroportImage.png";
+import Swal from 'sweetalert2';
 
 const Modal = ({setShowModal }) => {
   const { register, handleSubmit, formState: { errors }} = useForm();
@@ -13,13 +14,31 @@ const Modal = ({setShowModal }) => {
   const onSubmit = (data) => {
 
     customFetch("PUT", `profile/favairport/${user.id}`, {body: data})
-            .then(()=> alert("add airport"))
+            .then(()=> Swal.fire({
+              title: 'Do you want to save the changes?',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: 'Save',
+              denyButtonText: `Don't save`,
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                Swal.fire('Aeroport Saved!', '', 'success')
+              } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+              }
+            }))
             .then(()=> setShowModal(false))
             .catch(error => {
           
               console.error(error);
               if (error.status === 404 || error.status === 500) {
-                alert("impossible to update airport");
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'impossible to update airport!'
+                })
+               
               }
     
             });
