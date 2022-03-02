@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../files/logo.png";
 import {removeSession} from "../../api/auth";
 import { getUserToken } from "../../api/auth";
+import TravelerIcon from "../icons/TravelerIcon";
 import "./navbar.css"
 
 const NavBar = () => {
@@ -31,7 +32,11 @@ const NavBar = () => {
             </div>
             {currentUser ? 
             <>
-                <button className="btn-1"onClick={ Logout }>Logout</button>
+                <div className="navbar-icon">
+                    <Link to="/profile">
+                        <TravelerIcon />
+                    </Link>
+                </div>
             
             </>
             :
