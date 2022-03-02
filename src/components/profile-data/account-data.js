@@ -5,14 +5,18 @@ import Modal from './modal-aeroport';
 import ModalRemove from './modal-remove';
 import ModalEdit from './modal-edit';
 import { UserContext } from '../../context/userContext';
+import ModalPassword from './modal-password';
 
 const AccountData = () => {
     const [showModal, setShowModal] = useState(false);
     const [showModalRemove, setShowModalRemove] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
+    const [showModalPassword, setShowModalPassword] = useState(false);
 
     const {user} = useContext(UserContext);
-    //console.log(user);
+    console.log(user);
+
+    
     
   return (
    <section className='account-data-container'>
@@ -62,6 +66,10 @@ const AccountData = () => {
            <div className='edit-account' onClick={() => {setShowModalEdit(true)}}>Edit<ArrowIcon/></div>
            {showModalEdit === true &&  
                 <ModalEdit setShowModalEdit={setShowModalEdit}/>
+		    }  
+            <div className='change-password' onClick={() => {setShowModalPassword(true)}}>Change your password<ArrowIcon/></div>
+           {showModalPassword === true &&  
+                <ModalPassword setShowModalPassword={setShowModalPassword}/>
 		    }  
         </div>
     </section>

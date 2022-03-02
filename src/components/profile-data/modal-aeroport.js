@@ -24,6 +24,8 @@ const Modal = ({setShowModal }) => {
               /* Read more about isConfirmed, isDenied below */
               if (result.isConfirmed) {
                 Swal.fire('Aeroport Saved!', '', 'success')
+                // tienes que volver a hacer la petición del usuario para que se te 
+                // actualice los datos que tienes actualmente en el profile
               } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info')
               }
