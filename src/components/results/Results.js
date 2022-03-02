@@ -22,7 +22,6 @@ const Results = (props) => {
 
     useEffect(() => {
         let oFlights = [...orderedFlights];
-        console.log("useffect order", order);
         if (order === "cheaper") {
             console.log("entro en cheaper");
             oFlights = oFlights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1);

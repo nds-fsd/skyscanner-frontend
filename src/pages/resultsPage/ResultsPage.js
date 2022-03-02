@@ -19,6 +19,11 @@ function ResultsPage () {
         minHour: 0,
         selectedAirlines: []
     });
+    const [filtersApplied, setFiltersApplied] = useState({
+        minPrice: false,
+        minHour: false,
+        selectedAirlines: false
+    });
     const {from, to, dedate, retdate, deid, passangers} = useParams();
     const [order, setOrder] = useState();
 
@@ -31,34 +36,67 @@ function ResultsPage () {
     }
 
     useEffect(() => {
+        if (filters.minPrice !== 0 && filters.minPrice !== '0') setFiltersApplied({...filtersApplied, minPrice: true});
+        if (filters.minHour !== 0 && filters.minHour !== '5:00') setFiltersApplied({...filtersApplied, minHour: true});
+        if (filters.selectedAirlines.length !== 0) setFiltersApplied({...filtersApplied, selectedAirlines: true});
+    }, [filters])
+
+    /*useEffect(() => {
         if (filters.minPrice !== 0) {
-            if(filteredFlights.length !== 0) {
+            if(filtersApplied.minHour || filtersApplied.minPrice || filtersApplied.selectedAirlines) {
                 setFilteredFlights(filteredFlights.filter((flight) => flight.price > filters.minPrice)) 
             } else {
-                setFilteredFlights(flights.filter((flight) => flight.price > filters.minPrice)) 
+                setFilteredFlights(flights.filter((flight) => flight.price > filters.minPrice))
+                setFiltersApplied({...filtersApplied, minPrice: true});
             }
         }
     }, [filters.minPrice])
 
     useEffect(() => {
         if (filters.minHour !== 0) {
-            if(filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => compareHours(filters.minHour, flight?.dedate)))
+            if(filtersApplied.minHour || filtersApplied.minPrice || filtersApplied.selectedAirlines) {
+                setFilteredFlights(filteredFlights.filter((flight) => compareHours(filters.minHour, flight?.dedate)));
             } else {
-                setFilteredFlights(flights.filter((flight) => compareHours(filters.minHour, flight?.dedate)))
+                setFilteredFlights(flights.filter((flight) => compareHours(filters.minHour, flight?.dedate)));
+                setFiltersApplied({...filtersApplied, minHour: true});
             }
         } 
     }, [filters.minHour])
 
     useEffect(() => {
         if(filters.selectedAirlines.length !== 0) {
-            if (filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => filters.selectedAirlines.includes(flight.airline)))
+            if (filtersApplied.minHour || filtersApplied.minPrice || filtersApplied.selectedAirlines) {
+                setFilteredFlights(filteredFlights.filter((flight) => filters.selectedAirlines.includes(flight.airline)));
             } else {
-                setFilteredFlights(flights.filter((flight) => filters.selectedAirlines.includes(flight.airline)))
+                setFilteredFlights(flights.filter((flight) => filters.selectedAirlines.includes(flight.airline)));
+                if (filters.selectedAirlines.length === 0) {
+                    setFiltersApplied({...filtersApplied, selectedAirlines: false});
+                } else {
+                    setFiltersApplied({...filtersApplied, selectedAirlines: true});
+                }
             }  
         }
-    }, [filters.selectedAirlines])
+    }, [filters.selectedAirlines])*/
+
+    useEffect(() => {
+        let f = filtersApplied.minPrice && filtersApplied.minHour === 0 && filtersApplied.selectedAirlines !== 0 ? [...filteredFlights] : [...flights];
+        if (!filtersApplied.minPrice && !filtersApplied.minHour === 0 && !filtersApplied.selectedAirlines) {
+            setFilteredFlights(flights);
+        } else {
+            if (filtersApplied.minPrice) {
+                setFilteredFlights(f.filter((flight) => flight.price > filters.minPrice));
+            }
+            if (filtersApplied.selectedAirlines) {
+                setFilteredFlights(f.filter((flight) => filters.selectedAirlines.includes(flight.airline)));
+            }
+            if (filtersApplied.minHour) {
+                setFilteredFlights(f.filter((flight) => compareHours(filters.minHour, flight?.dedate)));
+            }
+            //setFilteredFlights(f);      
+        };
+    }, [filters, filtersApplied]);
+
+    console.log("Los filtros en result page son?", filters, "y los filteredFlights son", filteredFlights, filtersApplied)
 
     /* useEffect( () => {
         customFetch("POST", `flights/search?from=${from}&to=${to}&retdate=${dedate}`)

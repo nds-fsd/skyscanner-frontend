@@ -55,7 +55,7 @@ const Filters = (props) => {
             <div className="filter">
                 <h4 className="filter-title">Precio</h4>
                 <h5 className="filter-subtitle">Precio mínimo del vuelo</h5>
-                <input type="range" min="0" max="500" className="price-range" onChange={handleChangePrice}/>
+                <input type="range" min="0" max="1000" step="10" className="price-range" onChange={handleChangePrice}/>
                 <p className="min-price"><span>{filters.minPrice}</span>€</p>
             </div>
             <div className="filter">
