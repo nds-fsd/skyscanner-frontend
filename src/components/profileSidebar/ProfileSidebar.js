@@ -43,7 +43,7 @@ const ProfileSidebar = ({setComponent}) => {
     }
     
     return (
-        <section className="wrapper">
+        <section className="wrapper-profile">
             <div className="profile">
                 <TravelerIcon/>
                 <div className="profile-text">
