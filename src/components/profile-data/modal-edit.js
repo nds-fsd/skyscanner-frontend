@@ -31,21 +31,15 @@ const ModalEdit = ({setShowModalEdit }) => {
         <div className="modal-edit"> 
             <span className="close" onClick={() => setShowModalEdit(false)}>x</span>
             <div className="bottom-modal-remove">
-                <p className='Edit-info'>Edit your profile</p>
-                <form onSubmit={handleSubmit(onSubmit)} >
-            <input type="text" placeholder={user.firstname}  className='input-edit' {...register("firstname", { required: true })} />
-            {errors.firstname && <span >This field is required</span>}
-            
-            <input type="text" placeholder={user.lastname} className='input-edit' {...register("lastname", { required: true })} />
-            {errors.lastname && <span >This field is required</span>}
-            <input type='submit' className='button-save-remove' value="Save"/>
-            
-           </form>
-                
-                
-                
+                    <p className='Edit-info'>Edit your profile</p>
+                    <form onSubmit={handleSubmit(onSubmit)} >
+                        <input type="text" placeholder={user.firstname}  className='input-edit' {...register("firstname", { required: true })} />
+                        {errors.firstname && <span >This field is required</span>}
+                        <input type="text" placeholder={user.lastname} className='input-edit' {...register("lastname", { required: true })} />
+                        {errors.lastname && <span >This field is required</span>}
+                        <input type='submit' className='button-save-remove' value="Save"/>
+                    </form>
             </div>
-      
         </div>
     </div>
     )
