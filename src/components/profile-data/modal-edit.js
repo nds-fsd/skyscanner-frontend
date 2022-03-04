@@ -3,6 +3,7 @@ import "./modal-edit.css";
 import { useForm } from "react-hook-form";
 import customFetch from "../../api";
 import { UserContext } from '../../context/userContext';
+import Swal from 'sweetalert2';
 
 const ModalEdit = ({setShowModalEdit }) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
@@ -10,7 +11,11 @@ const ModalEdit = ({setShowModalEdit }) => {
     const onSubmit = (data) => {
 
         customFetch("PUT", `profile/${user.id}`, {body: data})
-                .then(()=> alert("Edit profile!"))
+                .then(()=> Swal.fire(
+                    'Done!',
+                    'Your Name is change!',
+                    'success'
+                  ))
                 .then(()=> setShowModalEdit(false))
                 .catch(error => {
                     console.error(error);

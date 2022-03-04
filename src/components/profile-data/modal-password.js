@@ -28,10 +28,10 @@ const ModalPassword = ({setShowModalPassword }) => {
             <div className="bottom-modal-remove">
                 <p className='Edit-info'>Change your password</p>
                 <form onSubmit={handleSubmit(onSubmit)} >
-            <input type="text" placeholder={user.firstname}  className='input-edit' {...register("firstname", { required: true })} />
+            <input type="text" placeholder="Password"  className='input-edit' {...register("Password", { required: true })} />
             {errors.firstname && <span >This field is required</span>}
             
-            <input type="text" placeholder={user.lastname} className='input-edit' {...register("lastname", { required: true })} />
+            <input type="text" placeholder="New password" className='input-edit' {...register("lastname", { required: true })} />
             {errors.lastname && <span >This field is required</span>}
             <input type='submit' className='button-save-remove' value="Save"/>
             
