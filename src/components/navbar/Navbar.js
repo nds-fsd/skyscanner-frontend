@@ -17,11 +17,11 @@ const NavBar = () => {
           setCurrentUser(user);
         }
       }, [currentUser]);
-      const Logout = () => {
+      /*const Logout = () => {
         removeSession();
         navigate("/");
         setCurrentUser(null);
-      }
+      }*/
 
     return (
         <div className="header">

@@ -20,7 +20,7 @@ const ProfileSidebar = ({setComponent}) => {
     const [showReservation, setShowReservation] = useState(false);
     const [showFavorite, setShowFavorite] = useState(false);
     const navigate = useNavigate();
-    const {user, setUser} = useContext(UserContext);
+    const {user, setUser, reloadUser} = useContext(UserContext);
     const token = getUserToken();
     const decoded = jwt_decode(token);
 
@@ -34,7 +34,7 @@ const ProfileSidebar = ({setComponent}) => {
           .catch((error) => {
             console.log(error);
           })
-      }, []);
+      }, [reloadUser]);
 
     const Logout = () => {
         removeSession();
