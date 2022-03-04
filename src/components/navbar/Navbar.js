@@ -1,23 +1,27 @@
 import React, {useState, useEffect}from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../files/logo.png";
-import {getStorageObject, deleteStorageObject} from "../../api/storage";
+import {removeSession} from "../../api/auth";
+import { getUserToken } from "../../api/auth";
+import TravelerIcon from "../icons/TravelerIcon";
 import "./navbar.css"
 
 const NavBar = () => {
 
-    const [currentUser, setCurrentUser]= useState(undefined);
+    const [currentUser, setCurrentUser]= useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const user = getStorageObject("token");
+        const user = getUserToken();
         if (user) {
           setCurrentUser(user);
         }
       }, [currentUser]);
-    const Logout = () => {
-        deleteStorageObject('token');
+      const Logout = () => {
+        removeSession();
+        navigate("/");
         setCurrentUser(null);
-    }
+      }
 
     return (
         <div className="header">
@@ -28,7 +32,11 @@ const NavBar = () => {
             </div>
             {currentUser ? 
             <>
-                <button className="btn-1"onClick={ Logout }>Logout</button>
+                <div className="navbar-icon">
+                    <Link to="/profile">
+                        <TravelerIcon />
+                    </Link>
+                </div>
             
             </>
             :
