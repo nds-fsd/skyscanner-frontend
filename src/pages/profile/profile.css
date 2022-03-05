@@ -1,8 +1,8 @@
 .profile-wrapper {
   display: flex;
   justify-content: space-around;
+  height: 100%;
   width: 90vw;
-  height: 87.5vh;
   margin: auto;
   padding: 10px;
   font-family: 'Cabin', sans-serif;
@@ -15,7 +15,8 @@
   border-radius: 10px;
   padding: 40px;
   font-size: 24px;
-  height: 80%;
+  height: 580px;
+  margin-bottom: 33px;
 }
 
 .options {

@@ -12,4 +12,11 @@
     color: rgb(38, 70, 124);
     font-size: 30px;
     text-align: center;
+    margin-bottom: 0;
+}
+
+.no-favorites{
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.625rem;
 }

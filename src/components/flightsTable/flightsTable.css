@@ -1,11 +1,23 @@
 .flights-table {
     table-layout: auto;
     border-collapse: collapse;
-    margin: 20px auto;
+    margin: 30px auto;
     border: 0.5px solid rgb(241, 241, 241);
     border-radius: 10px;
     font-size: 16px;
     width: 95%;
+}
+
+.flights-table tr {
+    height: 40px;
+    text-align: center;
+    color: rgb(65, 65, 65);
+    border-bottom: 0.5px solid rgb(241, 241, 241);
+}
+.flights-table tr:hover {
+    cursor: pointer;
+    color: rgb(19, 19, 19);
+    font-weight: 500;
 }
 
 .flights-table thead {
@@ -14,9 +26,43 @@
     color: rgb(38, 70, 124);
     width: 100%;
     border-radius: 10px;
+    font-size: 14px;
 }
 
-.flights-table tr {
-    padding: 20px 10px;
-    text-align: center;
+.table-btn-delete {
+    padding: 5px 10px;
+    border: 1px solid rgb(102, 0, 0);
+    color:rgb(102, 0, 0);
+    background: transparent;
+    outline: none;
+    border-radius: 5px;
+    margin: auto 5px;
+}
+.table-btn-delete:hover {
+    border: 1px solid rgb(102, 0, 0);
+    color:rgb(238, 238, 238);
+    background: rgb(102, 0, 0);
+    outline: none;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.table-btn-see {
+    padding: 5px 10px;
+    border: 1px solid rgb(0, 77, 90);
+    color:rgb(0, 77, 90);
+    background: transparent;
+    outline: none;
+    border-radius: 5px;
+    margin: auto 5px;
+}
+.table-btn-see:hover {
+    border: 1px solid rgb(0, 77, 90);
+    color:rgb(238, 238, 238);
+    background: rgb(0, 77, 90);
+    outline: none;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    cursor: pointer;
 }

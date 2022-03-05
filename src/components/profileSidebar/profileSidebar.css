@@ -63,6 +63,7 @@
 
 .option-info:hover {
   background-color: rgba(49, 83, 143, 0.2);
+  color: rgb(38, 70, 124);
   transition: .5s;
 }
 

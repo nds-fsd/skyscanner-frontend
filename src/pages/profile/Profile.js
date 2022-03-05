@@ -7,11 +7,22 @@ import BookingResult from '../../components/profileData/bookingResult/BookingRes
 import FavoriteResult from '../../components/profileData/favoriteResult/FavoriteResult';
 import AccountData from '../../components/profileData/accountData/AccountData';
 import NavBar from "../../components/navbar/Navbar";
+import Modal from '../../components/modal/Modal';
+import SimpleFlightCard from '../../components/flightCard/SimpleFlightCard';
 
 
 const Profile = () => {
     // const [currentProfile, setCurrentProfile]= useState(undefined);
     const [component, setComponent]= useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedFlight, setSelectedFlight] = useState({
+          from: "",
+          to: "",
+          dedate: "",
+          flighttime: 0, 
+          price: 0,
+          airline: ""
+    });
     //const navigate = useNavigate();
 
     // useEffect(() => {
@@ -27,21 +38,27 @@ const Profile = () => {
         case 'account':
             return <AccountData />;
         case 'bookings':
-            return <BookingResult/>;
+            return <BookingResult setModalIsOpen={setModalIsOpen} setSelectedFlight={setSelectedFlight}/>;
         case 'favorite':
-            return <FavoriteResult/>;
+            return <FavoriteResult setModalIsOpen={setModalIsOpen} setSelectedFlight={setSelectedFlight}/>;
         default:
       }
+    }
+
+    const closeModal = () => {
+      setModalIsOpen(false);
     }
       
     return (
         <section className='profile-wrapper'>
+            
             <div className='side-bar'>
                 <ProfileSidebar component={component} setComponent={setComponent} />
             </div>
             <div className='options'>
               {renderSwitch(component)}
             </div>
+            {modalIsOpen && <Modal open={modalIsOpen} handleCloseModal={closeModal} children={<SimpleFlightCard flight={selectedFlight} />}/>} 
         </section>
     );
   };
