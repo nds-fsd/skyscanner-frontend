@@ -1,0 +1,22 @@
+.flights-table {
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: 20px auto;
+    border: 0.5px solid rgb(241, 241, 241);
+    border-radius: 10px;
+    font-size: 16px;
+    width: 95%;
+}
+
+.flights-table thead {
+    background-color: rgb(241, 241, 241);
+    border-collapse: collapse;
+    color: rgb(38, 70, 124);
+    width: 100%;
+    border-radius: 10px;
+}
+
+.flights-table tr {
+    padding: 20px 10px;
+    text-align: center;
+}

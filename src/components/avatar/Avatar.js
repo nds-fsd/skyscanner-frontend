@@ -4,7 +4,7 @@ import './avatar.css'
 const Avatar = ({user}) => {
     return (
         <div className="avatar-div">
-            {user ?
+            {user === undefined ?
                 <img src={bot} className="avatar-img" alt=""/> :
                 user.firstname.substr(0, 2)}
         </div>

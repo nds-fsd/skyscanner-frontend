@@ -12,8 +12,8 @@ const BookingResult = () => {
             <img src={ reservation } className='image-reservation'/>
         </div>
         <div>
-        <p className='no-reservation'>Sorry, we can't show you any flights yet.</p>
-        <p className='if-reservation'>To receive information about your reservation, check your confirmation email or contact the supplier.</p>
+          <p className='no-reservation'>Sorry, we can't show you any flights yet.</p>
+          <p className='if-reservation'>To receive information about your reservation, check your confirmation email or contact the supplier.</p>
         </div>
     </section>
   );

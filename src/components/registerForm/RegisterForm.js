@@ -21,7 +21,6 @@ const Register = () => {
   //console.log(password.current)
 
   const onSubmit = (data) => {
-
     customFetch("POST", "user", {body: data})
         .then(userSession => {
           setUserSession(userSession);

@@ -7,28 +7,28 @@ import customFetch from "../../api"
 import "./navbar.css"
 import Avatar from "../avatar/Avatar";
 import jwt_decode from "jwt-decode";
+import mockUser from "../../data/user.json";
 
 const NavBar = () => {
 
-    const [currentUser, setCurrentUser]= useState(null);
+    const [currentUser, setCurrentUser]= useState(mockUser);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    /*useEffect(() => {
         const user = getUserToken();
         console.log(jwt_decode(user).id)
         if (user) {
-          customFetch("GET", `user/${jwt_decode(user).id}`)
+          customFetch("GET", `user/id/${jwt_decode(user).id}`)
             .then(u => setCurrentUser(u))
             .catch(err => console.error(err));
         }
-    }, []);
-      /*const Logout = () => {
-        removeSession();
-        navigate("/");
-        setCurrentUser(null);
-      }*/
-    
-    console.log(currentUser);
+    }, []);*/
+
+    /*const Logout = () => {
+    removeSession();
+    navigate("/");
+    setCurrentUser(null);
+    }*/
 
     return (
         <div className="header">

@@ -6,39 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="9fd553a0-721d-4f01-a0c1-50733aed60bf" name="Changes" comment="save changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filters/Filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filters/Filters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filters/filters.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filters/filters.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/register-form/register.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/register-form/registerForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/results/Results.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/results/Results.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search-form/search-form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search-form/search-form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sideBar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBar/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/facebook_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/instagram_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/twiter_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Layout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Results.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Results.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ReturnFlight.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/layout.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/login.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPage/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPage/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/avatar/Avatar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/avatar/Avatar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/avatar/avatar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/avatar/avatar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/registerForm/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/registerForm/RegisterForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/registerPage/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registerPage/RegisterPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/resultsPage/ResultsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/resultsPage/ResultsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/returnFlight.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/returnFlightPage/ReturnFlightPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/returnFlightPage/ReturnFlightPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/profile.sidebar.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +74,7 @@
       <workItem from="1645033877945" duration="12000" />
       <workItem from="1645033900563" duration="1049000" />
       <workItem from="1645039510194" duration="1099000" />
-      <workItem from="1646480015515" duration="857000" />
+      <workItem from="1646480015515" duration="1267000" />
     </task>
     <task id="LOCAL-00001" summary="add gitignore">
       <created>1643820402343</created>

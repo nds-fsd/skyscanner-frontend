@@ -22,24 +22,22 @@ const Profile = () => {
     //     }
     //   }, [currentProfile]);
     
-      const renderSwitch = (component) => {
-          console.log(component);
-        switch(component) {
-          case 'account':
+    const renderSwitch = () => {
+      switch(component) {
+        case 'account':
             return <AccountData />;
-          case 'reservations':
-             return <BookingResult/>;
-          case 'favorite':
+        case 'bookings':
+            return <BookingResult/>;
+        case 'favorite':
             return <FavoriteResult/>;
-            default:}
+        default:
       }
+    }
       
     return (
-     
         <section className='profile-wrapper'>
-           <NavBar/>
             <div className='side-bar'>
-                <ProfileSidebar setComponent={setComponent} />
+                <ProfileSidebar component={component} setComponent={setComponent} />
             </div>
             <div className='options'>
               {renderSwitch(component)}
