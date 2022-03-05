@@ -23,6 +23,9 @@ const LoginForm = () => {
             navigate("/");
         }).catch(error => {
             console.error(error);
+            if (error.status === 400) {
+                alert("invalid email or password");
+              }
         });
     };
 

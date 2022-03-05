@@ -1,23 +1,34 @@
 import React, {useState, useEffect}from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../files/logo.png";
-import {getStorageObject, deleteStorageObject} from "../../api/storage";
+import {removeSession} from "../../api/auth";
+import { getUserToken } from "../../api/auth";
+import customFetch from "../../api"
 import "./navbar.css"
+import Avatar from "../avatar/Avatar";
+import jwt_decode from "jwt-decode";
 
 const NavBar = () => {
 
-    const [currentUser, setCurrentUser]= useState(undefined);
+    const [currentUser, setCurrentUser]= useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const user = getStorageObject("token");
+        const user = getUserToken();
+        console.log(jwt_decode(user).id)
         if (user) {
-          setCurrentUser(user);
+          customFetch("GET", `user/${jwt_decode(user).id}`)
+            .then(u => setCurrentUser(u))
+            .catch(err => console.error(err));
         }
-      }, [currentUser]);
-    const Logout = () => {
-        deleteStorageObject('token');
+    }, []);
+      /*const Logout = () => {
+        removeSession();
+        navigate("/");
         setCurrentUser(null);
-    }
+      }*/
+    
+    console.log(currentUser);
 
     return (
         <div className="header">
@@ -28,7 +39,11 @@ const NavBar = () => {
             </div>
             {currentUser ? 
             <>
-                <button className="btn-1"onClick={ Logout }>Logout</button>
+                <div className="navbar-icon">
+                    <Link to="/profile">
+                        <Avatar user={currentUser} />
+                    </Link>
+                </div>
             
             </>
             :

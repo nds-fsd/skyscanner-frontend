@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+import customFetch from "../../api";
+import { setUserSession, getUserToken } from "../../api/auth";
 import "./registerForm.css";
 
 const Register = () => {
@@ -9,8 +11,8 @@ const Register = () => {
   const [notRegistered, setNotRegistered] = useState(false);
 
   useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (token) navigate("/");
+    const token = getUserToken()
+    if (token) navigate("/");
   }, );
   
   const {register, handleSubmit, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
@@ -18,22 +20,22 @@ const Register = () => {
   password.current = watch("password", "");
   //console.log(password.current)
 
-  const onSubmit =  async (data) => {
-    const response = await fetch("http://localhost:3020/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-      if (response.status === 409) {
-        //alert("email already exists");
-          setNotRegistered(true)
-        return;
-    }
-    const json = await response.json();
-    localStorage.setItem("token", json.token);
-    navigate("/");
-  }
+  const onSubmit = (data) => {
 
+    customFetch("POST", "user", {body: data})
+        .then(userSession => {
+          setUserSession(userSession);
+          navigate("/");
+          })
+        .catch(error => {
+          console.error(error);
+          if (error.status === 409) {
+            setNotRegistered(true);
+          return;
+          }
+    });
+  };
+  
   return (
     <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
       <div className='inputDiv'>

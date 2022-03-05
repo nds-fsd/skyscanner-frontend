@@ -6,8 +6,9 @@ import SearchHeader from '../../components/searchHeader/SearchHeader';
 import './returnFlightPage.css';
 import { useParams } from 'react-router';
 import moment from 'moment';
-import flights from '../../data/flights-data.json';
+//import flights from '../../data/flights-data.json';
 import Results from '../../components/results/Results';
+import customFetch from '../../api';
 
 const ReturnFlightPage = () => {
     const searchParams = useParams();
@@ -17,7 +18,15 @@ const ReturnFlightPage = () => {
 
     const handleClick = () => {
         //Fetch para buscar vuelos de vuelta
-        setReturnFlights(flights);
+        //setReturnFlights(flights);
+            customFetch("GET", `flights/search?from=${to}&to=${from}&dedate=${retdate}`)
+            .then((json) => {
+                console.log(json);
+                setReturnFlights(json);
+            }).catch(error => {
+                console.error(error);
+            });
+       
     }
 
     return (
