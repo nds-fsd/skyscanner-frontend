@@ -51,7 +51,6 @@ const Profile = () => {
       
     return (
         <section className='profile-wrapper'>
-            
             <div className='side-bar'>
                 <ProfileSidebar component={component} setComponent={setComponent} />
             </div>
