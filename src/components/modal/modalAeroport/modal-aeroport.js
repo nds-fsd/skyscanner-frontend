@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const Modal = ({setShowModal }) => {
 
   const { register, handleSubmit, formState: { errors }} = useForm();
-  const {user} = useContext(UserContext);
+  const {user, setUser, forceReloadUser} = useContext(UserContext);
   const onSubmit = (data) => {
 
     customFetch("PUT", `profile/favairport/${user._id}`, {body: data})
@@ -22,6 +22,8 @@ const Modal = ({setShowModal }) => {
             }).then((result) => {
               /* Read more about isConfirmed, isDenied below */
               if (result.isConfirmed) {
+                forceReloadUser()
+                //setUser({...user, prefairport: data.prefairport})
                 Swal.fire('Aeroport Saved!', '', 'success')
               } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info')
