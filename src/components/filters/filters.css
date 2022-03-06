@@ -29,23 +29,23 @@
     font-weight: 200;
 }
 
-.hour-select {
+.select-input {
     font-size: 16px;
     margin-top: 10px; 
 }
 
-.hour-select select{
+.select-input select{
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
 
-.hour-select {
+.select-input {
 	max-width: 250px;
 	position: relative;
 }
  
-.hour-select select{
+.select-input select{
 	display: inline-block;
 	width: 100%;
 	cursor: pointer;
@@ -63,12 +63,12 @@
     transition: all 0.25s ease;
 }
  
-.hour-select select:hover{
+.select-input select:hover{
 	background: #1a4169;
     color: white;
 }
  
-.hour-select i{
+.select-input i{
 	position: absolute;
 	right: 20px;
 	top: calc(50% - 8px);
@@ -81,13 +81,13 @@
 	transition: all 0.25s ease;
 }
 
-.hour-select i:hover{
+.select-input i:hover{
 	border-left: 2px solid white;
 	border-bottom: 2px solid white;
 }
  
-.hour-select:hover i{
-	margin-top: 3px;
+.select-input:hover i{
+	margin-top: 5px;
 }
 
 .checkbox {

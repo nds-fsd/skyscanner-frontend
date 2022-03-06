@@ -7,43 +7,42 @@ import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
 
 const Results = (props) => {
-    const {flights, filteredFlights, order} = props;
+    const {filteredFlights, order} = props;
     const searchParams = useParams();
-    const [orderedFlights, setOrderedFlights] = useState([]);
+    const [orderedFlights, setOrderedFlights] = useState(filteredFlights);
     const [cheapest, setCheapest] = useState([]);
     const [shortest, setShortest] = useState([]);
     const [lastSeats, setLastSeats] = useState([]);
 
     useEffect(() => {
-        setOrderedFlights(
-            filteredFlights.length === 0 ? flights : filteredFlights
-        )
-    })
+        setOrderedFlights([...filteredFlights])
+    }, [filteredFlights]);
 
     useEffect(() => {
+        let oFlights = [...orderedFlights];
         if (order === "cheaper") {
-            setOrderedFlights(flights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1));
+            console.log("entro en cheaper");
+            oFlights = oFlights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1);
         } else if (order === "shorter") {
             console.log("entro aqui")
-            setOrderedFlights(flights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1));
+            oFlights = oFlights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1);
         } else if (order === "recomended") {
-            setOrderedFlights(flights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1));   
-        } else {
-            return;
-        }
+            oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   
+        } 
+        setOrderedFlights(oFlights);
     }, [order])
 
     useEffect(() => {
-        let prices = flights.map(flight => {
+        let prices = filteredFlights.map(flight => {
             return flight.price;
         });
-        let durations = flights.map(flight => {
+        let durations = filteredFlights.map(flight => {
             return flight.flighttime;
         });
         let cheapestPrice = Math.min(...prices);
         let shortestDuration = Math.min(...durations);
 
-        flights.forEach(flight => {
+        filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
                 setCheapest([...cheapest, flight]);
             }
@@ -55,7 +54,7 @@ const Results = (props) => {
             }
         })
 
-    }, [flights])
+    }, [filteredFlights])
 
     return (
         <div className="results-cards">
@@ -74,7 +73,6 @@ const Results = (props) => {
                             //setSelectedFlight={setSelectedFlight}
                         />
                     </div>
-                    
                     )
                 }) 
             }
