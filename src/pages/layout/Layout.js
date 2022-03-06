@@ -5,7 +5,7 @@ import Login from '../loginPage/LoginPage';
 import Register from '../registerPage/RegisterPage';
 import ResultsPage from '../resultsPage/ResultsPage';
 import ReturnFlightPage from '../returnFlightPage/ReturnFlightPage'
-import NavBar from '../../components/navbar/Navbar';
+import NavBar from '../../components/Navbar/Navbar';
 import Home from '../home/Home';
 import BookingPage from '../bookingPage/BookingPage';
 import SuccessPage from '../successPage/SuccessPage';
@@ -13,7 +13,7 @@ import Profile from '../profile/Profile';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="layout-wrapper">
         <NavBar />
         <div className="body">
             <Routes>
