@@ -33,7 +33,6 @@ function ResultsPage () {
     }
 
     useEffect(() => {
-        
         let prices = flights.map((f)=> {
             return f.price*passangers;
         });
