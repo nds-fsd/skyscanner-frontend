@@ -8,7 +8,6 @@ import customFetch from '../../api';
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
-    const {setUser} = useContext(UserContext);
     
     useEffect(() => {
         const token = getUserToken()

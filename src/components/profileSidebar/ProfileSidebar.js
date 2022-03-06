@@ -25,7 +25,6 @@ const ProfileSidebar = ({setComponent}) => {
     const decoded = jwt_decode(token);
 
     useEffect(() => { 
-        
         customFetch("GET", `profile/${decoded.id}`)
         
           .then((json) => {
