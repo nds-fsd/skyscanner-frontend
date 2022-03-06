@@ -4,64 +4,71 @@ import ArrowIcon from '../../icons/ArrowIcon';
 import Modal from '../../modal/modalAeroport/modal-aeroport';
 import ModalRemove from '../../modal/modalRemove/modal-remove';
 import ModalEdit from '../../modal/modalEdit/modal-edit';
+import ModalChangePwd from '../../modal/modalChangePwd/ModalChangePwd';
 import { UserContext } from '../../../context/userContext';
 
 const AccountData = () => {
     const [showModal, setShowModal] = useState(false);
     const [showModalRemove, setShowModalRemove] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
+    const [showModalChangePwd, setShowModalChangePwd] = useState(false);
     const {user} = useContext(UserContext);
-    //console.log(user);
     
-  return (
+    return (
     <section className='account-data-container'>
-        <div>
-            <p className='header-account-data'>Account</p>
+        <div className='header-account-data'>
+            <p>Account</p>
+            <span>Here you can configure your account</span>
         </div>
         <div className='information'>
             <div className='header-title-profile'>
                 <p>General information</p>
             </div>
-            <p className='email-information'>Email address</p>
-            <p>{user.email}</p>
+            <div className='information-data'>
+                <span className='email-information'>Email address</span>
+                <p>{user.email}</p>
+            </div>
             </div>
         <div className='suscription'>
-                <div className='header-title-profile'>
+            <div className='header-title-profile'>
                 <p>Subscriptions</p>
-                </div>
-                <div className='checkbox-container'>
-                    <input type="checkbox" className='checkbox-style'/>
-                    <p className="option-checkbox">I would like to receive the latest travel deals, news and tips by email.</p>
-                </div>
-                <div>
+            </div>
+            <div className='checkbox-container'>
+                <input type="checkbox" className='checkbox-style'/>
+                <p className="option-checkbox">I would like to receive the latest travel deals, news and tips by email.</p>
+            </div>
+            <div>
                 <p className='titile-aeroport'>Preferred Origin Airport</p>
-                <p className='info-aeroport'>Enter the airport you prefer so we can find the best deals and ideas for you.</p>
-                {showModal}
-                <h6>Airport of origin</h6>
-                { user.prefairport ?
-                <>
-                <p className='info-aeroport'> {user.prefairport} </p>
-                <button onClick={() => {setShowModal(true)}} className="button-profile" type="button">Change your preferred airport</button> 
-                </> :
-                <button onClick={() => {setShowModal(true)}} className="button-profile" type="button">Add an airport</button> 
-                }
+                <span className='info-aeroport'>Enter the airport you prefer so we can find the best deals and ideas for you.</span>
+                {/*showModal No entiendo que hace esto*/}
+                <div className='favorite-airport'>
+                    <h4>Airport of origin</h4>
+                    { user.prefairport ?
+                        <p className='info-aeroport'>{user.prefairport}</p> : <p className='info-aeroport'>No airport selected</p>
+                    }
+                    <button onClick={() => {setShowModal(true)}} className="change-airport-btn" type="button">Change your preferred airport</button> 
+                </div>
                 {showModal === true &&  
                     <Modal setShowModal={setShowModal}/>
                 } 
-                </div>
             </div>
+        </div>
             <div className='account'>
                 <div className='header-title-profile'>
-                <p>Account</p>
+                    <p>Account</p>
                 </div>
-                <div className='remove-account-profile' onClick={() => {setShowModalRemove(true)}}>Remove account<ArrowIcon/></div>
+                <div className='account-option' onClick={() => {setShowModalRemove(true)}}>Remove account<ArrowIcon/></div>
                     {showModalRemove === true &&  
-                    <ModalRemove setShowModalRemove={setShowModalRemove}/>
-                } 
-            <div className='edit-account' onClick={() => {setShowModalEdit(true)}}>Edit<ArrowIcon/></div>
-            {showModalEdit === true &&  
+                        <ModalRemove setShowModalRemove={setShowModalRemove}/>
+                    } 
+                <div className='account-option' onClick={() => {setShowModalEdit(true)}}>Edit<ArrowIcon/></div>
+                {showModalEdit === true &&  
                     <ModalEdit setShowModalEdit={setShowModalEdit}/>
-                }  
+                }
+                <div className='account-option' onClick={() => {setShowModalChangePwd(true)}}>Change password<ArrowIcon/></div>
+                {showModalChangePwd === true &&  
+                    <ModalChangePwd setShowModalChangePwd={setShowModalChangePwd}/>
+                }
             </div>
         </section>
   );
