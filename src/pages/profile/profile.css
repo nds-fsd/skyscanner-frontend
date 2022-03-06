@@ -1,28 +1,29 @@
-.total-profile{
-  display: flex;
-}
-.sidebar-wrapper{
-  display: flex;
-  justify-content: flex-start;
-}
+ .total-profile{
+      display: flex;
+  }
+  .sidebar-wrapper{
+      display: flex;
+      justify-content: flex-start;
+  }
+  
+  .profile-wrapper {
+     display: flex;
+     width: 100%;
+  }
 
-.profile-wrapper {
- display: flex;
- width: 100%;
-}
+  .side-bar {
+      width: 30%;
+      margin-top: 5%;
+      padding: 0 20px 10px 20px;
 
-.side-bar {
-  width: 30%;
-  padding: 0 20px 10px 20px;
-  margin-top: 60px;
-}
+  }
 
-.options {
-  width: 45%;
-  margin: 0 60px;
-  margin-top: 60px;
+  .options {
+    width: 45%;
+    padding-top: 120px;
+    margin: 0 60px;
 
 }
 .navbar-icon{
-margin-top: 10px;
+    margin-top: 10px;
 }
