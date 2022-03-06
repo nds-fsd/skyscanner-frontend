@@ -1,13 +1,12 @@
 import React from 'react';
 //import { useNavigate } from "react-router-dom";
 import { useState} from 'react';
-import NavBar from '../../components/Navbar/navbar';
-import './Profile.css';
-import ProfileSidebar from './profile.sidebar';
-import AccountData from '../../components/profile-data/account-data';
-import Reservation from '../../components/profile-data/reservation-result';
-import FavoriteResult from '../../components/profile-data/favorite-result';
-
+import './profile.css';
+import ProfileSidebar from '../../components/profileSidebar/ProfileSidebar';
+import BookingResult from '../../components/profileData/bookingResult/BookingResult';
+import FavoriteResult from '../../components/profileData/favoriteResult/FavoriteResult';
+import AccountData from '../../components/profileData/accountData/AccountData';
+import NavBar from "../../components/navbar/Navbar";
 
 
 const Profile = () => {
@@ -27,9 +26,9 @@ const Profile = () => {
           console.log(component);
         switch(component) {
           case 'account':
-            return <AccountData/>;
+            return <AccountData />;
           case 'reservations':
-             return <Reservation/>;
+             return <BookingResult/>;
           case 'favorite':
             return <FavoriteResult/>;
             default:}
@@ -38,8 +37,10 @@ const Profile = () => {
     return (
      
         <section className='profile-wrapper'>
-          <NavBar/>
-            <div className='side-bar'><ProfileSidebar setComponent={setComponent} /></div>
+           <NavBar/>
+            <div className='side-bar'>
+                <ProfileSidebar setComponent={setComponent} />
+            </div>
             <div className='options'>
               {renderSwitch(component)}
             </div>
