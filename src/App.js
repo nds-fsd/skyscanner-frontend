@@ -1,56 +1,24 @@
-import React from 'react';
-<<<<<<< HEAD
-import { Routes, Route} from 'react-router';
+import React, {useState} from 'react';
+import { UserContext } from './context/userContext';
 import './App.css';
-import NavBar from './components/Navbar/navbar';
-import Home from './pages/home';
-import { Login } from './pages/login';
-import Register from './pages/register';
-import Results from './pages/Results';
+import Layout from './pages/layout/Layout';
 
 function App() {
-  document.title = "Skyreader"
-  return (
-    <div className="App">
-      <header>
-      <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Register/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/flights/:from/:to/:dedate/:arrdate" element={<Results/>} />
-        </Routes>
-      </header>
-=======
-import { useRoutes } from "react-router-dom";
-import './App.css';
-import Header from './components/header/header'
-import Home from './pages/home';
-import Results from './pages/Results';
-import Login from './pages/login/Login';
-
-function App() {
-  document.title = "Skyreader"
-
-  const routes = [
-      {path:"/", element: <Home />},
-      {path:"/flights/:from/:to/:dedate/:arrdate", element: <Results />},
-      {path:"/register", element: <p>Register</p>},
-      {path:"/login", element: <Login />},
-  ]
-
-  let element = useRoutes(routes);
+  document.title = "Skyreader";
+  const [user, setUser] = useState ({});
+  const [reloadUser, setReloadUser] = useState (false);
 
   return (
+    <UserContext.Provider value={{
+      user,
+      setUser,
+      reloadUser,
+      forceReloadUser: () => setReloadUser(!reloadUser)
+  }}>
     <div className="App">
-      <div className="App-header">
-        <Header routes={routes}/>
-      </div>
-      <div>
-        {element}
-      </div>
->>>>>>> f4b36303 (add loginform and navigation bar)
+      <Layout />
     </div>
+    </UserContext.Provider>
   );
 }
 

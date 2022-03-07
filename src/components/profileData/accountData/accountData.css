@@ -1,0 +1,80 @@
+.header-title-profile {
+    background-color: #f1f2f8;
+    text-align: left;
+    padding: 0.75rem;
+}
+
+.header-title-profile p {
+    margin: 0px;
+    font-weight: 700;
+    font-size: 17px
+}
+
+.email-information {
+    color: #b2b2bf;
+    font-size: .75rem;
+}
+
+.option-checkbox{
+    font-size: 1rem;
+    border-bottom: 1px solid  #dddde5;
+    padding-bottom: 2%;
+}
+.checkbox-container{
+    display: flex;
+    align-items: center;
+}
+.checkbox-style{
+    align-items: center;
+    margin: 0 15px;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0.1875rem solid #dddde5;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    vertical-align: text-bottom;
+
+}
+.header-account-data{
+    font-size: 1.875rem;
+    text-align: center;
+    font-family:sans-serif;
+    font-weight: 600;
+}
+.remove-account-profile{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid #dddde5;
+
+}
+.remove-account-profile:hover{
+    transition: color .9s ease-in-out;
+    transition: .5s;
+
+}
+.titile-aeroport{
+    font-weight: 700;
+    font-size: 17px
+}
+.info-aeroport{
+    font-size: 17px; 
+}
+.account{
+    justify-content: space-between;
+
+}
+.edit-account{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid #dddde5;
+}

@@ -1,0 +1,193 @@
+.card {
+    width: 950px;
+    height: 200px;
+    background-color: white; 
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 0px 0px 0 rgba(80, 80, 80, 0.2);
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(80, 80, 80, 0.2);
+    transition: all 0.15s ease-in-out;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    height: 160px;
+}
+
+.card-color {
+    height: 40px;
+    border-radius: 14px 14px 0px 0px;
+    display: flex;
+}
+
+.vueling{
+    background-color: #FCDB00;
+}
+.aireuropa{
+    background-color: #0672C9;
+}
+.ryanair{
+    background-color: #22346B;
+}
+.iberia{
+    background-color: #D7192C;
+}
+.bintercanarias{
+    background-color: #3DAD2B;
+}
+
+.fav-flight {
+    color: lightgrey;
+    font-size: 60px;
+}
+
+.fav-flight:hover {
+    color:rgb(255, 139, 139);
+}
+
+.logo-container {
+    width: 150px;
+    height: 80px;
+    margin-left: 10px;
+}
+
+.airline-logo {
+    margin: auto ;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.flight-info {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+.from-to{
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+
+.trip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+    padding-top: 5px;
+}
+
+.city-name {
+    color: rgb(80, 80, 80);
+    margin: 5px auto;
+}
+
+.de-arr-time {
+    font-size: 14px;
+    color: rgb(139, 139, 139);
+    margin: 0 auto;
+}
+
+.duration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin: 10px auto;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: rgba(221, 221, 221, 0.4);
+    color: rgb(87, 87, 87);
+}
+
+.clock-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
+}
+
+.divider {
+    border: 1px solid #E5E5E5;
+    height: 120px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 200px;
+}
+
+.buttonSelect {
+    font-family: 'Cabin', sans-serif;
+    margin: 10px auto;
+    color: #0770E3;
+    border: 1px solid #0770E3;
+    background: transparent;
+    border-radius: 4px;
+    padding: 7px 22px;
+    outline: none;
+    font-size: 14px;
+}
+
+.buttonSelect:hover {
+    background-color: #0770E3;
+    color: white;
+    border: 1px solid #0770E3;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+
+.book-btn {
+    color: white;
+    background-color: #16A086;
+    border-radius: 4px;
+    padding: 10px 22px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    margin: 10px auto;
+}
+
+.book-btn:hover {
+    background-color: #0e705e;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.price{
+    margin: 5px auto;
+    font-weight: 900;
+}
+
+.price-unitary {
+    margin: 1px auto;
+    color: gray;
+    font-size: 12px;
+}
+
+.price-info {
+    font-size: 12px;
+    color: gray;
+    margin: 2px auto;
+}
+
+.seats-info {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(185, 62, 134);
+    margin: 3px auto;
+}

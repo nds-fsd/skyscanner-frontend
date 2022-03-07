@@ -1,0 +1,53 @@
+.booking-header{
+    width: 100%;
+    height: 100px;
+    background-color: #0f549e4d;
+    border-radius: 25px;
+    margin-top: 100px;
+    color: #17385c;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.booking-title {
+    margin: auto;
+}
+
+.booking-subheader{
+    width: 30%;
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 10px auto;
+    margin-bottom: -30px;
+    color: #0d6418;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.booking-total-price {
+    margin: auto;
+}
+
+.booking-btn {
+    height: 50px;
+    color: white;
+    background-color: #16A086;
+    border-radius: 10px;
+    padding: 10px 22px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin: auto auto;
+}
+
+.booking-btn:hover {
+    background-color: #0e705e;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}

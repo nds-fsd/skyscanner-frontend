@@ -1,0 +1,58 @@
+.return-page-container {
+    font-family: 'Cabin', sans-serif;
+}
+
+.date {
+    font-size: 12px;
+    color: gray;
+    margin-left: 10px;
+}
+
+.selected-flight {
+    margin: 50px 0;
+}
+
+.flight-direction {
+    font-size: 24px;
+}
+
+.flight {
+    width: 950px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(199, 199, 199, 0.3);
+    border-radius: 15px;
+}
+
+.selected {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.no-return-info{
+    width: 600px;
+    font-size: 18px;
+    padding: 10px 30px;
+    color: rgb(105, 105, 105);
+}
+
+.search-btn {
+    font-family: 'Cabin', sans-serif;
+    margin: 10px auto;
+    color: #0770E3;
+    border: 1px solid #0770E3;
+    background: transparent;
+    border-radius: 4px;
+    padding: 7px 22px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-btn:hover {
+    background-color: #0770E3;
+    color: white;
+    border: 1px solid #0770E3;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
