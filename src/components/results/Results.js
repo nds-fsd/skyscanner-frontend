@@ -63,9 +63,9 @@ const Results = (props) => {
                 return (
                     <div className="card-group">
                         <div className="tags">
-                            {cheapest.includes(flight) && <span className="tag cheapest-tag">Mejor precio</span>}
-                            {shortest.includes(flight) && <span className="tag shortest-tag">Más corto</span>}
-                            {lastSeats.includes(flight) && <span className="tag lastseated-tag">Menos de 5 plazas!</span>}
+                            {cheapest.includes(flight) && <span className="tag cheapest-tag">Cheapest</span>}
+                            {shortest.includes(flight) && <span className="tag shortest-tag">Fastest</span>}
+                            {lastSeats.includes(flight) && <span className="tag lastseated-tag">Less than 5 seats!</span>}
                         </div>
                         <FlightCard
                             key={flight._id}

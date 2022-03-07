@@ -26,15 +26,9 @@ const BookingPage = () => {
     return (
         <div className="return-page-container">
             <div>
-                <div className="booking-header">
-                    <h1 className="booking-title">Tu selección de vuelos actual</h1>
-                    <button className="booking-btn" onClick={handleClick}>Reserva los vuelos</button>
-                </div>
-                <div className="booking-subheader">
-                    <h2 className="booking-total-price">Precio total {totalPrice} €</h2>
-                </div>
                 <div className="selected-flight">
-                    <h3 className="flight-direction">Ida<span className="date">{moment(outboundFlight.dedate).format('LLLL')}</span></h3>
+                    <br/>
+                    <h3 className="flight-direction-ida">Ida<span className="date">{moment(outboundFlight.dedate).format('LLLL')}</span></h3>
                     <div className="flight selected">
                         <FlightCard 
                             flight={outboundFlight} 
@@ -48,6 +42,13 @@ const BookingPage = () => {
                             flight={returnFlight} 
                             searchParams={params} />
                     </div>
+                </div>
+                <div className="booking-subheader">
+                    <h2 className="booking-total-price">Total: {totalPrice} €</h2>
+                </div>
+                <div className="booking-header">
+                    <h1 className="booking-title">Your current flights selection</h1>
+                    <button className="booking-btn" onClick={handleClick}>🔒 Book flights </button>
                 </div>
             </div>
             <Footer />

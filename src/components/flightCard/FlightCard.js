@@ -8,6 +8,8 @@ import iberiaLogo from '../../images/airline_logos/iberia_logo.png';
 import bintercanariasLogo from '../../images/airline_logos/binter_logo.webp';
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router';
+import customFetch from '../../api';
+
 
 
 function FlightCard(props) {
@@ -37,10 +39,40 @@ function FlightCard(props) {
         navigate("/success");
     }
 
-    return (
+    // const addToFavFlight = (data) => {
+    //     console.log(data);
+    //     customFetch("POST", "login", {body: data})
+    //     .then(userSession => {
+    //         setUserSession(userSession);
+    //         navigate("/");
+    //     }).catch(error => {
+    //         console.error(error);
+    //         if (error.status === 400) {
+    //             alert("invalid email or password");
+    //           }
+    //     });
+    // };
+    // console.log(json)
+    // const addToFavFlight = () => {
+    //     customFetch("PUT", "profile/favflights/:id", {body: data}) {
+    //     .then(response => {
+    //         if (!response.ok) throw new Error("Couldn't save to favorites")
+    //         return response.json();
+    //       })
+    //       .then(json => {
+    //         alert(JSON.stringify(json));
+    //       })
+        //   .catch(error => {
+        //     alert(error);
+        //   })
+    // };
+    const addToFavFlight = () => {};
+
+return (
         <div className="card">
             <div className={`${airline.replace(/\s/g, '').toLowerCase()} card-color `} />
             <div className="card-content">
+                <div className="fav-flight" onClick={addToFavFlight}>♥</div>
                 <div className="logo-container">
                     {airline.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
                     {airline.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
@@ -73,15 +105,15 @@ function FlightCard(props) {
                 <div className="actions">
                     <p className="price">{searchParams.passangers * price} €</p>
                     {searchParams.passangers !== "1" && <p className="price-unitary">{price} €</p>}
-                    <span className="price-info">Precio para 1 pasajero</span>
-                    {flight.seats < 5 && <span className="seats-info">{flight.seats === 1 ? "Sólo queda 1 asiento disponible !" : flight.seats + " asientos disponibles !"}</span>}
+                    <span className="price-info">Price for 1 passenger</span>
+                    {flight.seats < 5 && <span className="seats-info">{flight.seats === 1 ? "Only 1 seat left available!" : flight.seats + " available seats !"}</span>}
                     {!returnFlight ? <div>
                         {outboundFlight && flight._id === outboundFlight._id ? 
                         <button className="book-btn" onClick={handleBookingClick}>
-                            Reservar vuelo
+                            Book flight
                         </button> : 
                         <button className="buttonSelect" onClick={handleClick}>
-                                Elegir vuelo
+                                Select flight
                         </button>}
                     </div> : <div></div> }
                 </div>
