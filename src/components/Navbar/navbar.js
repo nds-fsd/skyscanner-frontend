@@ -14,15 +14,15 @@ const NavBar = () => {
     const [currentUser, setCurrentUser]= useState(mockUser);
     const navigate = useNavigate();
 
-    /*useEffect(() => {
+    useEffect(() => {
         const user = getUserToken();
         console.log(jwt_decode(user).id)
         if (user) {
-          customFetch("GET", `user/id/${jwt_decode(user).id}`)
+          customFetch("GET", `profile/${jwt_decode(user).id}`)
             .then(u => setCurrentUser(u))
             .catch(err => console.error(err));
         }
-    }, []);*/
+    }, []);
 
     /*const Logout = () => {
     removeSession();
