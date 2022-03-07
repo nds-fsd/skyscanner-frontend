@@ -1,21 +1,28 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { useForm } from "react-hook-form";
 import customFetch from "../../../api";
 import { UserContext } from '../../../context/userContext';
 import "./modal-edit.css";
+import ErrorAlert from '../../errorAlert/errorAlert';
+import Swal from 'sweetalert2';
 
 const ModalEdit = ({setShowModalEdit }) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const {user} = useContext(UserContext);
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
     const onSubmit = (data) => {
 
         customFetch("PUT", `profile/${user._id}`, {body: data})
-                .then(()=> alert("Edit profile!"))
+                .then(()=> Swal.fire(
+                    'Perfect!',
+                    'Your name is changed',
+                    'success'
+                  ))
                 .then(()=> setShowModalEdit(false))
                 .catch(error => {
                     console.error(error);
                     if (error.status === 404 || error.status === 500) {
-                      alert("unable to update profile");
+                        setShowErrorAlert(true)
                     }
                  });
      }
@@ -33,6 +40,9 @@ const ModalEdit = ({setShowModalEdit }) => {
             
             <input type="text" placeholder={user.lastname} className='input-edit' {...register("lastname", { required: true })} />
             {errors.lastname && <span >This field is required</span>}
+            {showErrorAlert === true &&
+              <ErrorAlert text="unable to update profile. Please try again" />  
+            }
             <input type='submit' className='button-save-remove' value="Save"/>
             
            </form>

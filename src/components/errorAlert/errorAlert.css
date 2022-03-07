@@ -1,0 +1,9 @@
+.alert-container{
+    background-color: #feeded;
+    color: #810909;
+    padding: 0.55rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: .875rem;
+    font-weight: 500;
+}
