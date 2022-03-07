@@ -1,21 +1,22 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import "./modal-password.css";
 import { useForm } from "react-hook-form";
 import customFetch from "../../../api";
 import { UserContext } from '../../../context/userContext';
+import ErrorAlert from '../../errorAlert/errorAlert';
 
 const ModalPassword = ({setShowModalPassword }) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const {user} = useContext(UserContext);
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
     const onSubmit = (data) => {
-
-        customFetch("PUT", `profile/${user.password}`, {body: data})
-                .then(()=> alert("Edit password!"))
+        customFetch("POST", `profile/${user._id}`, {body: data})
                 .then(()=> setShowModalPassword(false))
                 .catch(error => {
                     console.error(error);
                     if (error.status === 404 || error.status === 500) {
-                      alert("unable to update profile");
+                        setShowErrorAlert(true)
+                        console.log(setShowErrorAlert, "setshowalert")
                     }
                  });
      }
@@ -35,7 +36,9 @@ const ModalPassword = ({setShowModalPassword }) => {
                             value:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                             message: "Password must have at least 8 characters, one digit [0-9], At least one lowercase character, at least one uppercase character, at least one special character "}
                             })} />
-                            {errors.password && <span >This field is required</span>}
+                            {showErrorAlert === true &&
+                            <ErrorAlert text="This field is required" />  
+                            }       
                     <label>Enter your new password</label>
                         <input placeholder="New password" type="password" className='input-edit'{...register("new password",{
                             required:"Please enter your password.",
@@ -43,7 +46,9 @@ const ModalPassword = ({setShowModalPassword }) => {
                             value:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                             message: "Password must have at least 8 characters, one digit [0-9], At least one lowercase character, at least one uppercase character, at least one special character "}
                             })} />
-                            {errors.password && <span >This field is required</span>}
+                             {showErrorAlert === true &&
+                            <ErrorAlert text="This field is required" />  
+                            }       
                         <input type='submit' className='button-save-remove' value="Save"/>
                 </form>
             </div>

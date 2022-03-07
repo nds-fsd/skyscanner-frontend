@@ -1,13 +1,15 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from './loginForm.module.css';
 import { setUserSession, getUserToken } from '../../api/auth';
 import customFetch from '../../api';
+import ErrorAlert from '../errorAlert/errorAlert';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
     
     useEffect(() => {
         const token = getUserToken()
@@ -24,8 +26,8 @@ const LoginForm = () => {
         }).catch(error => {
             console.error(error);
             if (error.status === 400) {
-                alert("invalid email or password");
-              }
+                setShowErrorAlert(true)
+            }
         });
     };
 
@@ -42,10 +44,11 @@ const LoginForm = () => {
                 <input className={styles.credentialsInput} {...register("password", { required: true })} placeholder="Contraseña" type="password" />
                 {errors.password && <span className={styles.errorLabel}>This field is required</span>}
             </div>
+            {showErrorAlert === true &&
+              <ErrorAlert text="Invalid email or password. Please try again" />  
+            }
             <input type="submit" className={styles.loginSubmit}/>
             
-       
-        
          </form>
         
     );
