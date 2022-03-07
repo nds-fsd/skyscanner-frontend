@@ -91,7 +91,7 @@ function ResultsPage () {
                 <Sidebar filters={filters} setFilters={setFilters}/>
                 <div className="right-section">
                     <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
-                    <TopBar setOrder={setOrder}/>
+                    <TopBgit sar setOrder={setOrder}/>
                     <div className="results-section">
                         <Results 
                             flights={flights} 
