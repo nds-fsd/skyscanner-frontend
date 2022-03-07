@@ -6,7 +6,6 @@ import ProfileSidebar from '../../components/profileSidebar/ProfileSidebar';
 import BookingResult from '../../components/profileData/bookingResult/BookingResult';
 import FavoriteResult from '../../components/profileData/favoriteResult/FavoriteResult';
 import AccountData from '../../components/profileData/accountData/AccountData';
-import NavBar from "../../components/navbar/Navbar";
 
 
 const Profile = () => {
@@ -35,16 +34,14 @@ const Profile = () => {
       }
       
     return (
-     
-        <section className='profile-wrapper'>
-           <NavBar/>
-            <div className='side-bar'>
-                <ProfileSidebar setComponent={setComponent} />
-            </div>
-            <div className='options'>
-              {renderSwitch(component)}
-            </div>
-        </section>
+      <section className='profile-wrapper'>
+          <div className='side-bar'>
+              <ProfileSidebar setComponent={setComponent} />
+          </div>
+          <div className='options'>
+            {renderSwitch(component)}
+          </div>
+      </section>
     );
   };
   

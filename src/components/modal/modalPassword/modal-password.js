@@ -1,9 +1,8 @@
 import React, {useContext} from 'react';
-import "./modal-edit.css";
+import "./modal-password.css";
 import { useForm } from "react-hook-form";
-import customFetch from "../../api";
-import { UserContext } from '../../context/userContext';
-
+import customFetch from "../../../api";
+import { UserContext } from '../../../context/userContext';
 
 const ModalPassword = ({setShowModalPassword }) => {
     const { register, handleSubmit, formState: { errors }} = useForm();

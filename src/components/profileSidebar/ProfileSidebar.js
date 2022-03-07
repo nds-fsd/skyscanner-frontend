@@ -25,7 +25,6 @@ const ProfileSidebar = ({setComponent}) => {
     const decoded = jwt_decode(token);
 
     useEffect(() => { 
-        
         customFetch("GET", `profile/${decoded.id}`)
         
           .then((json) => {
@@ -79,8 +78,8 @@ const ProfileSidebar = ({setComponent}) => {
                         {showAccount === true &&  
                         <AccountData setShowAccount={setShowAccount}/>
                         } 
-                        <ArrowIcon/>
                     </div>
+                    <ArrowIcon/>
                 </div>
                 <button className="button-profile" onClick={ Logout }>Logout</button>
                 <div> <img className="travel" src={ travel } alt="travel"/></div>

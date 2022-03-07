@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../components/footer/Footer";
-import NavBar from "../../components/navbar/Navbar";
+import NavBar from "../../components/Navbar/Navbar";
 import Search from "../../components/searchForm/SearchForm";
 import "./home.css"
 
