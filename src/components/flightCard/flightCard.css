@@ -42,6 +42,15 @@
     background-color: #3DAD2B;
 }
 
+.fav-flight {
+    color: lightgrey;
+    font-size: 60px;
+}
+
+.fav-flight:hover {
+    color:rgb(255, 139, 139);
+}
+
 .logo-container {
     width: 150px;
     height: 80px;

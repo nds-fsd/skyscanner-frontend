@@ -11,10 +11,10 @@ const TopBar = (props) => {
 
   return (
     <div className="topbar">
-      <h3 className="topbar-title">Ordenar por: </h3>
-      <button className="order-filter-btn" value="cheaper" autofocus onClick={handleClick}>MÁS BARATO</button>
-      <button className="order-filter-btn" value="shorter" onClick={handleClick}>MÁS CORTO</button>
-      <button className="order-filter-btn" value="recomended" onClick={handleClick}>MÁS RECOMENDADO</button>
+      <h3 className="topbar-title">Order by: </h3>
+      <button className="order-filter-btn" value="cheaper" autofocus onClick={handleClick}>BEST PRICE</button>
+      <button className="order-filter-btn" value="shorter" onClick={handleClick}>FASTEST</button>
+      <button className="order-filter-btn" value="recomended" onClick={handleClick}>RECOMMENDED</button>
     </div>
   )
 }

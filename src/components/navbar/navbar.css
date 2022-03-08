@@ -6,9 +6,6 @@
     top: 0px;
     background: #FFFFFF;
 }
-.navbar-container{
-    display: flex;
-}
 
 .logo {
     position: absolute;
@@ -51,11 +48,7 @@
     flex-grow: 0;
     margin: 0px 0px;
 }
-.navbar-icon{
-    cursor: pointer;
-    margin-left: 95%;
-    margin-top: 10px;
-}
+
 .register {
     display: flex;
     flex-direction: column;
@@ -100,18 +93,17 @@ a:link {
   }
 .btn-1 {
 
-  margin-left: 89%;
-  margin-top: 18px;
+  margin-left: 95%;
+  margin-top: 2%;
   background:url('https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login-hover.png') no-repeat 5px 5px transparent;
+  transition: color .9s ease-in-out;
   cursor:pointer;
-  border: 1px solid #0770E3;
-  color: #0770E3;
-  border-radius: 4px;
+  border-radius:30px;
   font-size: 14px;
-  padding: 10px 25px;
-  border-radius: 3px;
-  font-family: inherit;
-  margin-bottom: 20px;
-  justify-content: space-between;
   
 }
+.btn-1:hover {
+    background-image: url( 'https://dh3vbjnk0bnfa.cloudfront.net/static/centralauth/images/btn-login.png' );
+    background-position: 65px 5px;
+    text-indent: 15px;  
+  }

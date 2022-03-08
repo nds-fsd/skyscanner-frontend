@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from './loginForm.module.css';
@@ -8,7 +8,7 @@ import customFetch from '../../api';
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const token = getUserToken()
         if (token) navigate("/");
@@ -30,6 +30,7 @@ const LoginForm = () => {
     };
 
     return (
+        
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.inputDiv}>
                 <label className={styles.infoLabel}>Introduce tu nombre de usuario</label>
@@ -42,7 +43,11 @@ const LoginForm = () => {
                 {errors.password && <span className={styles.errorLabel}>This field is required</span>}
             </div>
             <input type="submit" className={styles.loginSubmit}/>
-        </form>
+            
+       
+        
+         </form>
+        
     );
 };
 
