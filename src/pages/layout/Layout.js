@@ -4,7 +4,8 @@ import {Routes, Route} from 'react-router';
 import Login from '../loginPage/LoginPage';
 import Register from '../registerPage/RegisterPage';
 import ResultsPage from '../resultsPage/ResultsPage';
-import ReturnFlightPage from '../returnFlightPage/ReturnFlightPage'
+import ReturnFlightPage from '../returnFlightPage/ReturnFlightPage';
+import EricReturnFlightPage from '../returnFlightPage/EricReturnFlightPage';
 import NavBar from '../../components/navbar/Navbar';
 import Home from '../home/Home';
 import BookingPage from '../bookingPage/BookingPage';
@@ -22,6 +23,7 @@ const Layout = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/flights/:from/:to/:dedate/:retdate/:passangers" element={<ResultsPage />} />
                 <Route path="/flights/:from/:to/:dedate/:retdate/:passangers/:outboundFlightUnparsed" element={<ReturnFlightPage />} />
+                <Route path="/flights/:from/:to/:dedate/:retdate/:passangers/:id" element={<EricReturnFlightPage />} />
                 <Route path="/flights/:passangers/:outboundFlightUnparsed/:returnFlightUnparsed" element={<BookingPage />} />
                 <Route path="/success" element={<SuccessPage />} />
                 <Route path="/profile" element ={<Profile/>} />

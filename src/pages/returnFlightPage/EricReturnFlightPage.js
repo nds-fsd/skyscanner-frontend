@@ -12,9 +12,19 @@ import customFetch from '../../api';
 
 const ReturnFlightPage = () => {
     const searchParams = useParams();
-    const {from, to, dedate, retdate, outboundFlightUnparsed} = searchParams;
+    const {from, to, dedate, retdate, id} = searchParams;
     const [returnFlights, setReturnFlights] = useState([]);
-    const selectedFlightParsed = JSON.parse(outboundFlightUnparsed);
+
+    const departureFlight = () => {
+    customFetch("GET", `flights/${id}`)
+    .then((json) => {
+        console.log(json);
+        setReturnFlights(json);
+    }).catch(error => {
+        console.error(error);
+    });
+    }
+    console.log(departureFlight);
     
 
     const handleClick = () => {
@@ -34,10 +44,10 @@ const ReturnFlightPage = () => {
         <div className="return-page-container">
             <SearchHeader from={to} to={from} date={retdate}/>
             <div className="selected-flight">
-                <h3 className="flight-direction">Ida<span className="date">{moment(selectedFlightParsed.dedate).format('LLLL')}</span></h3>
+                <h3 className="flight-direction">Ida<span className="date">{moment(departureFlight.dedate).format('LLLL')}</span></h3>
                 <div className="flight selected">
                     <FlightCard 
-                        flight={selectedFlightParsed} 
+                        flight={departureFlight} 
                         searchParams={searchParams}
                         selected={true} />
                 </div>

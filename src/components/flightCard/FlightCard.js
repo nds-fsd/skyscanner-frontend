@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from '../../context/userContext';
 import './flightCard.css';
 import cardimage from "../../images/card-image.png";
 import vuelingLogo from '../../images/airline_logos/vueling_logo.png';
@@ -9,8 +10,6 @@ import bintercanariasLogo from '../../images/airline_logos/binter_logo.webp';
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
-
-
 
 function FlightCard(props) {
     const params = useParams();
@@ -30,6 +29,15 @@ function FlightCard(props) {
         if(!outboundFlight) {
             //setSelectedFlight(flight);
             navigate(`/flights/${searchParams.from}/${searchParams.to}/${searchParams.dedate}/${searchParams.retdate}/${searchParams.passangers}/${JSON.stringify(flight)}`);
+        } else {
+            navigate(`/flights/${searchParams.passangers}/${JSON.stringify(outboundFlight)}/${JSON.stringify(flight)}`);
+        }
+    }
+
+    const ericClick = () => {
+        if(!outboundFlight) {
+            //setSelectedFlight(flight);
+            navigate(`/flights/${searchParams.from}/${searchParams.to}/${searchParams.dedate}/${searchParams.retdate}/${searchParams.passangers}/${flight._id}`);
         } else {
             navigate(`/flights/${searchParams.passangers}/${JSON.stringify(outboundFlight)}/${JSON.stringify(flight)}`);
         }
@@ -66,13 +74,36 @@ function FlightCard(props) {
         //     alert(error);
         //   })
     // };
-    const addToFavFlight = () => {};
+
+    const {user, setUser, forceReloadUser} = useContext(UserContext);
+    
+
+    const [favFlight, setFavFlight] = useState([]);
+
+    const addToFavFlight = () => {
+        // setFavFlight(favFlight.push(flight._id));
+        const favedFlight = {"fav": [{"outbound": `${flight._id}`}]}
+        customFetch("PUT", `profile/favflights/${user._id}`, {body: favedFlight })
+            .then(response => {
+                if (!response.ok) throw new Error("Couldn't save to favorites")
+                return response.json();
+            })
+            .then(json => {
+                alert(JSON.stringify(json));
+            })
+            .catch(error => {
+                alert(error);
+            })
+        console.log("fetch", {body: favedFlight })
+    
+    };
+    
 
 return (
         <div className="card">
             <div className={`${airline.replace(/\s/g, '').toLowerCase()} card-color `} />
             <div className="card-content">
-                <div className="fav-flight" onClick={addToFavFlight}>♥</div>
+                <div className="fav-flight" onClick={() => addToFavFlight(flight._id)}>♥</div>
                 <div className="logo-container">
                     {airline.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
                     {airline.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
@@ -115,6 +146,9 @@ return (
                         <button className="buttonSelect" onClick={handleClick}>
                                 Select flight
                         </button>}
+                        <button className="buttonSelect" onClick={ericClick}>
+                                ERIC ID
+                        </button>
                     </div> : <div></div> }
                 </div>
             </div>

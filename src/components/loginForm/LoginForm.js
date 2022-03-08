@@ -16,7 +16,7 @@ const LoginForm = () => {
 
 
     const onSubmit = (data) => {
-        console.log(data);
+        console.log("DATAERIC", data);
         customFetch("POST", "login", {body: data})
         .then(userSession => {
             setUserSession(userSession);
