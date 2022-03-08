@@ -7,18 +7,16 @@ import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
 
 const Results = (props) => {
-    const {flights, filteredFlights, order} = props;
+    const {filteredFlights, order} = props;
     const searchParams = useParams();
-    const [orderedFlights, setOrderedFlights] = useState(flights);
+    const [orderedFlights, setOrderedFlights] = useState(filteredFlights);
     const [cheapest, setCheapest] = useState([]);
     const [shortest, setShortest] = useState([]);
     const [lastSeats, setLastSeats] = useState([]);
 
     useEffect(() => {
-        setOrderedFlights(
-            filteredFlights.length === 0 ? flights : filteredFlights
-        )
-    }, [flights, filteredFlights]);
+        setOrderedFlights([...filteredFlights])
+    }, [filteredFlights]);
 
     useEffect(() => {
         let oFlights = [...orderedFlights];
@@ -35,16 +33,16 @@ const Results = (props) => {
     }, [order])
 
     useEffect(() => {
-        let prices = flights.map(flight => {
+        let prices = filteredFlights.map(flight => {
             return flight.price;
         });
-        let durations = flights.map(flight => {
+        let durations = filteredFlights.map(flight => {
             return flight.flighttime;
         });
         let cheapestPrice = Math.min(...prices);
         let shortestDuration = Math.min(...durations);
 
-        flights.forEach(flight => {
+        filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
                 setCheapest([...cheapest, flight]);
             }
@@ -56,7 +54,7 @@ const Results = (props) => {
             }
         })
 
-    }, [flights])
+    }, [filteredFlights])
 
     return (
         <div className="results-cards">

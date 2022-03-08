@@ -13,90 +13,49 @@ import moment from 'moment';
 
 function ResultsPage () {
     const [flights, setFlights] = useState(mockFlights);
-    const [filteredFlights, setFilteredFlights] = useState([]);
+    const [filteredFlights, setFilteredFlights] = useState(mockFlights);
     const [filters, setFilters] = useState({
         minPrice: 0,
         minHour: 0,
         selectedAirlines: []
     });
-    const [filtersApplied, setFiltersApplied] = useState({
-        minPrice: false,
-        minHour: false,
-        selectedAirlines: false
-    });
     const {from, to, dedate, retdate, deid, passangers} = useParams();
     const [order, setOrder] = useState();
+    const [maxPrice, setMaxPrice] = useState(1000);
 
     const compareHours = (a, b) => {
         if(a !== 0) {
             let bHour = parseInt(moment(b).format('HH:mm').split(":")[0]);
             let aHour = parseInt(a.split(':')[0]);
+            console.log(aHour, bHour,  aHour < bHour);
             return aHour < bHour;
         }
     }
 
     useEffect(() => {
-        if (filters.minPrice !== 0 && filters.minPrice !== '0') setFiltersApplied({...filtersApplied, minPrice: true});
-        if (filters.minHour !== 0 && filters.minHour !== '5:00') setFiltersApplied({...filtersApplied, minHour: true});
-        if (filters.selectedAirlines.length !== 0) setFiltersApplied({...filtersApplied, selectedAirlines: true});
+        let prices = flights.map((f)=> {
+            return f.price*passangers;
+        });
+        setMaxPrice(Math.max.apply(Math, prices));
     }, [filters])
 
-    /*useEffect(() => {
-        if (filters.minPrice !== 0) {
-            if(filtersApplied.minHour || filtersApplied.minPrice || filtersApplied.selectedAirlines) {
-                setFilteredFlights(filteredFlights.filter((flight) => flight.price > filters.minPrice)) 
-            } else {
-                setFilteredFlights(flights.filter((flight) => flight.price > filters.minPrice))
-                setFiltersApplied({...filtersApplied, minPrice: true});
-            }
-        }
-    }, [filters.minPrice])
-
     useEffect(() => {
-        if (filters.minHour !== 0) {
-            if(filtersApplied.minHour || filtersApplied.minPrice || filtersApplied.selectedAirlines) {
-                setFilteredFlights(filteredFlights.filter((flight) => compareHours(filters.minHour, flight?.dedate)));
-            } else {
-                setFilteredFlights(flights.filter((flight) => compareHours(filters.minHour, flight?.dedate)));
-                setFiltersApplied({...filtersApplied, minHour: true});
-            }
-        } 
-    }, [filters.minHour])
-
-    useEffect(() => {
-        if(filters.selectedAirlines.length !== 0) {
-            if (filtersApplied.minHour || filtersApplied.minPrice || filtersApplied.selectedAirlines) {
-                setFilteredFlights(filteredFlights.filter((flight) => filters.selectedAirlines.includes(flight.airline)));
-            } else {
-                setFilteredFlights(flights.filter((flight) => filters.selectedAirlines.includes(flight.airline)));
-                if (filters.selectedAirlines.length === 0) {
-                    setFiltersApplied({...filtersApplied, selectedAirlines: false});
-                } else {
-                    setFiltersApplied({...filtersApplied, selectedAirlines: true});
-                }
-            }  
-        }
-    }, [filters.selectedAirlines])*/
-
-    useEffect(() => {
-        let f = filtersApplied.minPrice && filtersApplied.minHour === 0 && filtersApplied.selectedAirlines !== 0 ? [...filteredFlights] : [...flights];
-        if (!filtersApplied.minPrice && !filtersApplied.minHour === 0 && !filtersApplied.selectedAirlines) {
-            setFilteredFlights(flights);
+        let filtered = filteredFlights;
+        if (filters.minPrice === 0 && filters.minHour === 0 && filters.selectedAirlines.length === 0) {
+            setFilteredFlights([...filtered]);
         } else {
-            if (filtersApplied.minPrice) {
-                setFilteredFlights(f.filter((flight) => flight.price > filters.minPrice));
+            if (filters.minPrice !== 0) {
+                filtered = flights.filter((flight) => flight.price > filters.minPrice);
             }
-            if (filtersApplied.selectedAirlines) {
-                setFilteredFlights(f.filter((flight) => filters.selectedAirlines.includes(flight.airline)));
+            if (filters.selectedAirlines.length !== 0) {
+                filtered = flights.filter((flight) => filters.selectedAirlines.includes(flight.airline));
             }
-            if (filtersApplied.minHour) {
-                setFilteredFlights(f.filter((flight) => compareHours(filters.minHour, flight?.dedate)));
+            if (filters.minHour !== 0) {
+                filtered = flights.filter((flight) => compareHours(filters.minHour, flight.dedate));
             }
-            //setFilteredFlights(f);      
+            setFilteredFlights([...filtered]);
         };
-    }, [filters, filtersApplied]);
-
-    console.log("Los filtros en result page son?", filters, "y los filteredFlights son", filteredFlights, filtersApplied)
+    }, [filters]);
 
     /* useEffect( () => {
         customFetch("POST", `flights/search?from=${from}&to=${to}&retdate=${dedate}`)
@@ -110,7 +69,6 @@ function ResultsPage () {
             console.error(error);
         });
     }, []);
-
     //Possible mal interpretació dels fetch
     useEffect( () => {
         if (deid) {
@@ -128,7 +86,7 @@ function ResultsPage () {
     return (
         <div className="wrapper">
             <div className="results-page">
-                <Sidebar filters={filters} setFilters={setFilters}/>
+                <Sidebar filters={filters} setFilters={setFilters} maxPrice={maxPrice}/>
                 <div className="right-section">
                     <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
                     <TopBar setOrder={setOrder}/>

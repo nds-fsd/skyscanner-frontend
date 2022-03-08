@@ -4,11 +4,11 @@ import './sidebar.css';
 
 const Sidebar =(props) => {
 
-  const {filters, setFilters} = props;
+  const {filters, setFilters, maxPrice} = props;
 
   return (
     <div className="sidebar-container">
-      <Filters filters={filters} setFilters={setFilters}/>
+      <Filters filters={filters} setFilters={setFilters} maxPrice={maxPrice}/>
     </div>
   );
 }
