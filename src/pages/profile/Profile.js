@@ -6,7 +6,6 @@ import ProfileSidebar from '../../components/profileSidebar/ProfileSidebar';
 import BookingResult from '../../components/profileData/bookingResult/BookingResult';
 import FavoriteResult from '../../components/profileData/favoriteResult/FavoriteResult';
 import AccountData from '../../components/profileData/accountData/AccountData';
-import NavBar from "../../components/navbar/Navbar";
 import Modal from '../../components/modal/Modal';
 import SimpleFlightCard from '../../components/flightCard/SimpleFlightCard';
 

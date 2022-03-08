@@ -5,7 +5,7 @@ import Login from '../loginPage/LoginPage';
 import Register from '../registerPage/RegisterPage';
 import ResultsPage from '../resultsPage/ResultsPage';
 import ReturnFlightPage from '../returnFlightPage/ReturnFlightPage'
-import NavBar from '../../components/Navbar/Navbar';
+import NavBar from '../../components/navbar/Navbar';
 import Home from '../home/Home';
 import BookingPage from '../bookingPage/BookingPage';
 import SuccessPage from '../successPage/SuccessPage';

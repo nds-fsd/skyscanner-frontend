@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../components/footer/Footer";
-import NavBar from "../../components/Navbar/Navbar";
+import NavBar from "../../components/navbar/Navbar";
 import Search from "../../components/searchForm/SearchForm";
 import "./home.css"
 
@@ -8,7 +8,6 @@ const Home = () => {
     
     return (
         <div className="homepage">
-            <NavBar/>
             <section className="hero">
                 <div className="search-form-container">
                      <h2 className="title-homepage">

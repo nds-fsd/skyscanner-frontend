@@ -5,7 +5,7 @@ import Results from "../../components/results/Results";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import Sidebar from "../../components/sideBar/Sidebar";
 import customFetch from '../../api';
-//import mockFlights from '../../data/flights-data.json';
+import mockFlights from '../../data/flights-data.json';
 import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
