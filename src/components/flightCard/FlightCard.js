@@ -10,6 +10,7 @@ import bintercanariasLogo from '../../images/airline_logos/binter_logo.webp';
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
+import { getUserToken } from "../../api/auth";
 
 function FlightCard(props) {
     const params = useParams();
@@ -76,24 +77,26 @@ function FlightCard(props) {
     // };
 
     const {user, setUser, forceReloadUser} = useContext(UserContext);
+    const token = getUserToken()
     
 
     const [favFlight, setFavFlight] = useState([]);
 
     const addToFavFlight = () => {
         // setFavFlight(favFlight.push(flight._id));
-        const favedFlight = {"fav": [{"outbound": `${flight._id}`}]}
+        const favedFlight = JSON.stringify({"fav": [{"outbound": `${flight._id}`}]})
+        !token ? navigate("/login") :
         customFetch("PUT", `profile/favflights/${user._id}`, {body: favedFlight })
-            .then(response => {
-                if (!response.ok) throw new Error("Couldn't save to favorites")
-                return response.json();
-            })
-            .then(json => {
-                alert(JSON.stringify(json));
-            })
-            .catch(error => {
-                alert(error);
-            })
+            // .then(response => {
+            //     if (!response.ok) throw new Error("Couldn't save to favorites")
+            //     return response.json();
+            // })
+            // .then(json => {
+            //     alert(JSON.stringify(json));
+            // })
+            // .catch(error => {
+            //     alert("error", error);
+            // })
         console.log("fetch", {body: favedFlight })
     
     };
