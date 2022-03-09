@@ -95,7 +95,6 @@ const ProfileSidebar = ({component, setComponent}) => {
                             <IoIosArrowForward />
                         </div>
                     </div>
-                    <ArrowIcon/>
                 </div>
                 <button className="button-profile" onClick={Logout}>Logout</button>
                 <div className="travel-div">
