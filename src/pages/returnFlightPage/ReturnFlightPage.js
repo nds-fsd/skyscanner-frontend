@@ -12,7 +12,7 @@ import customFetch from '../../api';
 
 const ReturnFlightPage = () => {
     const searchParams = useParams();
-    const {from, to, dedate, retdate, outboundFlightUnparsed} = searchParams;
+    const {from, to, retdate, outboundFlightUnparsed} = searchParams;
     const [returnFlights, setReturnFlights] = useState([]);
     const selectedFlightParsed = JSON.parse(outboundFlightUnparsed);
 

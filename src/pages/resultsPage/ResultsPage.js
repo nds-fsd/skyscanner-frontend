@@ -12,9 +12,8 @@ import { useParams } from 'react-router';
 import moment from 'moment';
 
 function ResultsPage () {
-    //const [flights, setFlights] = useState(mockFlights);
-    const [flights, setFlights] = useState([]);
-    const [filteredFlights, setFilteredFlights] = useState([]);
+    const [flights, setFlights] = useState(mockFlights);
+    const [filteredFlights, setFilteredFlights] = useState(mockFlights);
     const [filters, setFilters] = useState({
         minPrice: 0,
         minHour: 0,
@@ -22,44 +21,41 @@ function ResultsPage () {
     });
     const {from, to, dedate, retdate, deid, passangers} = useParams();
     const [order, setOrder] = useState();
+    const [maxPrice, setMaxPrice] = useState(1000);
 
     const compareHours = (a, b) => {
         if(a !== 0) {
             let bHour = parseInt(moment(b).format('HH:mm').split(":")[0]);
             let aHour = parseInt(a.split(':')[0]);
+            console.log(aHour, bHour,  aHour < bHour);
             return aHour < bHour;
         }
     }
 
     useEffect(() => {
-        if (filters.minPrice !== 0) {
-            if(filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => flight.price > filters.minPrice)) 
-            } else {
-                setFilteredFlights(flights.filter((flight) => flight.price > filters.minPrice)) 
-            }
-        }
-    }, [filters.minPrice])
+        let prices = flights.map((f)=> {
+            return f.price*passangers;
+        });
+        setMaxPrice(Math.max.apply(Math, prices));
+    }, [filters])
 
     useEffect(() => {
-        if (filters.minHour !== 0) {
-            if(filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => compareHours(filters.minHour, flight?.dedate)))
-            } else {
-                setFilteredFlights(flights.filter((flight) => compareHours(filters.minHour, flight?.dedate)))
+        let filtered = filteredFlights;
+        if (filters.minPrice === 0 && filters.minHour === 0 && filters.selectedAirlines.length === 0) {
+            setFilteredFlights([...filtered]);
+        } else {
+            if (filters.minPrice !== 0) {
+                filtered = flights.filter((flight) => flight.price > filters.minPrice);
             }
-        } 
-    }, [filters.minHour])
-
-    useEffect(() => {
-        if(filters.selectedAirlines.length !== 0) {
-            if (filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => filters.selectedAirlines.includes(flight.airline)))
-            } else {
-                setFilteredFlights(flights.filter((flight) => filters.selectedAirlines.includes(flight.airline)))
-            }  
-        }
-    }, [filters.selectedAirlines])
+            if (filters.selectedAirlines.length !== 0) {
+                filtered = flights.filter((flight) => filters.selectedAirlines.includes(flight.airline));
+            }
+            if (filters.minHour !== 0) {
+                filtered = flights.filter((flight) => compareHours(filters.minHour, flight.dedate));
+            }
+            setFilteredFlights([...filtered]);
+        };
+    }, [filters]);
 
     useEffect( () => {
         customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
@@ -70,7 +66,6 @@ function ResultsPage () {
             console.error(error);
         });
     }, []);
-
     //Possible mal interpretació dels fetch
     /*useEffect( () => {
         if (deid) {
@@ -88,7 +83,7 @@ function ResultsPage () {
     return (
         <div className="wrapper">
             <div className="results-page">
-                <Sidebar filters={filters} setFilters={setFilters}/>
+                <Sidebar filters={filters} setFilters={setFilters} maxPrice={maxPrice}/>
                 <div className="right-section">
                     <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
                     <TopBar setOrder={setOrder}/>

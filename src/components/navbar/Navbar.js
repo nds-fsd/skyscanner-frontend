@@ -17,42 +17,40 @@ const NavBar = () => {
           setCurrentUser(user);
         }
       }, [currentUser]);
+
+    const Logout = () => {
+        localStorage.removeItem('token');
+        setCurrentUser(null);
+    }
+
       /*const Logout = () => {
         removeSession();
         navigate("/");
-        setCurrentUser(null);
-      }*/
+        setCurrentUser(null);*/
 
     return (
         <div className="header">
             <div>
-                <Link to="/" >
-                    <img className="logo" src={logo} alt="logo"/>
-                </Link>
+            <Link to="/" ><img className="logo" src={logo} alt="logo"/></Link>
+
             </div>
             {currentUser ? 
             <>
+            <button className="btn-1"onClick={ Logout }>Logout</button>
                 <div className="navbar-icon">
                     <Link to="/profile">
                         <TravelerIcon />
                     </Link>
                 </div>
-            
             </>
             :
             <>
-                <div className="login">
-                    <Link to="/login">
-                        <p>Login</p>
-                    </Link>
-                </div>
-                <div className="register">
-                    <Link to="/signup">
-                        <p>Register</p>
-                    </Link>
-                </div>
+            <div className="login"><Link to="/login"><p>Login</p></Link></div>
+            <div className="register"><Link to="/signup"><p>Register</p></Link></div>
+            
             </>
-        } 
+        }
+            
         </div>
     );
 };

@@ -1,13 +1,44 @@
+.account-data-container{
+    font-family: 'Cabin', sans-serif;
+}
+
+.header-account-data {
+    margin: 10px;
+    text-align: center;
+}
+
+.header-account-data p{
+    color: rgb(36, 66, 133);
+    font-size: 1.875rem;
+    text-align: center;
+    font-weight: 600;
+    margin: 0;
+}
+
+.header-account-data span{
+    color: rgb(167, 167, 167);
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 400;
+}
+
 .header-title-profile {
-    background-color: #f1f2f8;
+    background-color: rgba(167, 167, 167, 0.5);
+    margin: 20px auto;
     text-align: left;
     padding: 0.75rem;
+    border-radius: 5px;
 }
 
 .header-title-profile p {
     margin: 0px;
-    font-weight: 700;
-    font-size: 17px
+    font-weight: 300;
+    font-size: 17px;
+    color:rgb(37, 37, 37)
+}
+
+.information-data {
+    padding: 10px;
 }
 
 .email-information {
@@ -15,10 +46,18 @@
     font-size: .75rem;
 }
 
+.information-data p {
+    margin: 5px auto;
+    font-family: sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: rgb(48, 48, 48);
+}
+
 .option-checkbox{
     font-size: 1rem;
     border-bottom: 1px solid  #dddde5;
-    padding-bottom: 2%;
+    padding-bottom: 2px;
 }
 .checkbox-container{
     display: flex;
@@ -33,42 +72,87 @@
     border-radius: 0.25rem;
     cursor: pointer;
     vertical-align: text-bottom;
+    outline: none;
+}
 
-}
-.header-account-data{
-    font-size: 1.875rem;
-    text-align: center;
-    font-family:sans-serif;
-    font-weight: 600;
-}
-.remove-account-profile{
+.favorite-airport {
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-around;
     width: 100%;
-    cursor: pointer;
-    border-bottom: 1px solid #dddde5;
-
+    padding: 1px 15px;
+    margin: 15px auto;
 }
-.remove-account-profile:hover{
-    transition: color .9s ease-in-out;
-    transition: .5s;
-
+.favorite-airport h4 {
+    margin: 5px 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color:rgb(36, 66, 133);
 }
+.favorite-airport p{
+    font-size: 16px;
+    padding: 4px 10px;
+    background-color: rgb(240, 240, 240);
+    border: 1.7px solid rgb(155, 155, 155);
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: auto;
+    width: 300px;
+    text-align: center;
+    color: rgb(32, 32, 32);
+}
+
 .titile-aeroport{
-    font-weight: 700;
-    font-size: 17px
+    background-color: rgba(235, 235, 235, 0.5);
+    margin: 10px auto;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: 400;
+    padding: 5px 10px;
+    font-size: 17px;
+    border-radius: 5px;
 }
 .info-aeroport{
-    font-size: 17px; 
+    font-size: 14px;
+    padding: 5px 10px;
 }
-.account{
-    justify-content: space-between;
 
+.change-airport-btn {
+    background-color: transparent;
+    color: rgb(240, 137, 53);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition-duration: 0.4s;
+    font-family: inherit;
+    font-weight: 500;
+    margin: 2px auto;
 }
-.edit-account{
+.change-airport-btn:hover{
+    background-color: rgb(240, 137, 53);
+    color: white;
+    cursor: pointer;
+}
+
+.account-option{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #dddde5;
+    border-radius: 3px;
+    padding: 2px 15px;
+    font-size: 18px;
+}
+.account-option:hover{
+    transition: color .9s ease-in-out;
+    background-color: rgb(230, 230, 230, 0.3);
+}
+
+.change-password{
     display: flex;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -77,4 +161,5 @@
     width: 100%;
     cursor: pointer;
     border-bottom: 1px solid #dddde5;
+
 }
