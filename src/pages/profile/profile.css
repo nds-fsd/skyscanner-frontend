@@ -1,28 +1,28 @@
 .profile-wrapper {
-    display: flex;
-    justify-content: space-around;
-    height: 100%;
-    width: 90vw;
-    margin: auto;
-    padding: 10px;
-    font-family: 'Cabin', sans-serif;
-  }
-  
-  .side-bar {
-    width: 25%;
-    /*background-color: rgb(255, 255, 255, 0.8);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);*/
-    border-radius: 10px;
-    padding: 40px;
-    font-size: 24px;
-    height: 580px;
-    margin-bottom: 33px;
-  }
-  
-  .options {
-    width: 60%;
-    /*background-color: rgba(255, 255, 255, 0.185);
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);*/
-    border-radius: 10px;
-    padding: 10px;
-  }
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  width: 90vw;
+  margin: auto;
+  padding: 10px;
+  font-family: 'Cabin', sans-serif;
+}
+
+.side-bar {
+  width: 25%;
+  /*background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);*/
+  border-radius: 10px;
+  padding: 40px;
+  font-size: 24px;
+  height: 580px;
+  margin-bottom: 33px;
+}
+
+.options {
+  width: 60%;
+  /*background-color: rgba(255, 255, 255, 0.185);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);*/
+  border-radius: 10px;
+  padding: 10px;
+}
