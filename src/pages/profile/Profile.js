@@ -1,7 +1,7 @@
 import React from 'react';
 //import { useNavigate } from "react-router-dom";
 import { useState} from 'react';
-import './profile.css';
+import './profilePage.css';
 import ProfileSidebar from '../../components/profileSidebar/ProfileSidebar';
 import BookingResult from '../../components/profileData/bookingResult/BookingResult';
 import FavoriteResult from '../../components/profileData/favoriteResult/FavoriteResult';
