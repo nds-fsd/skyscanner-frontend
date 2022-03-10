@@ -8,6 +8,7 @@ const Home = () => {
     
     return (
         <div className="homepage">
+            <NavBar/>
             <section className="hero">
                 <div className="search-form-container">
                      <h2 className="title-homepage">

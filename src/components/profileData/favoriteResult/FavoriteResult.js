@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import reservation from "../../../files/reservation.png";
 import "./favoriteResult.css";
 import { UserContext } from '../../../context/userContext';
@@ -8,6 +8,7 @@ const FavoriteResult = (props) => {
     const {user} = useContext(UserContext);
     const favoriteFlights = user.fav;
     const {setModalIsOpen, setSelectedFlight} = props;
+    console.log(user)
 
     return (
         <section className="favorite-container">

@@ -2,12 +2,11 @@ import React, {useState} from 'react';
 import { UserContext } from './context/userContext';
 import './App.css';
 import Layout from './pages/layout/Layout';
-import mockUser from './data/user.json';
 import { IconContext } from "react-icons";
 
 function App() {
   document.title = "Skyreader";
-  const [user, setUser] = useState (mockUser);
+  const [user, setUser] = useState ();
   const [reloadUser, setReloadUser] = useState (false);
 
   return (

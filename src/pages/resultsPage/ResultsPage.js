@@ -10,10 +10,11 @@ import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
 import moment from 'moment';
+import NavBar from "../../components/navbar/Navbar";
 
 function ResultsPage () {
-    const [flights, setFlights] = useState(mockFlights);
-    const [filteredFlights, setFilteredFlights] = useState(mockFlights);
+    const [flights, setFlights] = useState([]);
+    const [filteredFlights, setFilteredFlights] = useState([]);
     const [filters, setFilters] = useState({
         minPrice: 0,
         minHour: 0,
@@ -62,26 +63,16 @@ function ResultsPage () {
         .then((json) => {
             console.log(json);
             setFlights(json);
+            setFilteredFlights(json);
+
         }).catch(error => {
             console.error(error);
         });
     }, []);
-    //Possible mal interpretació dels fetch
-    /*useEffect( () => {
-        if (deid) {
-            customFetch("POST", `flights/search?from=${to}&to=${from}&retdate=${retdate}`)
-            .then(response => {
-                if (!response.ok) throw new Error("Couldn't ")
-                return response.json();
-                })
-            .then((json) => {
-                setReturnFlightCard(json);
-            });
-        }
-    }, [deid]); */
-
+    
     return (
         <div className="wrapper">
+            <NavBar/>
             <div className="results-page">
                 <Sidebar filters={filters} setFilters={setFilters} maxPrice={maxPrice}/>
                 <div className="right-section">
