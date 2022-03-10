@@ -5,18 +5,29 @@ import { getUserToken } from "../../api/auth";
 import "./navbar.css"
 import Avatar from "../avatar/Avatar";
 import { UserContext } from '../../context/userContext';
+import jwt_decode from "jwt-decode";
+import customFetch from "../../api";
 
 const NavBar = () => {
 
     const [currentUser, setCurrentUser]= useState(null);
-    const {user} = useContext(UserContext);
+    const {user, setUser,  reloadUser} = useContext(UserContext);
 
     useEffect(() => {
         const usertoken = getUserToken();
+
         if (usertoken) {
           setCurrentUser(usertoken);
+          const decoded = jwt_decode(usertoken);
+          customFetch("GET", `profile/${decoded.id}`)
+          .then((json) => {
+            setUser(json);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
         }
-    }, [currentUser]);
+    }, [currentUser, reloadUser]);
 
       
     return (
