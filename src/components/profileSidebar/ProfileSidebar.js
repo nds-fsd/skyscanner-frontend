@@ -1,4 +1,4 @@
-import React , {useContext, useState, useEffect} from 'react';
+import React , {useContext, useState} from 'react';
 //import ProfileIcon from '../icons/ProfileIcon';
 //import ArrowIcon from '../icons/ArrowIcon';
 import './profileSidebar.css';
