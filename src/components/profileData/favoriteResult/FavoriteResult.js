@@ -1,25 +1,40 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import reservation from "../../../files/reservation.png";
 import "./favoriteResult.css";
 import { UserContext } from '../../../context/userContext';
 import FlightsTable from '../../flightsTable/FlightsTable';
+import customFetch from '../../../api';
 
 const FavoriteResult = (props) => {
     const {user} = useContext(UserContext);
-    const favoriteFlights = user.fav;
+    const [favoriteFlights, setFavoriteFlights] = useState([])
+    const [spinner, setSpinner] = useState(false);
     const {setModalIsOpen, setSelectedFlight} = props;
-    console.log(user)
+
+    useEffect(() => {
+        let singleFavArray = [];
+        setSpinner(true);
+        customFetch("GET", `favorite/${user._id}`)
+            .then((favs) => {
+                favs.forEach((fav) => {
+                    singleFavArray.push(fav[0]);
+                })
+                setFavoriteFlights(singleFavArray)
+                setSpinner(false);
+            })
+            .catch((err) => console.error(err))
+    }, [])
 
     return (
         <section className="favorite-container">
             <h2 className='header-favorite'>Your favorite flights</h2>
-            {favoriteFlights.length === 0 ?
+            {spinner ? <p>Loading favorite flights ...</p> : <div className="bookings">{favoriteFlights.length === 0 ?
               <div>
                   <img src={reservation} className='image-reservation'/>
                   <p className='no-favorites'>You don't have any favorite flights</p>
               </div> : 
               <FlightsTable flights={favoriteFlights} setModalIsOpen={setModalIsOpen} setSelectedFlight={setSelectedFlight} />
-              }
+              }</div>}
         </section>
     );
 }

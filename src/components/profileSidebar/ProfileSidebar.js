@@ -29,8 +29,6 @@ const ProfileSidebar = ({component, setComponent}) => {
         removeSession();
         navigate("/");
         setUser(null);
-        
-        
     }
 
     return (
@@ -41,7 +39,7 @@ const ProfileSidebar = ({component, setComponent}) => {
                 </div>
                 <div className="profile-text">
                     <span>Hello,</span>
-                    <p>{user.firstname + " " + user.lastname}</p>
+                    <p>{user?.firstname + " " + user?.lastname}</p>
                 </div>
             </div>
             <div className="list">

@@ -6,6 +6,7 @@ import { setUserSession, getUserToken } from "../../api/auth";
 import "./registerForm.css";
 import { UserContext } from "../../context/userContext";
 import jwt_decode from "jwt-decode";
+
 const Register = () => {
   const navigate = useNavigate();
   const password = useRef({});

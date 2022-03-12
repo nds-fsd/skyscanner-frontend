@@ -1,6 +1,6 @@
 import {getUserToken} from "./auth";
 
-export const API_URL =  window.location.hostname === 'my-awesome-deployed-front' ? "myawesome-deployed-backend" : "http://localhost:3001";
+export const API_URL =  window.location.hostname === 'my-awesome-deployed-front' ? "myawesome-deployed-backend" : "http://localhost:3020";
 // Custom API error to throw
 function ApiError(message, data, status) {
     let response = null;

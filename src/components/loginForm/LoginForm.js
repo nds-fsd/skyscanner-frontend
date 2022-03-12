@@ -6,6 +6,7 @@ import { setUserSession, getUserToken } from '../../api/auth';
 import customFetch from '../../api';
 import { UserContext } from "../../context/userContext";
 import jwt_decode from "jwt-decode";
+
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
@@ -24,16 +25,16 @@ const LoginForm = () => {
             const token = getUserToken()
             const decoded = jwt_decode(token);
             customFetch("GET", `profile/${decoded.id}`)
-            .then((json) => {
-            setUser(json);
-            navigate('/');
-          })
-        }).catch(error => {
-            console.error(error);
-            if (error.status === 400) {
-                alert("invalid email or password");
-              }
-        });
+                .then((json) => {
+                    setUser(json);
+                    navigate('/');
+                })
+            }).catch(error => {
+                console.error(error);
+                if (error.status === 400) {
+                    alert("invalid email or password");
+                }
+            });
     };
 
     return (
