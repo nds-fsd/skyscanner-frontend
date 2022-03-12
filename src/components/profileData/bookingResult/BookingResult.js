@@ -6,7 +6,7 @@ import FlightsTable from '../../flightsTable/FlightsTable';
 
 const BookingResult = (props) => {
   const {user} = useContext(UserContext);
-  const favoriteFlights = user.bookings;
+  const favoriteFlights = user.booking;
   const {setModalIsOpen, setSelectedFlight} = props;
 
   return (

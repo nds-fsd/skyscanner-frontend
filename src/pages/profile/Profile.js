@@ -8,6 +8,7 @@ import FavoriteResult from '../../components/profileData/favoriteResult/Favorite
 import AccountData from '../../components/profileData/accountData/AccountData';
 import Modal from '../../components/modal/Modal';
 import SimpleFlightCard from '../../components/flightCard/SimpleFlightCard';
+import NavBar from '../../components/navbar/Navbar';
 
 
 const Profile = () => {
@@ -50,6 +51,7 @@ const Profile = () => {
       
     return (
         <section className='profile-wrapper'>
+          <NavBar/>
             <div className='side-bar'>
                 <ProfileSidebar component={component} setComponent={setComponent} />
             </div>

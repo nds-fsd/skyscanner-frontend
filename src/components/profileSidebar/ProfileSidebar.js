@@ -1,15 +1,15 @@
-import React , {useContext, useState, useEffect} from 'react';
-import ProfileIcon from '../icons/ProfileIcon';
-import ArrowIcon from '../icons/ArrowIcon';
+import React , {useContext, useState} from 'react';
+//import ProfileIcon from '../icons/ProfileIcon';
+//import ArrowIcon from '../icons/ArrowIcon';
 import './profileSidebar.css';
 import travel from "../../files/travel.png";
 import AccountData from '../../components/profileData/accountData/AccountData';
 import BookingResult from '../../components/profileData/bookingResult/BookingResult';
 import FavoriteResult from '../../components/profileData/favoriteResult/FavoriteResult';
 import { UserContext } from '../../context/userContext';
-import jwt_decode from "jwt-decode";
-import customFetch from "../../api";
-import { getUserToken } from "../../api/auth";
+//import jwt_decode from "jwt-decode";
+//import customFetch from "../../api";
+//import { getUserToken, setUserSession } from "../../api/auth";
 import { removeSession } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 import Avatar from '../avatar/Avatar';
@@ -23,23 +23,14 @@ const ProfileSidebar = ({component, setComponent}) => {
     const [showBooking, setShowBooking] = useState(false);
     const [showFavorite, setShowFavorite] = useState(false);
     const navigate = useNavigate();
-    const {user, setUser, reloadUser} = useContext(UserContext);
-    const token = getUserToken();
-    const decoded = jwt_decode(token);
-
-    useEffect(() => { 
-        customFetch("GET", `profile/${decoded.id}`)
-          .then((json) => {
-            setUser(json);
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      }, [reloadUser]);
-
+    const {user, setUser} = useContext(UserContext);
+    
     const Logout = () => {
         removeSession();
         navigate("/");
+        setUser(null);
+        
+        
     }
 
     return (

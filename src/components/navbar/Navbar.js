@@ -1,35 +1,35 @@
-import React, {useState, useEffect}from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useState, useEffect, useContext}from "react";
+import { Link } from "react-router-dom";
 import logo from "../../files/logo.png";
-import {removeSession} from "../../api/auth";
 import { getUserToken } from "../../api/auth";
-import customFetch from "../../api"
 import "./navbar.css"
 import Avatar from "../avatar/Avatar";
+import { UserContext } from '../../context/userContext';
 import jwt_decode from "jwt-decode";
-import mockUser from "../../data/user.json";
+import customFetch from "../../api";
 
 const NavBar = () => {
 
-    const [currentUser, setCurrentUser]= useState(mockUser);
-    const navigate = useNavigate();
+    const [currentUser, setCurrentUser]= useState(null);
+    const {user, setUser,  reloadUser} = useContext(UserContext);
 
-    /*useEffect(() => {
-        const user = getUserToken();
-        console.log(jwt_decode(user).id)
-        if (user) {
-          customFetch("GET", `profile/${jwt_decode(user).id}`)
-            .then(u => setCurrentUser(u))
-            .catch(err => console.error(err));
+    useEffect(() => {
+        const usertoken = getUserToken();
+
+        if (usertoken) {
+          setCurrentUser(usertoken);
+          const decoded = jwt_decode(usertoken);
+          customFetch("GET", `profile/${decoded.id}`)
+          .then((json) => {
+            setUser(json);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
         }
-    }, []);*/
+    }, [currentUser, reloadUser]);
 
-    /*const Logout = () => {
-    removeSession();
-    navigate("/");
-    setCurrentUser(null);
-    }*/
-
+      
     return (
         <div className="header">
             <div>
@@ -41,7 +41,7 @@ const NavBar = () => {
             <>
                 <div className="navbar-icon">
                     <Link to="/profile">
-                        <Avatar user={currentUser} />
+                        <Avatar user={user} />
                     </Link>
                 </div>
             

@@ -1,19 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState, useContext} from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import customFetch from "../../api";
 import { setUserSession, getUserToken } from "../../api/auth";
 import "./registerForm.css";
-
+import { UserContext } from "../../context/userContext";
+import jwt_decode from "jwt-decode";
 const Register = () => {
   const navigate = useNavigate();
   const password = useRef({});
+  const {setUser} = useContext(UserContext);
   const [notRegistered, setNotRegistered] = useState(false);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const token = getUserToken()
     if (token) navigate("/");
-  }, );
+  }, );*/
   
   const {register, handleSubmit, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
   
@@ -24,12 +26,20 @@ const Register = () => {
     customFetch("POST", "user", {body: data})
         .then(userSession => {
           setUserSession(userSession);
-          navigate("/");
+          const token = getUserToken()
+          const decoded = jwt_decode(token);
+            customFetch("GET", `profile/${decoded.id}`)
+            .then((json) => {
+            setUser(json);
+            navigate('/');
+          })
+          
           })
         .catch(error => {
           console.error(error);
           if (error.status === 409) {
             setNotRegistered(true);
+            alert('email already exists');
           return;
           }
     });

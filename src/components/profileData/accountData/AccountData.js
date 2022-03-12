@@ -44,7 +44,7 @@ const AccountData = () => {
                 <div className='favorite-airport'>
                     <h4>Airport of origin</h4>
                     { user.prefairport ?
-                        <p className='info-aeroport'>{user.prefairport}</p> : <p className='info-aeroport'>No airport selected</p>
+                        <p className='info-aeroport'>{user.prefairport.toUpperCase().replace(/\s/g, '')}</p> : <p className='info-aeroport'>No airport selected</p>
                     }
                     <button onClick={() => {setShowModal(true)}} className="change-airport-btn" type="button">Change your preferred airport</button> 
                 </div>
