@@ -12,14 +12,10 @@ const FavoriteResult = (props) => {
     const {setModalIsOpen, setSelectedFlight} = props;
 
     useEffect(() => {
-        let singleFavArray = [];
         setSpinner(true);
         customFetch("GET", `favorite/${user._id}`)
             .then((favs) => {
-                favs.forEach((fav) => {
-                    singleFavArray.push(fav[0]);
-                })
-                setFavoriteFlights(singleFavArray)
+                setFavoriteFlights(favs)
                 setSpinner(false);
             })
             .catch((err) => console.error(err))

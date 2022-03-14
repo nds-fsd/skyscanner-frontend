@@ -16,10 +16,7 @@ const BookingResult = (props) => {
     setSpinner(true);
     customFetch("GET", `booking/${user._id}`)
         .then((bookings) => {
-            bookings.forEach((book) => {
-                singleBookArray.push(book[0]);
-            })
-            setBookedFlights(singleBookArray);
+            setBookedFlights(bookings);
             setSpinner(false);
         })
         .catch(
