@@ -58,7 +58,7 @@ const Profile = () => {
             <div className='options'>
               {renderSwitch(component)}
             </div>
-            {modalIsOpen && <Modal open={modalIsOpen} handleCloseModal={closeModal} children={<SimpleFlightCard flight={selectedFlight} />}/>} 
+            {modalIsOpen && <Modal open={modalIsOpen} handleCloseModal={closeModal} children={<SimpleFlightCard simpleFlight={selectedFlight} />}/>} 
         </section>
     );
   };

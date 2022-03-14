@@ -10,8 +10,9 @@ import moment from 'moment';
 
 
 function SimpleFlightCard(props) {
-    const {flight} = props;
-    const {airline, dedate, from, to, price, flighttime} = flight;
+
+    const {simpleFlight} = props;
+    const {airline, dedate, from, to, price, flighttime} = simpleFlight;
 
     const minutsToHHMM = (minutes) => {
         var m = minutes % 60;
@@ -33,14 +34,14 @@ function SimpleFlightCard(props) {
                 <div className="flight-info">
                     <div className="from-to">
                         <p className="city-name">{from}</p>
-                        <span className="de-arr-time">{moment(flight.dedate).format('LT')}</span>
+                        <span className="de-arr-time">{moment(dedate).format('LT')}</span>
                     </div>
                     <div className="trip">
                         
                         <img src={cardimage} alt="trip-icon"/>
                         <div className="duration">
                             <span>DIRECT</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="clock-icon" fill="E5E5E5" width="10px" height="10px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="clock-icon" width="10px" height="10px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <span>{minutsToHHMM(flighttime)}</span>
