@@ -30,6 +30,18 @@ const Results = (props) => {
         setOrderedFlights(oFlights);
     }, [order, orderedFlights])
 
+    const addToCheapest = (flight) => {
+        setCheapest([...cheapest, flight]);
+    }
+
+    const addToShortest = (flight) => {
+        setCheapest([...shortest, flight]);
+    }
+
+    const addToLastSeats = (flight) => {
+        setCheapest([...lastSeats, flight]);
+    }
+
     useEffect(() => {
         let prices = filteredFlights.map(flight => {
             return flight.price;
@@ -42,13 +54,13 @@ const Results = (props) => {
 
         filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
-                setCheapest([.../*cheapest,*/flight]);
+                addToCheapest();
             }
             if (flight.flighttime === shortestDuration) {
-                setShortest([.../*shortest,*/flight]);
+                addToShortest();
             }
             if (flight.seats <= 5) {
-                setLastSeats([.../*lastSeats,*/flight]);
+                addToLastSeats();
             }
         })
 

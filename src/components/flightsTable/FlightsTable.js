@@ -6,10 +6,6 @@ import customFetch from '../../api';
 const FlightsTable = (props) => {
     const {flights, setSelectedFlight, setModalIsOpen, type, setDeleted} = props;
 
-    useEffect(() => {
-        setModalIsOpen(false)
-    }, [setModalIsOpen])
-
     const handleDelete = (f) => {
         let data = {
             flight_id: f._id
