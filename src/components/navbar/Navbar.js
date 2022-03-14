@@ -10,14 +10,14 @@ import customFetch from "../../api";
 
 const NavBar = () => {
 
-    const [currentUser, setCurrentUser]= useState(null);
+    //const [currentUser, setCurrentUser]= useState(null);
     const {user, setUser,  reloadUser} = useContext(UserContext);
 
     useEffect(() => {
         const usertoken = getUserToken();
 
         if (usertoken) {
-          setCurrentUser(usertoken);
+          
           const decoded = jwt_decode(usertoken);
           customFetch("GET", `profile/${decoded.id}`)
           .then((json) => {
@@ -27,7 +27,7 @@ const NavBar = () => {
             console.log(error);
           })
         }
-    }, [currentUser, reloadUser]);
+    }, [reloadUser]);
 
       
     return (
@@ -37,7 +37,7 @@ const NavBar = () => {
                     <img className="logo" src={logo} alt="logo"/>
                 </Link>
             </div>
-            {currentUser ? 
+            {user ? 
             <>
                 <div className="navbar-icon">
                     <Link to="/profile">
