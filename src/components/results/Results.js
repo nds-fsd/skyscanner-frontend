@@ -2,9 +2,7 @@ import React from 'react'
 import './results.css'
 import { useState, useEffect } from "react";
 import FlightCard from "../../components/flightCard/FlightCard";
-import SelectedCard from "../selectedCard/SelectedFlightCard";
-import { useNavigate, useParams } from 'react-router';
-import customFetch from '../../api';
+import { useParams } from 'react-router';
 
 const Results = (props) => {
     const {filteredFlights, order} = props;
@@ -30,7 +28,7 @@ const Results = (props) => {
             oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   
         } 
         setOrderedFlights(oFlights);
-    }, [order])
+    }, [order, orderedFlights])
 
     useEffect(() => {
         let prices = filteredFlights.map(flight => {
@@ -44,13 +42,13 @@ const Results = (props) => {
 
         filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
-                setCheapest([...cheapest, flight]);
+                setCheapest([.../*cheapest,*/ flight]);
             }
             if (flight.flighttime === shortestDuration) {
-                setShortest([...shortest, flight]);
+                setShortest([.../*shortest,*/ flight]);
             }
             if (flight.seats <= 5) {
-                setLastSeats([...lastSeats, flight]);
+                setLastSeats([.../*lastSeats,*/ flight]);
             }
         })
 

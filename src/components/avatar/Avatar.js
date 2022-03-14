@@ -1,4 +1,4 @@
-import bot from '../../images/robot-icon.png';
+
 import './avatar.css'
 
 const Avatar = ({user}) => {
