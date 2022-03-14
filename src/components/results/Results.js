@@ -42,13 +42,13 @@ const Results = (props) => {
 
         filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
-                setCheapest([.../*cheapest,*/ flight]);
+                setCheapest([.../*cheapest,*/flight]);
             }
             if (flight.flighttime === shortestDuration) {
-                setShortest([.../*shortest,*/ flight]);
+                setShortest([.../*shortest,*/flight]);
             }
             if (flight.seats <= 5) {
-                setLastSeats([.../*lastSeats,*/ flight]);
+                setLastSeats([.../*lastSeats,*/flight]);
             }
         })
 
