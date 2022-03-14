@@ -8,7 +8,7 @@ const FlightsTable = (props) => {
 
     useEffect(() => {
         setModalIsOpen(false)
-    }, [])
+    }, [setModalIsOpen])
 
     const handleDelete = (f) => {
         let data = {
