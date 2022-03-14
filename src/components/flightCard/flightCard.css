@@ -47,8 +47,12 @@
     font-size: 60px;
 }
 
-.fav-flight:hover {
+/* .fav-flight:hover {
     color:rgb(255, 139, 139);
+} */
+
+.fav-flight:hover, .fav-fligt-selected {
+    color:rgb(255, 0, 0);
 }
 
 .logo-container {

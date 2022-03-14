@@ -78,15 +78,19 @@ function FlightCard(props) {
 
     const {user, setUser, forceReloadUser} = useContext(UserContext);
     const token = getUserToken()
+
+    console.log("USERERIC", user._id)
     
 
-    const [favFlight, setFavFlight] = useState([]);
+    const [favFlight, setFavFlight] = useState(false);
 
     const addToFavFlight = () => {
         // setFavFlight(favFlight.push(flight._id));
         const favedFlight = JSON.stringify({"fav": [{"outbound": `${flight._id}`}]})
+        // const css =() => setFavFlight(true)
         !token ? navigate("/login") :
         customFetch("PUT", `profile/favflights/${user._id}`, {body: favedFlight })
+            // .catch(() => alert("no se ha guardado"))
             // .then(response => {
             //     if (!response.ok) throw new Error("Couldn't save to favorites")
             //     return response.json();
@@ -106,7 +110,8 @@ return (
         <div className="card">
             <div className={`${airline.replace(/\s/g, '').toLowerCase()} card-color `} />
             <div className="card-content">
-                <div className="fav-flight" onClick={() => addToFavFlight(flight._id)}>♥</div>
+                <div className="fav-flight favFlightSelected" onClick={() => addToFavFlight(flight._id)}>♥</div>
+                {favFlight === true && <p>Saved!</p>}
                 <div className="logo-container">
                     {airline.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
                     {airline.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
