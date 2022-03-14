@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  min-height: 80px;
+  min-height: 100px;
   min-width: 100%;
 }
 
@@ -34,4 +34,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.react-icon {
+  width: 20px;
+  height: 20px;
+  margin: auto 0;
 }

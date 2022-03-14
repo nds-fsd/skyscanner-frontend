@@ -10,8 +10,8 @@
     padding: 30px;
     margin-top: 118px;
     margin-bottom: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50px;
+/*     background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50px; */
 }
 
 .success-title {
@@ -31,12 +31,13 @@
 }
 
 .return-home-btn {
-    padding: 4px 10px;
+    padding: 6px 16px;
     background-color: rgb(161, 161, 161);
     color: rgb(238, 238, 238);
     border: 0;
     border-radius: 5px;
     font-family: 'Cabin', sans-serif;
+    font-weight: 600;
     margin-top: 20px;
 }
 

@@ -7,9 +7,11 @@ const Search = () => {
     
     const { register, handleSubmit} = useForm();
     const navigate = useNavigate();
-    const onSubmit = data => {
-        navigate(`/flights/${data?.from}/${data?.to}/${data?.dedate}/${data?.arrdate}/${data.passangers}`);
-  };
+    const onSubmit = (data) => {
+        navigate(`/flights/${data?.from.toLowerCase().replace(/\s/g, '')}/${data?.to.toLowerCase().replace(/\s/g, '')}/${data?.dedate}/${data?.arrdate}/${data.passangers}`);
+    };
+
+    
 
     return (
         <div className="form-box">

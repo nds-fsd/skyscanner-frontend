@@ -9,13 +9,14 @@ import moment from 'moment';
 //import flights from '../../data/flights-data.json';
 import Results from '../../components/results/Results';
 import customFetch from '../../api';
+import NavBar from '../../components/navbar/Navbar';
 
 const ReturnFlightPage = () => {
     const searchParams = useParams();
-    const {from, to, dedate, retdate, outboundFlightUnparsed} = searchParams;
+    const {from, to, retdate, outboundFlightUnparsed} = searchParams;
     const [returnFlights, setReturnFlights] = useState([]);
     const selectedFlightParsed = JSON.parse(outboundFlightUnparsed);
-
+    
     const handleClick = () => {
         //Fetch para buscar vuelos de vuelta
         //setReturnFlights(flights);
@@ -23,6 +24,7 @@ const ReturnFlightPage = () => {
             .then((json) => {
                 console.log(json);
                 setReturnFlights(json);
+                
             }).catch(error => {
                 console.error(error);
             });
@@ -31,6 +33,7 @@ const ReturnFlightPage = () => {
 
     return (
         <div className="return-page-container">
+            <NavBar/>
             <SearchHeader from={to} to={from} date={retdate}/>
             <div className="selected-flight">
                 <h3 className="flight-direction">Ida<span className="date">{moment(selectedFlightParsed.dedate).format('LLLL')}</span></h3>
@@ -47,7 +50,7 @@ const ReturnFlightPage = () => {
                     <h5 className="no-return-info">No has seleccionado ningun vuelo de vuelta, si quieres añadir uno dale al boton y te encontraremos el vuelo perfecto para ti</h5>
                     <button className="search-btn" onClick={handleClick}>Buscar vuelos de vuelta</button>
                 </div> : 
-                <Results flights={returnFlights} filteredFlights={[]} order={"cheapest"}/> }
+                <Results flights={returnFlights} filteredFlights={returnFlights} order={"cheapest"}/> }
             </div>
             <Footer />
         </div>

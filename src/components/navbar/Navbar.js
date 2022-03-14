@@ -1,28 +1,35 @@
-import React, {useState, useEffect}from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useState, useEffect, useContext}from "react";
+import { Link } from "react-router-dom";
 import logo from "../../files/logo.png";
-import {removeSession} from "../../api/auth";
 import { getUserToken } from "../../api/auth";
-import TravelerIcon from "../icons/TravelerIcon";
 import "./navbar.css"
+import Avatar from "../avatar/Avatar";
+import { UserContext } from '../../context/userContext';
+import jwt_decode from "jwt-decode";
+import customFetch from "../../api";
 
 const NavBar = () => {
 
-    const [currentUser, setCurrentUser]= useState(null);
-    const navigate = useNavigate();
+    //const [currentUser, setCurrentUser]= useState(null);
+    const {user, setUser,  reloadUser} = useContext(UserContext);
 
     useEffect(() => {
-        const user = getUserToken();
-        if (user) {
-          setCurrentUser(user);
-        }
-      }, [currentUser]);
-      /*const Logout = () => {
-        removeSession();
-        navigate("/");
-        setCurrentUser(null);
-      }*/
+        const usertoken = getUserToken();
 
+        if (usertoken) {
+          
+          const decoded = jwt_decode(usertoken);
+          customFetch("GET", `profile/${decoded.id}`)
+          .then((json) => {
+            setUser(json);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+        }
+    }, [reloadUser]);
+
+      
     return (
         <div className="header">
             <div>
@@ -30,11 +37,11 @@ const NavBar = () => {
                     <img className="logo" src={logo} alt="logo"/>
                 </Link>
             </div>
-            {currentUser ? 
+            {user ? 
             <>
                 <div className="navbar-icon">
                     <Link to="/profile">
-                        <TravelerIcon />
+                        <Avatar user={user} />
                     </Link>
                 </div>
             
