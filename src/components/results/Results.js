@@ -1,6 +1,6 @@
 import React from 'react'
 import './results.css'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import FlightCard from "../../components/flightCard/FlightCard";
 import { useParams } from 'react-router';
 
@@ -30,17 +30,17 @@ const Results = (props) => {
         setOrderedFlights(oFlights);
     }, [order, orderedFlights])
 
-    const addToCheapest = (flight) => {
+    const addToCheapest = useCallback((flight) => {
         setCheapest([...cheapest, flight]);
-    }
+    }, [cheapest])
 
-    const addToShortest = (flight) => {
+    const addToShortest = useCallback((flight) => {
         setShortest([...shortest, flight]);
-    }
+    }, [shortest])
 
-    const addToLastSeats = (flight) => {
+    const addToLastSeats = useCallback((flight) => {
         setLastSeats([...lastSeats, flight]);
-    }
+    }, [lastSeats])
 
     useEffect(() => {
         let prices = filteredFlights.map(flight => {
@@ -54,13 +54,13 @@ const Results = (props) => {
 
         filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
-                addToCheapest();
+                addToCheapest(flight);
             }
             if (flight.flighttime === shortestDuration) {
-                addToShortest();
+                addToShortest(flight);
             }
             if (flight.seats <= 5) {
-                addToLastSeats();
+                addToLastSeats(flight);
             }
         })
 
