@@ -35,11 +35,11 @@ const Results = (props) => {
     }
 
     const addToShortest = (flight) => {
-        setCheapest([...shortest, flight]);
+        setShortest([...shortest, flight]);
     }
 
     const addToLastSeats = (flight) => {
-        setCheapest([...lastSeats, flight]);
+        setLastSeats([...lastSeats, flight]);
     }
 
     useEffect(() => {
