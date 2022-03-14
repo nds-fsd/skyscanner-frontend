@@ -51,7 +51,8 @@ function FlightCard(props) {
         const favedFlight = {"fav": `${flight._id}`}
         // const css =() => setFavFlight(true)
         !token ? navigate("/login") :
-        customFetch("PUT", `profile/favflights/${user._id}`, {body: favedFlight })
+        customFetch("PUT", `profile/favflights/${user?._id}`, {body: favedFlight })
+        // customFetch("POST", `favorite/${user._id}`, {body: favedFlight })
             // .catch(() => alert("no se ha guardado"))
             // .then(response => {
             //     if (!response.ok) throw new Error("Couldn't save to favorites")
