@@ -11,6 +11,7 @@ import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
 import moment from 'moment';
 import NavBar from "../../components/navbar/Navbar";
+import noResultsFound from "../../files/no-results-found.png";
 
 function ResultsPage () {
     const [flights, setFlights] = useState([]);
@@ -79,11 +80,18 @@ function ResultsPage () {
                     <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
                     <TopBar setOrder={setOrder}/>
                     <div className="results-section">
-                        <Results 
-                            flights={flights} 
-                            filteredFlights={filteredFlights}
-                            order={order}
-                        />
+                        {flights.length === 0 ? 
+                            <div className="no-results">
+                                <img src={noResultsFound} alt="No results found" className="no-results-logo"/>
+                                <h5>No se han encontrado vuelos para esta búsqueda</h5> 
+                            </div> :
+                            <Results 
+                                flights={flights} 
+                                filteredFlights={filteredFlights}
+                                order={order}
+                            />
+                        }
+                        
                     </div>
                 </div>
             </div>

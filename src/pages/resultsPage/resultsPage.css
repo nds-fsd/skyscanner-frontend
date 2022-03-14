@@ -14,7 +14,23 @@
     flex-direction: column;
 }
 
+.no-results {
+    width: 800px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.no-results > h5 {
+    color: gray;
+}
+
+.no-results-logo {
+    margin: 0px;
+    width: 300px;
+}
 
 .results-section {
     display: flex;
