@@ -1,6 +1,6 @@
 const LoadingPage = () => {
 
-    return (<div> Loading session</div>)
+    return (<div style={{marginLeft:"3%"}}> Loading session</div>)
 
 }
 

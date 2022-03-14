@@ -11,10 +11,10 @@ const useAuth = () => {
     useEffect(()=> {
         if(token){
             setLoading(true);
-            fetchResource("GET", "users")
+            fetchResource("GET", "user")
                 .then(userData => {
                     setIsSessionValid(true);
-                    setTimeout(() => setLoading(false), 3000)
+                    setTimeout(() => setLoading(false), 500)
 
                 }).catch(error => {
                 setLoading(false);
