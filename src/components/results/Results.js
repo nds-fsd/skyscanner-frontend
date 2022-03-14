@@ -1,10 +1,8 @@
 import React from 'react'
 import './results.css'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import FlightCard from "../../components/flightCard/FlightCard";
-import SelectedCard from "../selectedCard/SelectedFlightCard";
-import { useNavigate, useParams } from 'react-router';
-import customFetch from '../../api';
+import { useParams } from 'react-router';
 
 const Results = (props) => {
     const {filteredFlights, order} = props;
@@ -30,7 +28,19 @@ const Results = (props) => {
             oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   
         } 
         setOrderedFlights(oFlights);
-    }, [order])
+    }, [order, orderedFlights])
+
+    const addToCheapest = useCallback((flight) => {
+        setCheapest([...cheapest, flight]);
+    }, [cheapest])
+
+    const addToShortest = useCallback((flight) => {
+        setShortest([...shortest, flight]);
+    }, [shortest])
+
+    const addToLastSeats = useCallback((flight) => {
+        setLastSeats([...lastSeats, flight]);
+    }, [lastSeats])
 
     useEffect(() => {
         let prices = filteredFlights.map(flight => {
@@ -44,17 +54,17 @@ const Results = (props) => {
 
         filteredFlights.forEach(flight => {
             if (flight.price === cheapestPrice) {
-                setCheapest([...cheapest, flight]);
+                addToCheapest(flight);
             }
             if (flight.flighttime === shortestDuration) {
-                setShortest([...shortest, flight]);
+                addToShortest(flight);
             }
             if (flight.seats <= 5) {
-                setLastSeats([...lastSeats, flight]);
+                addToLastSeats(flight);
             }
         })
 
-    }, [filteredFlights])
+    }, [filteredFlights, addToCheapest, addToShortest, addToLastSeats])
 
     return (
         <div className="results-cards">

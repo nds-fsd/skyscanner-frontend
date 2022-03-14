@@ -1,17 +1,20 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './flightsTable.css';
 import moment from "moment";
 import customFetch from '../../api';
 
 const FlightsTable = (props) => {
-    const {flights, setSelectedFlight, setModalIsOpen} = props;
-
-    useEffect(() => {setModalIsOpen(false)}, [])
+    const {flights, setSelectedFlight, setModalIsOpen, type, setDeleted} = props;
 
     const handleDelete = (f) => {
-        //customFetch('POST', `/user/delete/fav/${f._id}`)
-        //    .then((response) => /*Lanzar alerta*/console.log(response))
-        //    .catch((error) => console.log(error));
+        let data = {
+            flight_id: f._id
+        }
+        customFetch('DELETE', `${type}`, {body: data})
+            .then((response) => {
+                setDeleted(true);
+            })
+            .catch((error) => console.log(error));
     }
 
     const handleSeeClick = (f) => {

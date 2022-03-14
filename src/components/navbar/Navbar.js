@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext}from "react";
+import React, { useEffect, useContext}from "react";
 import { Link } from "react-router-dom";
 import logo from "../../files/logo.png";
 import { getUserToken } from "../../api/auth";
@@ -27,7 +27,7 @@ const NavBar = () => {
             console.log(error);
           })
         }
-    }, [reloadUser]);
+    }, [reloadUser, setUser]);
 
       console.log(user)
     return (

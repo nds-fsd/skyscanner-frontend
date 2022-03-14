@@ -5,7 +5,7 @@ import { UserContext } from '../../../context/userContext';
 import "./modalChangePwd.css";
 
 const ModalChangePwd = ({setShowModalChangePwd}) => {
-    const { register, handleSubmit, formState: { errors }} = useForm();
+    const { register, handleSubmit} = useForm();
     const {user} = useContext(UserContext);
     const password = useRef({});
     const onSubmit = (data) => {

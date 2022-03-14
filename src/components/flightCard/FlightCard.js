@@ -8,15 +8,14 @@ import iberiaLogo from '../../images/airline_logos/iberia_logo.png';
 import bintercanariasLogo from '../../images/airline_logos/binter_logo.webp';
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router';
-import customFetch from '../../api';
 
 
 
-function FlightCard(props) {
+function FlightCard (props) {
     const params = useParams();
     const outboundFlight = params.outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
     const returnFlight = params.returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
-    const {flight ,setSelectedFlight, searchParams} = props;
+    const {flight , searchParams} = props;
     const {from, to, price, airline, dedate, flighttime} = flight;
     const navigate = useNavigate();
 

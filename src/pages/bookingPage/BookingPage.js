@@ -1,14 +1,9 @@
 import React from 'react';
 import './bookingPage.css';
-import {useState} from 'react';
 import FlightCard from '../../components/flightCard/FlightCard'
 import Footer from '../../components/footer/Footer';
-import SearchHeader from '../../components/searchHeader/SearchHeader';
 import { useParams, useNavigate } from 'react-router';
 import moment from 'moment';
-import flights from '../../data/flights-data.json';
-import Results from '../../components/results/Results';
-import Modal from '../../components/modal/Modal';
 
 const BookingPage = () => {
     const params = useParams();
@@ -16,7 +11,6 @@ const BookingPage = () => {
     const {outboundFlightUnparsed, returnFlightUnparsed} = params;
     const outboundFlight = outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
     const returnFlight = returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
-    const [bookingAccepted, setBookingAccepted] = useState(false);
     const totalPrice = outboundFlight.price * params.passangers + returnFlight.price * params.passangers;
 
     const handleClick = () => {

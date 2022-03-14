@@ -5,7 +5,6 @@ import Results from "../../components/results/Results";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import Sidebar from "../../components/sideBar/Sidebar";
 import customFetch from '../../api';
-import mockFlights from '../../data/flights-data.json';
 import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
@@ -39,7 +38,7 @@ function ResultsPage () {
             return f.price*passangers;
         });
         setMaxPrice(Math.max.apply(Math, prices));
-    }, [filters])
+    }, [filters, passangers, flights])
 
     useEffect(() => {
         let filtered = filteredFlights;
@@ -57,7 +56,7 @@ function ResultsPage () {
             }
             setFilteredFlights([...filtered]);
         };
-    }, [filters]);
+    }, [filters, filteredFlights, flights]);
 
     useEffect( () => {
         customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
@@ -69,7 +68,7 @@ function ResultsPage () {
         }).catch(error => {
             console.error(error);
         });
-    }, []);
+    }, [from, to, dedate]);
     
     return (
         <div className="wrapper">
