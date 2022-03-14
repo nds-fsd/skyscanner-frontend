@@ -64,7 +64,7 @@ const Results = (props) => {
             }
         })
 
-    }, [filteredFlights])
+    }, [filteredFlights, addToCheapest, addToShortest, addToLastSeats])
 
     return (
         <div className="results-cards">
