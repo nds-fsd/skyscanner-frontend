@@ -27,13 +27,13 @@ const BookingPage = () => {
     const {user} = useContext(UserContext);
 
     const handleClick = () => {
-        const outboundBooking = {"booking": `${outboundFlight._id}`}
-        const returnBooking = {"booking": `${returnFlight._id}`}
+        const outboundBooking = {"user_id": `${user?.id}`, "flight_id": `${outboundFlight._id}`, "passangers": `${outboundFlight.passangers}`}
+        const returnBooking = {"user_id": `${user?.id}`, "flight_id": `${returnFlight._id}`, "passangers": `${returnFlight.passangers}`}
         !token ? navigate("/login") :
-        customFetch("PUT", `profile/booking/${user._id}`, {body: outboundBooking })
-        customFetch("PUT", `profile/booking/${user._id}`, {body: returnBooking })
+        customFetch("POST", `booking`, {body: outboundBooking })
+        customFetch("POST", `booking`, {body: returnBooking })
+        console.log("outbound", outboundBooking)
         navigate('/success');
-        console.log("fetch", {user})
     }
 
 

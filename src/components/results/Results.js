@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
 
 const Results = (props) => {
-    const {flights, filteredFlights, order} = props;
+    const {flights, filteredFlights, order, favedArray} = props;
     const searchParams = useParams();
     const [orderedFlights, setOrderedFlights] = useState([]);
     const [cheapest, setCheapest] = useState([]);
@@ -71,6 +71,7 @@ const Results = (props) => {
                             key={flight._id}
                             flight={flight}
                             searchParams={searchParams}
+                            favedArray={favedArray}
                             //setSelectedFlight={setSelectedFlight}
                         />
                     </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from '../../context/userContext';
 import './flightCard.css';
 import cardimage from "../../images/card-image.png";
@@ -11,6 +11,7 @@ import moment from 'moment';
 import { useNavigate, useParams } from 'react-router';
 import customFetch from '../../api';
 import { getUserToken } from "../../api/auth";
+import Swal from 'sweetalert2';
 
 
 
@@ -18,7 +19,7 @@ function FlightCard(props) {
     const params = useParams();
     const outboundFlight = params.outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
     const returnFlight = params.returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
-    const {flight ,setSelectedFlight, searchParams} = props;
+    const {flight ,setSelectedFlight, searchParams, favedArray} = props;
     const {from, to, price, airline, dedate, flighttime} = flight;
     const navigate = useNavigate();
 
@@ -42,37 +43,42 @@ function FlightCard(props) {
     }
 
     const {user} = useContext(UserContext);
-    const token = getUserToken()
+    const token = getUserToken();
     const [favFlight, setFavFlight] = useState(false);
 
-    console.log("user", user)
+    const [isFav, setIsFav] = useState(false);
 
     const addToFavFlight = () => {
-        const favedFlight = {"fav": `${flight._id}`}
-        // const css =() => setFavFlight(true)
+        // const favedFlight = {"fav": `${flight._id}`}
+        // !token ? navigate("/login") :
+        // customFetch("PUT", `profile/favflights/${user?._id}`, {body: favedFlight })
+
+        const addFavFlight = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`}
         !token ? navigate("/login") :
-        customFetch("PUT", `profile/favflights/${user?._id}`, {body: favedFlight })
-        // customFetch("POST", `favorite/${user._id}`, {body: favedFlight })
-            // .catch(() => alert("no se ha guardado"))
-            // .then(response => {
-            //     if (!response.ok) throw new Error("Couldn't save to favorites")
-            //     return response.json();
-            // })
-            // .then(json => {
-            //     alert(JSON.stringify(json));
-            // })
-            // .catch(error => {
-            //     alert("error", error);
-            // })
-        console.log("fetch", {body: favedFlight })
+        customFetch("POST", `favorite`, {body: addFavFlight })
+        setIsFav(true);
+        console.log("fetch", {body: addFavFlight })
+        Swal.fire({
+            position: 'bottom-start',
+            icon: 'success',
+            title: 'Flight added to favorites!',
+            showConfirmButton: false,
+            timer: 1500
+          })
     
     };
+
+
+    useEffect(() => {
+        const found = favedArray.some(fav => fav.flightId === flight._id);
+        setIsFav(found);
+    }, [favedArray])
 
 return (
         <div className="card">
             <div className={`${airline.replace(/\s/g, '').toLowerCase()} card-color `} />
             <div className="card-content">
-                <div className="fav-flight" onClick={() => addToFavFlight(flight._id)}>♥</div>
+                <div className="fav-flight" style={isFav && {color: 'red'}} onClick={() => addToFavFlight(flight._id)}>♥</div>
                 <div className="logo-container">
                     {airline.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
                     {airline.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
@@ -90,7 +96,7 @@ return (
                         <img src={cardimage} alt="trip-icon"/>
                         <div className="duration">
                             <span>DIRECT</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="clock-icon" fill="E5E5E5" width="10px" height="10px" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="clock-icon" fill="E5E5E5" width="10px" height="10px" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <span>{minutsToHHMM(flighttime)}</span>

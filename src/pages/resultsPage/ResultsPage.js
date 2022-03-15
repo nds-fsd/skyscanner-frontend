@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import './resultsPage.css';
 import { useState, useEffect } from "react";
 import Results from "../../components/results/Results";
@@ -10,6 +10,7 @@ import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
 import moment from 'moment';
+import { UserContext } from '../../context/userContext';
 
 function ResultsPage () {
     //const [flights, setFlights] = useState(mockFlights);
@@ -71,6 +72,20 @@ function ResultsPage () {
         });
     }, []);
 
+    const [favedArray, setFavedArray] = useState([])
+    const {user} = useContext(UserContext);
+
+    console.log("userrr", user)
+
+    useEffect( () => {
+        customFetch("GET", `favorite/${user?._id}`)
+        .then((json) => {
+            setFavedArray(json);
+        }).catch(error => {
+            console.error(error);
+        });
+    }, [user]);
+
     //Possible mal interpretació dels fetch
     /*useEffect( () => {
         if (deid) {
@@ -97,6 +112,7 @@ function ResultsPage () {
                             flights={flights} 
                             filteredFlights={filteredFlights}
                             order={order}
+                            favedArray={favedArray}
                         />
                     </div>
                 </div>
