@@ -61,7 +61,7 @@ function ResultsPage () {
     useEffect( () => {
         customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
         .then((json) => {
-            console.log(json);
+            //console.log(json);
             setFlights(json);
             setFilteredFlights(json);
 
