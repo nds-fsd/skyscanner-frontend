@@ -72,19 +72,23 @@ function ResultsPage () {
         });
     }, []);
 
-    const [favedArray, setFavedArray] = useState([])
     const {user} = useContext(UserContext);
+    const rutaFavUserId = `favorite/${user?._id}`
 
+    const [favedArray, setFavedArray] = useState([])
     console.log("userrr", user)
 
     useEffect( () => {
-        customFetch("GET", `favorite/${user?._id}`)
+        customFetch("GET", rutaFavUserId)
         .then((json) => {
+            console.log("getfavsbyuserid", json)
             setFavedArray(json);
+            console.log("jsonfetch", favedArray)
         }).catch(error => {
             console.error(error);
         });
     }, [user]);
+    console.log("jsonfetchdespueseffect", favedArray)
 
     //Possible mal interpretació dels fetch
     /*useEffect( () => {
