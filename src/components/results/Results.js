@@ -5,7 +5,7 @@ import FlightCard from "../../components/flightCard/FlightCard";
 import { useParams } from 'react-router';
 
 const Results = (props) => {
-    const {flights, filteredFlights, order, favedArray} = props;
+    const {filteredFlights, order, favedArray} = props;
     const searchParams = useParams();
     const [orderedFlights, setOrderedFlights] = useState([]);
 

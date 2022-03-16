@@ -76,30 +76,15 @@ function ResultsPage () {
 
     const [favedArray, setFavedArray] = useState([])
     useEffect( () => {
-        if (user._id !== undefined) {
+        if (user?._id !== undefined) {
         customFetch("GET", rutaFavUserId)
         .then((json) => {
             setFavedArray(json);
         }).catch(error => {
             console.error(error);
         });}
-    }, [user]);
+    }, [user, rutaFavUserId]);
     
-
-    //Possible mal interpretació dels fetch
-    /*useEffect( () => {
-        if (deid) {
-            customFetch("POST", `flights/search?from=${to}&to=${from}&retdate=${retdate}`)
-            .then(response => {
-                if (!response.ok) throw new Error("Couldn't ")
-                return response.json();
-                })
-            .then((json) => {
-                setReturnFlightCard(json);
-            });
-        }
-    }, [deid]); */
-
     return (
         <div className="wrapper">
             <NavBar/>

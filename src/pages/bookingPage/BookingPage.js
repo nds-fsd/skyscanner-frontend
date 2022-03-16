@@ -4,9 +4,6 @@ import FlightCard from '../../components/flightCard/FlightCard'
 import Footer from '../../components/footer/Footer';
 import { useParams, useNavigate } from 'react-router';
 import moment from 'moment';
-import flights from '../../data/flights-data.json';
-import Results from '../../components/results/Results';
-import Modal from '../../components/modal/Modal';
 import { getUserToken } from '../../api/auth';
 import customFetch from '../../api';
 import { UserContext } from '../../context/userContext';
@@ -26,10 +23,12 @@ const BookingPage = () => {
     const handleClick = () => {
         const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${outboundFlight._id}`, "passangers": `${params.passangers}`}
         const returnBooking = {"user_id": `${user?._id}`, "flight_id": `${returnFlight._id}`, "passangers": `${params.passangers}`}
-        !token ? navigate("/login") :
+        if(!token) { 
+            navigate("/login");
+            return;
+        }
         customFetch("POST", `booking`, {body: outboundBooking })
         customFetch("POST", `booking`, {body: returnBooking })
-        console.log("outbound", outboundBooking)
         navigate('/success');
     }
     
@@ -37,14 +36,14 @@ const BookingPage = () => {
     const rutaFavUserId = `favorite/${user?._id}`
     const [favedArray, setFavedArray] = useState([])
     useEffect( () => {
-        if (user._id !== undefined) {
+        if (user?._id !== undefined) {
         customFetch("GET", rutaFavUserId)
         .then((json) => {
             setFavedArray(json);
         }).catch(error => {
             console.error(error);
         });}
-    }, [user]);
+    }, [user, rutaFavUserId]);
 
 
     return (

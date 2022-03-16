@@ -20,7 +20,7 @@ function FlightCard (props) {
     const params = useParams();
     const outboundFlight = params.outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
     const returnFlight = params.returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
-    const {flight ,setSelectedFlight, searchParams, favedArray} = props;
+    const {flight, searchParams, favedArray} = props;
     const {from, to, price, airline, dedate, flighttime} = flight;
     const navigate = useNavigate();
 
@@ -40,22 +40,28 @@ function FlightCard (props) {
     }
 
     const handleBookingClick = () => {
+        const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`, "passangers": `${searchParams.passangers}`}
+        
+        if(!token) { 
+            navigate("/login");
+            return;
+        }
+        customFetch("POST", `booking`, {body: outboundBooking })
         navigate("/success");
     }
 
     const {user} = useContext(UserContext);
     const token = getUserToken();
-    const [favFlight, setFavFlight] = useState(false);
 
     const [isFav, setIsFav] = useState(false);
 
     const addToFavFlight = () => {
-        // const favedFlight = {"fav": `${flight._id}`}
-        // !token ? navigate("/login") :
-        // customFetch("PUT", `profile/favflights/${user?._id}`, {body: favedFlight })
 
         const addFavFlight = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`}
-        !token ? navigate("/login") :
+        if(!token) {
+            navigate("/login");
+            return;
+        }
         customFetch("POST", `favorite`, {body: addFavFlight })
         setIsFav(true);
         console.log("fetch", {body: addFavFlight })
@@ -76,7 +82,7 @@ function FlightCard (props) {
     useEffect(() => {
         const found = favedArray.some(fav => fav._id === flight._id);
         setIsFav(found);
-    }, [favedArray])
+    }, [favedArray, flight])
 
     const styleFav = {color: 'lightgrey'}
         if(isFav){
