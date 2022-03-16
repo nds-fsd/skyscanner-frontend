@@ -41,7 +41,7 @@ function ResultsPage () {
     }, [filters, passangers, flights])
 
     useEffect(() => {
-        let filtered = filteredFlights;
+        let filtered = flights;
         if (filters.minPrice === 0 && filters.minHour === 0 && filters.selectedAirlines.length === 0) {
             setFilteredFlights([...filtered]);
         } else {
@@ -56,7 +56,7 @@ function ResultsPage () {
             }
             setFilteredFlights([...filtered]);
         };
-    }, [filters, filteredFlights, flights]);
+    }, [filters, flights]);
 
     useEffect( () => {
         customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
