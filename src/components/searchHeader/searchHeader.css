@@ -15,6 +15,7 @@
 .destination{
     z-index: 2;
     margin: 2px auto;
+    text-transform: capitalize;
 }
 
 .flight-params{

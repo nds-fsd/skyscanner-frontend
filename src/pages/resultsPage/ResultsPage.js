@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import './resultsPage.css';
 import { useState, useEffect } from "react";
 import Results from "../../components/results/Results";
@@ -9,6 +9,7 @@ import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
 import moment from 'moment';
+import { UserContext } from '../../context/userContext';
 import NavBar from "../../components/navbar/Navbar";
 import noResultsFound from "../../files/no-results-found.png";
 
@@ -69,7 +70,36 @@ function ResultsPage () {
             console.error(error);
         });
     }, [from, to, dedate]);
+
+    const {user} = useContext(UserContext);
+    const rutaFavUserId = `favorite/${user?._id}`
+
+    const [favedArray, setFavedArray] = useState([])
+    useEffect( () => {
+        if (user._id !== undefined) {
+        customFetch("GET", rutaFavUserId)
+        .then((json) => {
+            setFavedArray(json);
+        }).catch(error => {
+            console.error(error);
+        });}
+    }, [user]);
     
+
+    //Possible mal interpretació dels fetch
+    /*useEffect( () => {
+        if (deid) {
+            customFetch("POST", `flights/search?from=${to}&to=${from}&retdate=${retdate}`)
+            .then(response => {
+                if (!response.ok) throw new Error("Couldn't ")
+                return response.json();
+                })
+            .then((json) => {
+                setReturnFlightCard(json);
+            });
+        }
+    }, [deid]); */
+
     return (
         <div className="wrapper">
             <NavBar/>
@@ -88,9 +118,9 @@ function ResultsPage () {
                                 flights={flights} 
                                 filteredFlights={filteredFlights}
                                 order={order}
+                                favedArray={favedArray}
                             />
                         }
-                        
                     </div>
                 </div>
             </div>

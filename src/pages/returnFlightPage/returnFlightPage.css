@@ -46,9 +46,9 @@
     border: 1px solid #0770E3;
     background: transparent;
     border-radius: 4px;
-    padding: 7px 22px;
+    padding: 10px 22px;
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .search-btn:hover {
