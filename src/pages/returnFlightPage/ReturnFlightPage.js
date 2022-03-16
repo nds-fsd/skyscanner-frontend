@@ -45,6 +45,8 @@ const ReturnFlightPage = () => {
         });}
     }, [user]);
 
+    const fromCap = from.charAt(0).toUpperCase() + from.slice(1);
+    const toCap = to.charAt(0).toUpperCase() + to.slice(1);
 
     return (
         <div className="return-page-container">
@@ -63,7 +65,7 @@ const ReturnFlightPage = () => {
             <div className="selected-flight">
                 <h3 className="flight-direction">Return</h3>
                 {returnFlights.length === 0 ? <div className="flight">
-                    <h5 className="no-return-info">Do you want to search for return flights? <br/> Find the perfect flight from {to} to {from} with one click!</h5>
+                    <h5 className="no-return-info">Do you want to search for return flights? <br/> Find the perfect flight from {toCap} to {fromCap} with one click!</h5>
                     <button className="search-btn" onClick={handleClick}>✈️ Find return flights</button>
                 </div> : 
                 <Results flights={returnFlights} filteredFlights={[]} order={"cheapest"} favedArray={favedArray} /> }

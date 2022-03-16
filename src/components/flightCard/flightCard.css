@@ -90,6 +90,7 @@
 .city-name {
     color: rgb(80, 80, 80);
     margin: 5px auto;
+    text-transform: capitalize;
 }
 
 .de-arr-time {
