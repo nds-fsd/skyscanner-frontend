@@ -81,10 +81,10 @@
 }
 
 .articles{
-    width: 80vw;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
+    justify-content: center;
+    margin: 25 auto;
 }
 
 .info-article {
@@ -98,11 +98,16 @@
     width: 210px;
     margin: auto;
     color: rgb(15, 105, 141);
+    justify-content: center;
 }
 
 .home-icon {
     height: 100%;
-    width: 100%;
+    width: 100px;
+    justify-content: center;
+    margin-left: 25%;
+    margin-top: -10%;
+    margin-bottom: -10%;
 }
 
 .article-text {
@@ -116,7 +121,7 @@
     font-weight: 600;
     text-align: center;
     margin: 0;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .article-description {

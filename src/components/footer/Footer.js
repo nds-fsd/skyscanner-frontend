@@ -11,11 +11,16 @@ const Footer = () => {
         <div className="footer-logo">
             <img src={logo} alt="logo"/>
         </div>
-        <p className="footer-text">Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam eget nullam pellentesque aliquam curabitur cociis.</p>
+        <p className="footer-text">This is a Full Stack Development students project. Try searching flights from Barcelona to London from 15/03/2022 to 22/03/2022. 😉</p>
+        <div className="footer-links">
+          <a href="https://github.com/nds-fsd/skyscanner-frontend"><p className="footer-text">GitHub Frontend</p></a>
+          <a href="mailto:fakeemail@skyreader.com"><p className="footer-text">Customer Support</p></a>
+          <a href="https://github.com/nds-fsd/skyscanner-backend"><p className="footer-text">GitHub Backend</p></a>
+        </div>
         <div className="footer-social-media">
-            <img src={facebook_logo} alt="Facebook logo"/>
-            <img src={instagram_logo} alt="Instagram, logo"/>
-            <img src={twiter_logo} alt="Twiter logo" />
+            <a href="https://www.facebook.com/skyscanner/"><img src={facebook_logo} alt="Facebook logo"/></a>
+            <a href="https://www.instagram.com/skyscanner/"><img src={instagram_logo} alt="Instagram, logo"/></a>
+            <a href="https://www.twitter.com/skyscanner/"><img src={twiter_logo} alt="Twiter logo" /></a>
         </div>
     </div>
   )
