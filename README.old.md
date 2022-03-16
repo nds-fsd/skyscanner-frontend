@@ -1,1 +1,0 @@
-# skyreader-frontend

@@ -13,9 +13,16 @@
     margin-top: 30px;
 }
 
+.footer-links{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+    margin: 10px auto;
+}
+
 .footer-text {
     color: gray;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 400;
     width: 50%;
     margin: 20px auto;

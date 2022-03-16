@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from '../../context/userContext';
 import './flightCard.css';
 import cardimage from "../../images/card-image.png";
 import vuelingLogo from '../../images/airline_logos/vueling_logo.png';
@@ -8,6 +9,10 @@ import iberiaLogo from '../../images/airline_logos/iberia_logo.png';
 import bintercanariasLogo from '../../images/airline_logos/binter_logo.webp';
 import moment from 'moment';
 import { useNavigate, useParams } from 'react-router';
+import customFetch from '../../api';
+import { getUserToken } from "../../api/auth";
+import Swal from 'sweetalert2';
+
 
 
 
@@ -15,7 +20,7 @@ function FlightCard (props) {
     const params = useParams();
     const outboundFlight = params.outboundFlightUnparsed ? JSON.parse(params?.outboundFlightUnparsed) : undefined;
     const returnFlight = params.returnFlightUnparsed ? JSON.parse(params?.returnFlightUnparsed): undefined;
-    const {flight , searchParams} = props;
+    const {flight ,setSelectedFlight, searchParams, favedArray} = props;
     const {from, to, price, airline, dedate, flighttime} = flight;
     const navigate = useNavigate();
 
@@ -38,46 +43,57 @@ function FlightCard (props) {
         navigate("/success");
     }
 
-    // const addToFavFlight = (data) => {
-    //     console.log(data);
-    //     customFetch("POST", "login", {body: data})
-    //     .then(userSession => {
-    //         setUserSession(userSession);
-    //         navigate("/");
-    //     }).catch(error => {
-    //         console.error(error);
-    //         if (error.status === 400) {
-    //             alert("invalid email or password");
-    //           }
-    //     });
-    // };
-    // console.log(json)
-    // const addToFavFlight = () => {
-    //     customFetch("PUT", "profile/favflights/:id", {body: data}) {
-    //     .then(response => {
-    //         if (!response.ok) throw new Error("Couldn't save to favorites")
-    //         return response.json();
-    //       })
-    //       .then(json => {
-    //         alert(JSON.stringify(json));
-    //       })
-        //   .catch(error => {
-        //     alert(error);
-        //   })
-    // };
-    const addToFavFlight = () => {};
+    const {user} = useContext(UserContext);
+    const token = getUserToken();
+    const [favFlight, setFavFlight] = useState(false);
+
+    const [isFav, setIsFav] = useState(false);
+
+    const addToFavFlight = () => {
+        // const favedFlight = {"fav": `${flight._id}`}
+        // !token ? navigate("/login") :
+        // customFetch("PUT", `profile/favflights/${user?._id}`, {body: favedFlight })
+
+        const addFavFlight = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`}
+        !token ? navigate("/login") :
+        customFetch("POST", `favorite`, {body: addFavFlight })
+        setIsFav(true);
+        console.log("fetch", {body: addFavFlight })
+        Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: 'Flight added to favorites!',
+            showConfirmButton: false,
+            timer: 1500,
+            padding: '0.50em',
+            width: '18rem',
+            timerProgressBar: true
+          })
+    
+    };
+
+
+    useEffect(() => {
+        const found = favedArray.some(fav => fav._id === flight._id);
+        setIsFav(found);
+    }, [favedArray])
+
+    const styleFav = {color: 'lightgrey'}
+        if(isFav){
+        styleFav.color= 'red';
+        }
 
 return (
         <div className="card">
-            <div className={`${airline.replace(/\s/g, '').toLowerCase()} card-color `} />
+            <div className={`${airline?.replace(/\s/g, '').toLowerCase()} card-color `} />
             <div className="card-content">
-                <div className="fav-flight" onClick={addToFavFlight}>♥</div>
+                <div className="fav-flight" style={styleFav} onClick={() => addToFavFlight(flight._id)}>♥</div>
                 <div className="logo-container">
-                    {airline.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
-                    {airline.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
-                    {airline.replace(/\s/g, '').toLowerCase() === "iberia" && <img className="airline-logo" alt={airline} src={iberiaLogo}/>}
-                    {airline.replace(/\s/g, '').toLowerCase() === "aireuropa" && <img className="airline-logo" alt={airline} src={aireuropaLogo}/>}
-                    {airline.replace(/\s/g, '').toLowerCase() === "bintercanarias" && <img className="airline-logo" alt={airline} src={bintercanariasLogo}/>}
+                    {airline?.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
+                    {airline?.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
+                    {airline?.replace(/\s/g, '').toLowerCase() === "iberia" && <img className="airline-logo" alt={airline} src={iberiaLogo}/>}
+                    {airline?.replace(/\s/g, '').toLowerCase() === "aireuropa" && <img className="airline-logo" alt={airline} src={aireuropaLogo}/>}
+                    {airline?.replace(/\s/g, '').toLowerCase() === "bintercanarias" && <img className="airline-logo" alt={airline} src={bintercanariasLogo}/>}
                 </div>
                 <div className="flight-info">
                     <div className="from-to">
@@ -90,7 +106,8 @@ return (
                         <div className="duration">
                             <span>DIRECT</span>
                             <svg xmlns="http://www.w3.org/2000/svg" className="clock-icon" fill="E5E5E5" width="10px" height="10px" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+
                             </svg>
                             <span>{minutsToHHMM(flighttime)}</span>
                         </div>
@@ -109,7 +126,7 @@ return (
                     {!returnFlight ? <div>
                         {outboundFlight && flight._id === outboundFlight._id ? 
                         <button className="book-btn" onClick={handleBookingClick}>
-                            Book flight
+                            🔒 Book flight
                         </button> : 
                         <button className="buttonSelect" onClick={handleClick}>
                                 Select flight

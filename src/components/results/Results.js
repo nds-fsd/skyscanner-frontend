@@ -1,46 +1,13 @@
 import React from 'react'
 import './results.css'
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import FlightCard from "../../components/flightCard/FlightCard";
 import { useParams } from 'react-router';
 
 const Results = (props) => {
-    const {filteredFlights, order} = props;
+    const {flights, filteredFlights, order, favedArray} = props;
     const searchParams = useParams();
-    const [orderedFlights, setOrderedFlights] = useState(filteredFlights);
-    const [cheapest, setCheapest] = useState([]);
-    const [shortest, setShortest] = useState([]);
-    const [lastSeats, setLastSeats] = useState([]);
-
-    useEffect(() => {
-        setOrderedFlights([...filteredFlights])
-    }, [filteredFlights]);
-
-    useEffect(() => {
-        let oFlights = [...orderedFlights];
-        if (order === "cheaper") {
-            console.log("entro en cheaper");
-            oFlights = oFlights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1);
-        } else if (order === "shorter") {
-            console.log("entro aqui")
-            oFlights = oFlights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1);
-        } else if (order === "recomended") {
-            oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   
-        } 
-        setOrderedFlights(oFlights);
-    }, [order, orderedFlights])
-
-    const addToCheapest = useCallback((flight) => {
-        setCheapest([...cheapest, flight]);
-    }, [cheapest])
-
-    const addToShortest = useCallback((flight) => {
-        setShortest([...shortest, flight]);
-    }, [shortest])
-
-    const addToLastSeats = useCallback((flight) => {
-        setLastSeats([...lastSeats, flight]);
-    }, [lastSeats])
+    const [orderedFlights, setOrderedFlights] = useState([]);
 
     useEffect(() => {
         let prices = filteredFlights.map(flight => {
@@ -52,19 +19,32 @@ const Results = (props) => {
         let cheapestPrice = Math.min(...prices);
         let shortestDuration = Math.min(...durations);
 
-        filteredFlights.forEach(flight => {
+        const taggedFlights = filteredFlights.map(flight => {
+
             if (flight.price === cheapestPrice) {
-                addToCheapest(flight);
+                flight.cheapest = true;
             }
             if (flight.flighttime === shortestDuration) {
-                addToShortest(flight);
+               flight.shortest = true;
             }
             if (flight.seats <= 5) {
-                addToLastSeats(flight);
+                flight.lastSeats = true;
             }
-        })
 
-    }, [filteredFlights, addToCheapest, addToShortest, addToLastSeats])
+            return flight;
+        });
+        let oFlights = [...taggedFlights];
+        if (order === "cheaper") {
+            console.log("entro en cheaper");
+            oFlights = oFlights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1);
+        } else if (order === "shorter") {
+            console.log("entro aqui")
+            oFlights = oFlights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1);
+        } else if (order === "recomended") {
+            oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   
+        } 
+        setOrderedFlights(oFlights);
+    }, [order, filteredFlights]);
 
     return (
         <div className="results-cards">
@@ -72,14 +52,15 @@ const Results = (props) => {
                 return (
                     <div className="card-group">
                         <div className="tags">
-                            {cheapest.includes(flight) && <span className="tag cheapest-tag">Cheapest</span>}
-                            {shortest.includes(flight) && <span className="tag shortest-tag">Fastest</span>}
-                            {lastSeats.includes(flight) && <span className="tag lastseated-tag">Less than 5 seats!</span>}
+                            {flight.cheapest && <span className="tag cheapest-tag">Cheapest</span>}
+                            {flight.shortest && <span className="tag shortest-tag">Fastest</span>}
+                            {flight.lastSeats && <span className="tag lastseated-tag">Less than 5 seats!</span>}
                         </div>
                         <FlightCard
                             key={flight._id}
                             flight={flight}
                             searchParams={searchParams}
+                            favedArray={favedArray}
                             //setSelectedFlight={setSelectedFlight}
                         />
                     </div>

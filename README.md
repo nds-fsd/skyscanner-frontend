@@ -1,71 +1,107 @@
-# Getting Started with Create React App
+# Skyscanner - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Skyscanner es un proyecto llevado a cabo por un equipo de desarrolladores del máster en Full Stack Developement de la escuela Nuclio Digital School. El objeto del proyecto es un aplicativo web full stack orientado a la búsqueda y gestión de vuelos nacionales. Entre otras funcionalidades, la aplicación ofrece al usuario funciones como la aplicación de filtros sobre los resultados, la creación y gestión de sesiones de usuario y la posibilidad de guardar y reservar vuelos, entre otras.
 
-## Available Scripts
+![alt text](./src/files/readme/home.png)
+## Acceso web
 
-In the project directory, you can run:
+El aplicativo web está alojado en los servidores ofrecidos por Netlify y la URL asignada es https://sky-reader.netlify.app/. Si quisiera ser usada de manera local, los pasos a seguir para su instalación son los descritos a continuación.
+### Instalación en local
+En primer lugar debemos clonar el repositorio a nuestra máquina local usando:
+```bash
+git clone git@github.com:goby-lang/sample-web-app.git
+```
+*Se debe tener en cuenta que al tratarse de un repositorio privado, se requieren ciertos permisos para acceder al código.*
 
-### `npm start`
+Una vez clonado el código, debemos instalar todas las dependencias con el comando:
+```bash
+npm install
+```
+Una vez hecho instalados todos los paquetes ya se puede levantar la aplicación mediante: 
+```bash
+npm start
+```
+Una vez hecho todo esto ya tendremos nuestra aplicación corriendo en https://localhost:3000.
+## Descripción técnica
+El aplicativo de se ha desarrollado con **React**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3020](http://localhost:3020) to view it in your browser.
+<img src="./src/files/readme/react-logo.png" alt="drawing" width="200"/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</br>
 
-### `npm test`
+## Librerías
+Las librerías usadas en la aplicación son:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Liberia | Utilidad |
+| ----------- | ----------- |
+| React-Hook-Form | Gestión de los formularios |
+| React-Router-Dom | Navegabilidad mediante rutas url |
+| JWT Decode | Decodificación del token de usuario |
+| Moment | Gestión de objetos Timestamp |
+| React-Scripts | Creación de scripts |
+| SweetAlert2 | Alertas de interacción con Backend |
 
-### `npm run build`
+Todas ellas han sido instaladas y gestionadas mediante el gestor de paquetes **npm**.
+## Mapa estructural del código
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# front-test
+```
+├─ .gitignore
+├─ .idea
+├─ README.md
+├─ build
+├─ node_modules
+├─ package.json
+├─ public
+└─ src
+   ├─ App.css
+   ├─ App.js
+   ├─ App.test.js
+   ├─ api
+   ├─ components
+   │  ├─ avatar
+   │  ├─ filters
+   │  ├─ flightCard
+   │  ├─ flightsTable
+   │  ├─ footer
+   │  ├─ icons
+   │  ├─ loginForm
+   │  ├─ modal
+   │  ├─ navbar
+   │  ├─ profileData
+   │  │  ├─ accountData
+   │  │  ├─ bookingResult
+   │  │  └─ favoriteResult
+   │  ├─ profileSidebar
+   │  ├─ registerForm
+   │  ├─ results
+   │  ├─ searchForm
+   │  ├─ searchHeader
+   │  ├─ selectedCard
+   │  ├─ sideBar
+   │  └─ topBar
+   ├─ context
+   │  └─ userContext.js
+   ├─ data
+   ├─ files
+   ├─ images
+   ├─ index.css
+   ├─ index.js
+   ├─ pages
+   │  ├─ bookingPage
+   │  ├─ home
+   │  ├─ layout
+   │  ├─ loginPage
+   │  ├─ profile
+   │  ├─ registerPage
+   │  ├─ resultsPage
+   │  ├─ returnFlightPage
+   │  └─ successPage
+   ├─ reportWebVitals.js
+   └─ setupTests.js
+```
+## Contribuyentes
+El equipo que ha llevado a cabo el proyecto está formado por:
+- Eric Capella ([Github Account](https://github.com/ericcapella))
+- Carolina Marianela Gallegos ([Github Account](https://github.com/CarolinaMarianela))
+- Jose Luis Conejero ([Github Account](https://github.com/jlcrayo))
+- Marc Cuesta Martínez ([Github Account](https://github.com/marccuesta99))

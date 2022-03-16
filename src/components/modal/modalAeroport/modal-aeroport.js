@@ -11,39 +11,21 @@ const Modal = ({setShowModal }) => {
   const { register, handleSubmit, formState: { errors }} = useForm();
   const {user, forceReloadUser} = useContext(UserContext);
   const onSubmit = (data) => {
-
-    customFetch("PUT", `profile/favairport/${user._id}`, {body: data})
-            .then(()=> Swal.fire({
-              title: 'Do you want to save the changes?',
-              showDenyButton: true,
-              showCancelButton: true,
-              confirmButtonText: 'Save',
-              denyButtonText: `Don't save`,
-            }).then((result) => {
-              /* Read more about isConfirmed, isDenied below */
-              if (result.isConfirmed) {
-                forceReloadUser()
-                //setUser({...user, prefairport: data.prefairport})
-                Swal.fire('Aeroport Saved!', '', 'success')
-              } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-              }
-            }))
-            .then(()=> setShowModal(false))
-            .catch(error => {
-          
+      customFetch("PUT", `profile/favairport/${user._id}`, {body: data})
+          .then(() => 
+              Swal.fire('Aeroport Saved!', '', 'success')
+          )
+          .then(()=> setShowModal(false))
+          .catch(error => {
               console.error(error);
               if (error.status === 404 || error.status === 500) {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Oops...',
-                  text: 'impossible to update airport!'
-                })
-               
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'impossible to update airport!'
+                  })
               }
-    
-            });
-        
+          });
   }
 
 return(

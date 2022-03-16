@@ -2,19 +2,20 @@ import React from 'react'
 import './flightsTable.css';
 import moment from "moment";
 import customFetch from '../../api';
+import { useNavigate } from 'react-router';
 
 const FlightsTable = (props) => {
     const {flights, setSelectedFlight, setModalIsOpen, type, setDeleted} = props;
+    const navigate = useNavigate();
 
     const handleDelete = (f) => {
         let data = {
             flight_id: f._id
         }
         customFetch('DELETE', `${type}`, {body: data})
-            .then((response) => {
-                setDeleted(true);
-            })
+            .then(() => setDeleted(true))
             .catch((error) => console.log(error));
+        
     }
 
     const handleSeeClick = (f) => {

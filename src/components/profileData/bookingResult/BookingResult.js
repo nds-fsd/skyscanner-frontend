@@ -13,7 +13,7 @@ const BookingResult = (props) => {
 
   useEffect(() => {
     setSpinner(true);
-    customFetch("GET", `booking/${user._id}`)
+    customFetch("GET", `booking/${user?._id}`)
         .then((bookings) => {
             setBookedFlights(bookings);
             setSpinner(false);
@@ -23,7 +23,7 @@ const BookingResult = (props) => {
             setSpinner(false);
           }
         )
-}, [user._id, deleted])
+}, [user?._id, deleted])
 
   return (
       <section className="bookings-container">

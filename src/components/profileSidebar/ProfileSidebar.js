@@ -43,20 +43,6 @@ const ProfileSidebar = ({component, setComponent}) => {
                 </div>
             </div>
             <div className="list">
-                <div onClick={() => setComponent('favorite')} className="option">
-                    <div className={`option-info ${component === 'favorite' ? "option-info-selected" : ""}`}>
-                        <div className='option-logo'>
-                            <BsFillBookmarkStarFill />
-                        </div>
-                        <p>Favorite flights</p>
-                        {showFavorite &&
-                        <FavoriteResult setShowFavorite={setShowFavorite}/>
-                        }
-                        <div className='option-arrow'>
-                            <IoIosArrowForward />
-                        </div>
-                    </div>
-                </div>
                 <div onClick={()=> setComponent('bookings')} className="option">
                     <div className={`option-info ${component === 'bookings' ? "option-info-selected" : ""}`}>
                         <div className='option-logo'>
@@ -65,6 +51,20 @@ const ProfileSidebar = ({component, setComponent}) => {
                         <p>My reservations</p>
                         {showBooking &&
                             <BookingResult setShowReservation={setShowBooking}/>
+                        }
+                        <div className='option-arrow'>
+                            <IoIosArrowForward />
+                        </div>
+                    </div>
+                </div>
+                <div onClick={() => setComponent('favorite')} className="option">
+                    <div className={`option-info ${component === 'favorite' ? "option-info-selected" : ""}`}>
+                        <div className='option-logo'>
+                            <BsFillBookmarkStarFill />
+                        </div>
+                        <p>Favorite flights</p>
+                        {showFavorite &&
+                        <FavoriteResult setShowFavorite={setShowFavorite}/>
                         }
                         <div className='option-arrow'>
                             <IoIosArrowForward />

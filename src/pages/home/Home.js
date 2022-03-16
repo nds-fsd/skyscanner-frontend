@@ -21,10 +21,10 @@ const Home = () => {
                 <div className="little-man-img" />
                 <div className="little-man-text" >
                    <h3 className="little-man-title">
-                        Busca el vuelo que te lleve a la desconexión absoluta
+                   Look for the flight that takes you to absolute disconnection
                     </h3>
                     <h5 className="little-man-subtitle">
-                        Busca las mejores ofertas de vuelos con Flynd y asegurate unas vacaciones inolvidables
+                    Find the best flight deals with Skyreader and book an unforgettable vacation
                     </h5> 
                 </div>
             </section>
@@ -39,10 +39,10 @@ const Home = () => {
                         </div>
                         <div className="article-text">
                             <h5 className="article-title">
-                                Estaremos listos cuando tú lo estés
+                            We'll be ready when you are
                             </h5>
                             <p className="article-description">
-                                Consulta adónde puedes viajar en estos momentos y encuentra las mejores ofertas entre miles de vuelos, hoteles y alquileres de coches.
+                            Check where you can travel right now and find the best deals among thousands of flights, hotels and car rentals.
                             </p>
                         </div>
                     </article>
@@ -54,10 +54,10 @@ const Home = () => {
                         </div>
                         <div className="article-text">
                             <h5 className="article-title">
-                                Haz planes sin preocupaciones
+                            Make plans without worries
                             </h5>
                             <p className="article-description">
-                                Prepárate para cualquier imprevisto con las últimas actualizaciones, hoteles y coches con cancelación gratuita y seguro de viaje frente a la COVID-19.
+                            Prepare for any unforeseen event with the latest updates, hotels and cars with free cancellation and travel insurance against COVID-19.
                             </p>
                         </div>
                     </article>
@@ -69,10 +69,10 @@ const Home = () => {
                         </div>
                         <div className="article-text">
                             <h5 className="article-title">
-                            Viaja sin ningun tipo de complicacion
+                            Travel without any complications
                             </h5>
                             <p className="article-description">
-                                Con nosotros, siempre sabrás lo que pagas, sin sorpresas de última hora. Para que te relajes incluso antes de que empiece tu viaje.
+                            With us, you always know what you pay for, with no last minute surprises. So you can relax even before your trip begins.
                             </p>
                         </div>
                     </article>

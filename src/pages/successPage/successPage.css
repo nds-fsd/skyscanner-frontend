@@ -28,21 +28,50 @@
 
 .success-icon {
     color: #1e7016;
+    height: 200px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
 }
 
 .return-home-btn {
-    padding: 6px 16px;
-    background-color: rgb(161, 161, 161);
-    color: rgb(238, 238, 238);
-    border: 0;
+    padding: 10px 22px;
+    background-color: #0770E3;
+    background: transparent;
+    color: #0770E3;
+    border: 1px solid #0770E3;
     border-radius: 5px;
     font-family: 'Cabin', sans-serif;
     font-weight: 600;
     margin-top: 20px;
+    height: 50px;
+    font-size: 16px;
+    margin-right: 10px;
 }
 
 .return-home-btn:hover {
-    background-color: rgb(124, 124, 124);
+    background-color: #0770E3;
+    cursor: pointer;
+    color: white;
+    transition: all 0.25s ease-in-out;
+}
+
+.go-profile-btn {
+    padding: 10px 22px;
+    background-color: #1e7016;
+    color: #ffffff;
+    border: 1px solid #1e7016;
+    border-radius: 5px;
+    font-family: 'Cabin', sans-serif;
+    margin-top: 20px;
+    height: 50px;
+    font-size: 16px;
+}
+
+.go-profile-btn:hover{
+    background-color: #559650;
     cursor: pointer;
     color: white;
     transition: all 0.25s ease-in-out;
