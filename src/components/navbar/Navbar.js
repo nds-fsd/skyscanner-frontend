@@ -29,7 +29,6 @@ const NavBar = () => {
         }
     }, [reloadUser, setUser]);
 
-      
     return (
         <div className="header">
             <div>

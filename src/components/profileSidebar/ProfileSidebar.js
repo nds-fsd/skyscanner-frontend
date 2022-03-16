@@ -28,7 +28,7 @@ const ProfileSidebar = ({component, setComponent}) => {
     const Logout = () => {
         removeSession();
         navigate("/");
-        setUser({});
+        setUser(undefined);
     }
 
     return (
