@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './bookingPage.css';
 import FlightCard from '../../components/flightCard/FlightCard'
 import Footer from '../../components/footer/Footer';
@@ -32,10 +32,7 @@ const BookingPage = () => {
         console.log("outbound", outboundBooking)
         navigate('/success');
     }
-     
-
-
-
+    
     //Checks if any flight is saved in user favorites
     const rutaFavUserId = `favorite/${user?._id}`
     const [favedArray, setFavedArray] = useState([])

@@ -9,11 +9,12 @@ import AccountData from '../../components/profileData/accountData/AccountData';
 import Modal from '../../components/modal/Modal';
 import SimpleFlightCard from '../../components/flightCard/SimpleFlightCard';
 import NavBar from '../../components/navbar/Navbar';
+import Footer from "../../components/footer/Footer";
 
 
 const Profile = () => {
     // const [currentProfile, setCurrentProfile]= useState(undefined);
-    const [component, setComponent]= useState('');
+    const [component, setComponent]= useState('bookings');
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedFlight, setSelectedFlight] = useState({
           from: "",
@@ -50,16 +51,19 @@ const Profile = () => {
     }
       
     return (
-        <section className='profile-wrapper'>
-          <NavBar/>
-            <div className='side-bar'>
-                <ProfileSidebar component={component} setComponent={setComponent} />
-            </div>
-            <div className='options'>
-              {renderSwitch(component)}
-            </div>
-            {modalIsOpen && <Modal open={modalIsOpen} handleCloseModal={closeModal} children={<SimpleFlightCard simpleFlight={selectedFlight} />}/>} 
-        </section>
+        <div>
+          <section className='profile-wrapper'>
+            <NavBar/>
+              <div className='side-bar'>
+                  <ProfileSidebar component={component} setComponent={setComponent} />
+              </div>
+              <div className='options'>
+                {renderSwitch(component)}
+              </div>
+              {modalIsOpen && <Modal open={modalIsOpen} handleCloseModal={closeModal} children={<SimpleFlightCard simpleFlight={selectedFlight} />}/>} 
+            </section>
+          <Footer />
+        </div>
     );
   };
   

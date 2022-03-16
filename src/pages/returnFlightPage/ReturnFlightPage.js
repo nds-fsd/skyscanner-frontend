@@ -71,7 +71,7 @@ const ReturnFlightPage = () => {
                     <h5 className="no-return-info">Do you want to search for return flights? <br/> Find the perfect flight from {toCap} to {fromCap} with one click!</h5>
                     <button className="search-btn" onClick={handleClick}>✈️ Find return flights</button>
                 </div> : 
-                <Results flights={returnFlights} filteredFlights={[returnFlights]} order={"cheapest"} favedArray={favedArray} /> }
+                <Results flights={returnFlights} filteredFlights={returnFlights} order={"cheapest"} favedArray={favedArray} /> }
             </div>
             <Footer />
         </div>

@@ -13,7 +13,7 @@ const FavoriteResult = (props) => {
 
     useEffect(() => {
         setSpinner(true);
-        customFetch("GET", `favorite/${user._id}`)
+        customFetch("GET", `favorite/${user?._id}`)
             .then((favs) => {
                 setFavoriteFlights(favs)
                 setSpinner(false);
@@ -22,7 +22,7 @@ const FavoriteResult = (props) => {
                 console.error(err);
                 setSpinner(false);
             })
-    }, [user._id, deleted])
+    }, [user?._id, deleted])
 
     return (
         <section className="favorite-container">
