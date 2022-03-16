@@ -45,7 +45,7 @@ const ReturnFlightPage = () => {
         }).catch(error => {
             console.error(error);
         });}
-    }, [user]);
+    }, [user, rutaFavUserId]);
 
     const fromCap = from.charAt(0).toUpperCase() + from.slice(1);
     const toCap = to.charAt(0).toUpperCase() + to.slice(1);

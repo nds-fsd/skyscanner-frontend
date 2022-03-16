@@ -4,9 +4,6 @@ import FlightCard from '../../components/flightCard/FlightCard'
 import Footer from '../../components/footer/Footer';
 import { useParams, useNavigate } from 'react-router';
 import moment from 'moment';
-import flights from '../../data/flights-data.json';
-import Results from '../../components/results/Results';
-import Modal from '../../components/modal/Modal';
 import { getUserToken } from '../../api/auth';
 import customFetch from '../../api';
 import { UserContext } from '../../context/userContext';
@@ -44,7 +41,7 @@ const BookingPage = () => {
         }).catch(error => {
             console.error(error);
         });}
-    }, [user]);
+    }, [user, rutaFavUserId]);
 
 
     return (

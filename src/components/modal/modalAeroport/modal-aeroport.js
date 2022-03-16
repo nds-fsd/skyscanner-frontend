@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const Modal = ({setShowModal }) => {
 
   const { register, handleSubmit, formState: { errors }} = useForm();
-  const {user, forceReloadUser} = useContext(UserContext);
+  const {user} = useContext(UserContext);
   const onSubmit = (data) => {
       customFetch("PUT", `profile/favairport/${user._id}`, {body: data})
           .then(() => 
