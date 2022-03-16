@@ -1,5 +1,7 @@
 .return-page-container {
     font-family: 'Cabin', sans-serif;
+    width: 70vw;
+    margin: 0 auto;
 }
 
 .date {

@@ -13,7 +13,7 @@ import Profile from '../profile/Profile';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="layout-wrapper">
         <NavBar />
         <div className="body">
             <Routes>

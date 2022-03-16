@@ -10,13 +10,14 @@ import moment from 'moment';
 import Results from '../../components/results/Results';
 import customFetch from '../../api';
 import { UserContext } from '../../context/userContext';
+import NavBar from '../../components/navbar/Navbar';
 
 const ReturnFlightPage = () => {
     const searchParams = useParams();
-    const {from, to, dedate, retdate, outboundFlightUnparsed} = searchParams;
+    const {from, to, retdate, outboundFlightUnparsed} = searchParams;
     const [returnFlights, setReturnFlights] = useState([]);
     const selectedFlightParsed = JSON.parse(outboundFlightUnparsed);
-
+    
     const handleClick = () => {
         //Fetch para buscar vuelos de vuelta
         //setReturnFlights(flights);
@@ -24,6 +25,7 @@ const ReturnFlightPage = () => {
             .then((json) => {
                 console.log(json);
                 setReturnFlights(json);
+                
             }).catch(error => {
                 console.error(error);
             });
@@ -50,6 +52,7 @@ const ReturnFlightPage = () => {
 
     return (
         <div className="return-page-container">
+            <NavBar/>
             <SearchHeader from={to} to={from} date={retdate}/>
             <div className="selected-flight">
                 <h3 className="flight-direction">Departure<span className="date">{moment(selectedFlightParsed.dedate).format('LLLL')}</span></h3>
@@ -68,7 +71,7 @@ const ReturnFlightPage = () => {
                     <h5 className="no-return-info">Do you want to search for return flights? <br/> Find the perfect flight from {toCap} to {fromCap} with one click!</h5>
                     <button className="search-btn" onClick={handleClick}>✈️ Find return flights</button>
                 </div> : 
-                <Results flights={returnFlights} filteredFlights={[]} order={"cheapest"} favedArray={favedArray} /> }
+                <Results flights={returnFlights} filteredFlights={[returnFlights]} order={"cheapest"} favedArray={favedArray} /> }
             </div>
             <Footer />
         </div>

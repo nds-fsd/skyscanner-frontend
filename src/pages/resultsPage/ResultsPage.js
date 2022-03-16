@@ -5,15 +5,15 @@ import Results from "../../components/results/Results";
 import SearchHeader from "../../components/searchHeader/SearchHeader";
 import Sidebar from "../../components/sideBar/Sidebar";
 import customFetch from '../../api';
-//import mockFlights from '../../data/flights-data.json';
 import TopBar from "../../components/topBar/TopBar";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router';
 import moment from 'moment';
 import { UserContext } from '../../context/userContext';
+import NavBar from "../../components/navbar/Navbar";
+import noResultsFound from "../../files/no-results-found.png";
 
 function ResultsPage () {
-    //const [flights, setFlights] = useState(mockFlights);
     const [flights, setFlights] = useState([]);
     const [filteredFlights, setFilteredFlights] = useState([]);
     const [filters, setFilters] = useState({
@@ -23,54 +23,53 @@ function ResultsPage () {
     });
     const {from, to, dedate, retdate, deid, passangers} = useParams();
     const [order, setOrder] = useState();
+    const [maxPrice, setMaxPrice] = useState(1000);
 
     const compareHours = (a, b) => {
         if(a !== 0) {
             let bHour = parseInt(moment(b).format('HH:mm').split(":")[0]);
             let aHour = parseInt(a.split(':')[0]);
+            console.log(aHour, bHour,  aHour < bHour);
             return aHour < bHour;
         }
     }
 
     useEffect(() => {
-        if (filters.minPrice !== 0) {
-            if(filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => flight.price > filters.minPrice)) 
-            } else {
-                setFilteredFlights(flights.filter((flight) => flight.price > filters.minPrice)) 
-            }
-        }
-    }, [filters.minPrice])
+        let prices = flights.map((f)=> {
+            return f.price*passangers;
+        });
+        setMaxPrice(Math.max.apply(Math, prices));
+    }, [filters, passangers, flights])
 
     useEffect(() => {
-        if (filters.minHour !== 0) {
-            if(filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => compareHours(filters.minHour, flight?.dedate)))
-            } else {
-                setFilteredFlights(flights.filter((flight) => compareHours(filters.minHour, flight?.dedate)))
+        let filtered = flights;
+        if (filters.minPrice === 0 && filters.minHour === 0 && filters.selectedAirlines.length === 0) {
+            setFilteredFlights([...filtered]);
+        } else {
+            if (filters.minPrice !== 0) {
+                filtered = flights.filter((flight) => flight.price > filters.minPrice);
             }
-        } 
-    }, [filters.minHour])
-
-    useEffect(() => {
-        if(filters.selectedAirlines.length !== 0) {
-            if (filteredFlights.length !== 0) {
-                setFilteredFlights(filteredFlights.filter((flight) => filters.selectedAirlines.includes(flight.airline)))
-            } else {
-                setFilteredFlights(flights.filter((flight) => filters.selectedAirlines.includes(flight.airline)))
-            }  
-        }
-    }, [filters.selectedAirlines])
+            if (filters.selectedAirlines.length !== 0) {
+                filtered = flights.filter((flight) => filters.selectedAirlines.includes(flight.airline));
+            }
+            if (filters.minHour !== 0) {
+                filtered = flights.filter((flight) => compareHours(filters.minHour, flight.dedate));
+            }
+            setFilteredFlights([...filtered]);
+        };
+    }, [filters, flights]);
 
     useEffect( () => {
         customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
         .then((json) => {
-            console.log(json);
+            //console.log(json);
             setFlights(json);
+            setFilteredFlights(json);
+
         }).catch(error => {
             console.error(error);
         });
-    }, []);
+    }, [from, to, dedate]);
 
     const {user} = useContext(UserContext);
     const rutaFavUserId = `favorite/${user?._id}`
@@ -103,18 +102,25 @@ function ResultsPage () {
 
     return (
         <div className="wrapper">
+            <NavBar/>
             <div className="results-page">
-                <Sidebar filters={filters} setFilters={setFilters}/>
+                <Sidebar filters={filters} setFilters={setFilters} maxPrice={maxPrice}/>
                 <div className="right-section">
                     <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
                     <TopBar setOrder={setOrder}/>
                     <div className="results-section">
-                        <Results 
-                            flights={flights} 
-                            filteredFlights={filteredFlights}
-                            order={order}
-                            favedArray={favedArray}
-                        />
+                        {flights.length === 0 ? 
+                            <div className="no-results">
+                                <img src={noResultsFound} alt="No results found" className="no-results-logo"/>
+                                <h5>No se han encontrado vuelos para esta búsqueda</h5> 
+                            </div> :
+                            <Results 
+                                flights={flights} 
+                                filteredFlights={filteredFlights}
+                                order={order}
+                                favedArray={favedArray}
+                            />
+                        }
                     </div>
                 </div>
             </div>

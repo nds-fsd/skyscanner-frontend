@@ -53,7 +53,8 @@
 }
 .navbar-icon{
     cursor: pointer;
-    margin-left: 93%;
+    margin-left: 95%;
+    margin-top: 10px;
 }
 .register {
     display: flex;
