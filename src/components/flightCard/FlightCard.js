@@ -40,6 +40,13 @@ function FlightCard (props) {
     }
 
     const handleBookingClick = () => {
+        const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`, "passangers": `${searchParams.passangers}`}
+        
+        if(!token) { 
+            navigate("/login");
+            return;
+        }
+        customFetch("POST", `booking`, {body: outboundBooking })
         navigate("/success");
     }
 
@@ -51,7 +58,10 @@ function FlightCard (props) {
     const addToFavFlight = () => {
 
         const addFavFlight = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`}
-        !token ? navigate("/login") :
+        if(!token) {
+            navigate("/login");
+            return;
+        }
         customFetch("POST", `favorite`, {body: addFavFlight })
         setIsFav(true);
         console.log("fetch", {body: addFavFlight })

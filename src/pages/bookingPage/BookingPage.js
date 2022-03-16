@@ -23,10 +23,12 @@ const BookingPage = () => {
     const handleClick = () => {
         const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${outboundFlight._id}`, "passangers": `${params.passangers}`}
         const returnBooking = {"user_id": `${user?._id}`, "flight_id": `${returnFlight._id}`, "passangers": `${params.passangers}`}
-        !token ? navigate("/login") :
+        if(!token) { 
+            navigate("/login");
+            return;
+        }
         customFetch("POST", `booking`, {body: outboundBooking })
         customFetch("POST", `booking`, {body: returnBooking })
-        console.log("outbound", outboundBooking)
         navigate('/success');
     }
     
@@ -34,7 +36,7 @@ const BookingPage = () => {
     const rutaFavUserId = `favorite/${user?._id}`
     const [favedArray, setFavedArray] = useState([])
     useEffect( () => {
-        if (user._id !== undefined) {
+        if (user?._id !== undefined) {
         customFetch("GET", rutaFavUserId)
         .then((json) => {
             setFavedArray(json);

@@ -38,7 +38,7 @@ const ReturnFlightPage = () => {
 
     const [favedArray, setFavedArray] = useState([])
     useEffect( () => {
-        if (user._id !== undefined) {
+        if (user?._id !== undefined) {
         customFetch("GET", rutaFavUserId)
         .then((json) => {
             setFavedArray(json);
