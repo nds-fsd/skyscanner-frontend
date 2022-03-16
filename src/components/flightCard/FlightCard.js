@@ -59,26 +59,34 @@ function FlightCard(props) {
         setIsFav(true);
         console.log("fetch", {body: addFavFlight })
         Swal.fire({
-            position: 'bottom-start',
+            position: 'top',
             icon: 'success',
             title: 'Flight added to favorites!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
+            padding: '0.50em',
+            width: '18rem',
+            timerProgressBar: true
           })
     
     };
 
 
     useEffect(() => {
-        const found = favedArray.some(fav => fav.flightId === flight._id);
+        const found = favedArray.some(fav => fav._id === flight._id);
         setIsFav(found);
     }, [favedArray])
+
+    const styleFav = {color: 'lightgrey'}
+        if(isFav){
+        styleFav.color= 'red';
+        }
 
 return (
         <div className="card">
             <div className={`${airline.replace(/\s/g, '').toLowerCase()} card-color `} />
             <div className="card-content">
-                <div className="fav-flight" style={isFav && {color: 'red'}} onClick={() => addToFavFlight(flight._id)}>♥</div>
+                <div className="fav-flight" style={styleFav} onClick={() => addToFavFlight(flight._id)}>♥</div>
                 <div className="logo-container">
                     {airline.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
                     {airline.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
@@ -116,7 +124,7 @@ return (
                     {!returnFlight ? <div>
                         {outboundFlight && flight._id === outboundFlight._id ? 
                         <button className="book-btn" onClick={handleBookingClick}>
-                            Book flight
+                            🔒 Book flight
                         </button> : 
                         <button className="buttonSelect" onClick={handleClick}>
                                 Select flight

@@ -25,8 +25,8 @@ const Filters = (props) => {
     return (
         <div className="filters">
             <div className="filter">
-                <h4 className="filter-title">Hora de salida</h4>
-                <h5 className="filter-subtitle">Rango de horas</h5>
+                <h4 className="filter-title">Departure time</h4>
+                <h5 className="filter-subtitle">Hour range</h5>
                 <div className="hour-select">
                     <select name="hour" onChange={handleChangeHour}>
                         <option value="5:00">5:00 am</option>
@@ -53,8 +53,8 @@ const Filters = (props) => {
                 </div>
             </div>
             <div className="filter">
-                <h4 className="filter-title">Precio</h4>
-                <h5 className="filter-subtitle">Precio mínimo del vuelo</h5>
+                <h4 className="filter-title">Price</h4>
+                <h5 className="filter-subtitle">Minimum flight price</h5>
                 <input type="range" min="0" max="500" className="price-range" onChange={handleChangePrice}/>
                 <p className="min-price"><span>{filters.minPrice}</span>€</p>
             </div>

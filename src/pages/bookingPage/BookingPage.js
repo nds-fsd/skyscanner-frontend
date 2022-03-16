@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './bookingPage.css';
 import {useState} from 'react';
 import FlightCard from '../../components/flightCard/FlightCard'
@@ -27,15 +27,30 @@ const BookingPage = () => {
     const {user} = useContext(UserContext);
 
     const handleClick = () => {
-        const outboundBooking = {"user_id": `${user?.id}`, "flight_id": `${outboundFlight._id}`, "passangers": `${outboundFlight.passangers}`}
-        const returnBooking = {"user_id": `${user?.id}`, "flight_id": `${returnFlight._id}`, "passangers": `${returnFlight.passangers}`}
+        const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${outboundFlight._id}`, "passangers": `${params.passangers}`}
+        const returnBooking = {"user_id": `${user?._id}`, "flight_id": `${returnFlight._id}`, "passangers": `${params.passangers}`}
         !token ? navigate("/login") :
         customFetch("POST", `booking`, {body: outboundBooking })
         customFetch("POST", `booking`, {body: returnBooking })
         console.log("outbound", outboundBooking)
         navigate('/success');
     }
+     
 
+
+
+    //Checks if any flight is saved in user favorites
+    const rutaFavUserId = `favorite/${user?._id}`
+    const [favedArray, setFavedArray] = useState([])
+    useEffect( () => {
+        if (user._id !== undefined) {
+        customFetch("GET", rutaFavUserId)
+        .then((json) => {
+            setFavedArray(json);
+        }).catch(error => {
+            console.error(error);
+        });}
+    }, [user]);
 
 
     return (
@@ -47,7 +62,9 @@ const BookingPage = () => {
                     <div className="flight selected">
                         <FlightCard 
                             flight={outboundFlight} 
-                            searchParams={params} />
+                            searchParams={params}
+                            favedArray={favedArray}
+                            />
                     </div>
                 </div>
                 <div className="selected-flight">
@@ -55,7 +72,9 @@ const BookingPage = () => {
                     <div className="flight selected">
                         <FlightCard 
                             flight={returnFlight} 
-                            searchParams={params} />
+                            searchParams={params}
+                            favedArray={favedArray}
+                            />
                     </div>
                 </div>
                 <div className="booking-header">
