@@ -7,8 +7,9 @@ const login = () => {
     <div className="login-container">
         <div className="overlay" />
         <div className="login-form">
-          <h2 className="login-title">Accede a tu cuenta</h2>
+          <h2 className="login-title">Log in to your account</h2>
           <LoginForm />
+          <p>You don't have an account? <a href="/signup"> Sign up</a></p>
         </div>
     </div>
   );

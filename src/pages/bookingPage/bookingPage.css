@@ -12,7 +12,8 @@
     display: flex;
     justify-content: space-around;
     align-content: center;
-    margin-top: 70px;
+    margin-top: 50px;
+    margin-bottom: 70px;
 }
 
 .booking-total-price {

@@ -37,7 +37,7 @@ const ModalRemove = ({setShowModalRemove }) => {
             <h2>Are you sure you want to continue?</h2>
             <p className='remove-info'>
             Your entire account, including payment details, <br/>search history, price alerts, and favorite flights,<br/> will be deleted. Once removed, there will be no going back.</p>
-            <button type='submit' className='button-save-remove' onClick={RemoveAccount}>Remove Account</button>
+            <button type='submit' className='button-save-remove' onClick={RemoveAccount}>⚠️ Remove Account</button>
             <button type='submit' className='button-save-remove' onClick={() => setShowModalRemove(false)}>Cancel</button>
         </div>
       

@@ -5,7 +5,7 @@
 
 .results-page {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
 }
 
@@ -16,7 +16,7 @@
 
 .no-results {
     width: 800px;
-    height: 300px;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,14 +27,20 @@
     color: gray;
 }
 
+.no-results p {
+    cursor: pointer;
+}
+
 .no-results-logo {
     margin: 0px;
     width: 300px;
+    margin-top: 50px;
 }
 
 .results-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
 }
 
 

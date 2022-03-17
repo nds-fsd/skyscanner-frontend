@@ -35,10 +35,8 @@ const Results = (props) => {
         });
         let oFlights = [...taggedFlights];
         if (order === "cheaper") {
-            console.log("entro en cheaper");
             oFlights = oFlights.sort((flightA, flightB) => flightA.price > flightB.price ? 1 : -1);
         } else if (order === "shorter") {
-            console.log("entro aqui")
             oFlights = oFlights.sort((flightA, flightB) => flightA.flighttime > flightB.flighttime ? 1 : -1);
         } else if (order === "recomended") {
             oFlights = oFlights.sort((flightA, flightB) => (flightA.price + flightA.flighttime) < (flightB.price + flightB.flighttim) ? 1 : -1);   

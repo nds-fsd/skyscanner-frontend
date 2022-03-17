@@ -39,6 +39,16 @@
     z-index: 2;
 }
 
+.login-form p{
+    font-size: 12px;
+    display: flex;
+    margin:auto
+}
+
+.login-form a{
+    margin-left: 3px;
+}
+
 .login-options {
     display: flex;
     flex-direction: column;

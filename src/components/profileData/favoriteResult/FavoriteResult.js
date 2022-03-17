@@ -3,6 +3,7 @@ import "./favoriteResult.css";
 import { UserContext } from '../../../context/userContext';
 import FlightsTable from '../../flightsTable/FlightsTable';
 import customFetch from '../../../api';
+import loading from "../../../files/spinner.gif"
 
 const FavoriteResult = (props) => {
     const {user} = useContext(UserContext);
@@ -26,8 +27,8 @@ const FavoriteResult = (props) => {
 
     return (
         <section className="favorite-container">
-            <h2 className='header-favorite'>Your favorite flights</h2>
-            {spinner ? <p>Loading favorite flights ...</p> : <div className="bookings">{favoriteFlights.length === 0 ?
+            <h2 className='header-favorite'>Favorite flights</h2>
+            {spinner ? <div style={{display:"flex", justifyContent: "center", margin:"10%"}}><img alt="loading..." src={loading} height="60px" /></div> : <div className="bookings">{favoriteFlights.length === 0 ?
                     <p className='no-favorites'>You don't have any favorite flights</p>
                 : 
                     <FlightsTable flights={favoriteFlights} setModalIsOpen={setModalIsOpen} setSelectedFlight={setSelectedFlight} type={"favorite"} setDeleted={setDeleted}/>

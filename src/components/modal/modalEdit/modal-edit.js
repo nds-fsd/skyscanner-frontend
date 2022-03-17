@@ -3,19 +3,25 @@ import { useForm } from "react-hook-form";
 import customFetch from "../../../api";
 import { UserContext } from '../../../context/userContext';
 import "./modal-edit.css";
+import Swal from 'sweetalert2';
 
 const ModalEdit = ({setShowModalEdit }) => {
     const { register, handleSubmit, formState: { errors }} = useForm();
-    const {user} = useContext(UserContext);
+    const {user, forceReloadUser} = useContext(UserContext);
     const onSubmit = (data) => {
 
         customFetch("PUT", `profile/${user._id}`, {body: data})
-                .then(()=> alert("Edit profile!"))
+                .then(()=> Swal.fire('First name and surname saved!', '', 'success'))
                 .then(()=> setShowModalEdit(false))
+                .then(() => forceReloadUser())
                 .catch(error => {
                     console.error(error);
                     if (error.status === 404 || error.status === 500) {
-                      alert("unable to update profile");
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'unable to update profile!'
+                        });
                     }
                  });
      }
