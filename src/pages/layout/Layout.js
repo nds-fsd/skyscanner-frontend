@@ -10,6 +10,7 @@ import Home from '../home/Home';
 import BookingPage from '../bookingPage/BookingPage';
 import SuccessPage from '../successPage/SuccessPage';
 import Profile from '../profile/Profile';
+import PrivateRoute from '../../authRoutes/privateRoute';
 
 const Layout = () => {
   return (
@@ -24,7 +25,7 @@ const Layout = () => {
                 <Route path="/flights/:from/:to/:dedate/:retdate/:passangers/:outboundFlightUnparsed" element={<ReturnFlightPage />} />
                 <Route path="/flights/:passangers/:outboundFlightUnparsed/:returnFlightUnparsed" element={<BookingPage />} />
                 <Route path="/success" element={<SuccessPage />} />
-                <Route path="/profile" element ={<Profile/>} />
+                <Route path="/profile" element ={<PrivateRoute ><Profile/></PrivateRoute>} />
             </Routes>
         </div>
     </div>
