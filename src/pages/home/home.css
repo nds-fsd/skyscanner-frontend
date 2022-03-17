@@ -38,6 +38,102 @@
     margin: 6px 0;
 }
 
+.section-suggested{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.suggested-title{
+    color: black;
+    font-weight: 600;
+    /* margin: 6px 0; */
+    margin-left: 6%;
+    margin-bottom: 25px;
+    /* width: 80vw; */
+}
+
+.suggested{
+    display: flex;
+    justify-content: space-evenly;
+    width: 80vw;
+}
+
+.suggested-card-1{
+    color: white;
+    background-image: url("https://img2.viajar.elperiodico.com/6f/59/49/sevilla-sevilla.jpg");
+    background-color: gray;
+    background-size: cover;
+    padding: 100px;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    margin-right: 2px;
+}
+
+.suggested-card-1:hover {
+    box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.suggested-card-2{
+    color: white;
+    background-image: url("https://www.aelca.es/material/img/es/6791_1645006286_oviedo-2.jpg");
+    background-color: gray;
+    background-size: cover;
+    padding: 100px;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.suggested-card-2:hover {
+    box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.suggested-card-3{
+    color: white;
+    background-image: url("https://st3.idealista.com/news/archivos/2022-02/el_serrallo.jpg?sv=3jRne3Cb");
+    background-color: gray;
+    background-size: cover;
+    padding: 100px;
+    height: 60px;
+    width: 80px;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.suggested-card-3:hover {
+    box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.suggested-card-4{
+    color: white;
+    background-image: url("https://www.wikidriver.es/wp-content/uploads/2021/07/zona-azul-zaragoza.jpg");
+    background-color: gray;
+    background-size: cover;
+    padding: 100px;
+    height: 60px;
+    width: 80px;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    margin-left: 2px;
+}
+
+.suggested-card-4:hover {
+    box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
 .section-man {
     height: 400px;
     width: 100vw;

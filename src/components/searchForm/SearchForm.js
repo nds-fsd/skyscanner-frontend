@@ -4,11 +4,19 @@ import { useNavigate } from "react-router";
 import "./searchForm.css";
 import { UserContext } from '../../context/userContext';
 
-const Search = () => {
+const Search = (destination) => {
     const {user} = useContext(UserContext);
-    const { register, handleSubmit} = useForm(        
-        {defaultValues: {from:user?.prefairport}
-    });
+    const destino = destination.destination
+
+    const predefault = {
+        from:user?.prefairport,
+        to:destino
+    }
+
+    console.log("destino", destino);
+    const { register, handleSubmit} = useForm(  
+        {defaultValues: predefault}
+    );
     const navigate = useNavigate();
     const onSubmit = (data) => {
         navigate(`/flights/${data?.from.toLowerCase().replace(/\s/g, '')}/${data?.to.toLowerCase().replace(/\s/g, '')}/${data?.dedate}/${data?.arrdate}/${data.passangers}`);

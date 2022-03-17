@@ -3,19 +3,25 @@ import { useForm } from "react-hook-form";
 import customFetch from "../../../api";
 import { UserContext } from '../../../context/userContext';
 import "./modalChangePwd.css";
+import Swal from 'sweetalert2';
 
 const ModalChangePwd = ({setShowModalChangePwd}) => {
-    const { register, handleSubmit} = useForm();
+    const { register, handleSubmit, watch} = useForm();
     const {user} = useContext(UserContext);
     const password = useRef({});
+    password.current = watch("password", "");
     const onSubmit = (data) => {
         customFetch("PUT", `profile/${user._id}`, {body: data})
-            .then(()=> alert("Edit password!"))
+            .then(()=> Swal.fire('Password changed!', '', 'success'))
             .then(()=> setShowModalChangePwd(false))
             .catch(error => {
                 console.error(error);
                 if (error.status === 404 || error.status === 500) {
-                    alert("unable to update profile");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'impossible to update password!'
+                        });
                 }
             }
         );
