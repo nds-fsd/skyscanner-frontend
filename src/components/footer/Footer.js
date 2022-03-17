@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer-logo">
             <a href="/flights/barcelona/london/2022-03-15/2022-03-22/1"><img src={logo} alt="logo"/></a>
         </div>
-        <p className="footer-text">This is a Full Stack Development students project. Try searching flights from Barcelona to London from 15/03/2022 to 22/03/2022. 😉</p>
+        <p className="footer-text">Skyreader is a Full Stack Development students project. Try searching flights from Barcelona to London from 15/03/2022 to 22/03/2022. 😉</p>
         <div className="footer-links">
           <a href="https://github.com/nds-fsd/skyscanner-frontend"><p className="footer-text">GitHub Frontend</p></a>
           <a href="mailto:fakeemail@skyreader.com"><p className="footer-text">Customer Support</p></a>

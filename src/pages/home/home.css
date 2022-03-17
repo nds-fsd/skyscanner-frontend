@@ -74,7 +74,6 @@
 .suggested-card-1:hover {
     box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
     transition: all 0.15s ease-in-out;
-    cursor: pointer;
 }
 
 .suggested-card-2{
@@ -92,7 +91,6 @@
 .suggested-card-2:hover {
     box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
     transition: all 0.15s ease-in-out;
-    cursor: pointer;
 }
 
 .suggested-card-3{
@@ -112,7 +110,6 @@
 .suggested-card-3:hover {
     box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
     transition: all 0.15s ease-in-out;
-    cursor: pointer;
 }
 
 .suggested-card-4{
@@ -131,7 +128,6 @@
 .suggested-card-4:hover {
     box-shadow: 0 14px 8px 0 rgba(80, 80, 80, 0.3);
     transition: all 0.15s ease-in-out;
-    cursor: pointer;
 }
 
 .section-man {

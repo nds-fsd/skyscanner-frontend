@@ -6,16 +6,8 @@ import { UserContext } from '../../context/userContext';
 
 const Search = (destination) => {
     const {user} = useContext(UserContext);
-    const destino = destination.destination
-
-    const predefault = {
-        from:user?.prefairport,
-        to:destino
-    }
-
-    console.log("destino", destino);
     const { register, handleSubmit} = useForm(  
-        {defaultValues: predefault}
+        {defaultValues: {from:user?.prefairport}}
     );
     const navigate = useNavigate();
     const onSubmit = (data) => {
@@ -45,7 +37,7 @@ const Search = (destination) => {
                         <input className="search-form-input date-input" type="date" {...register("arrdate")} placeholder="09/11/2022"/>
                     </div>
                     <div className="search-form-group">
-                        <label className="search-form-label" >Pasajeros</label>
+                        <label className="search-form-label" >Passangers</label>
                         <input className="search-form-input number-input" type="text" {...register("passangers")} placeholder="#"/>
                     </div>
                 </div>

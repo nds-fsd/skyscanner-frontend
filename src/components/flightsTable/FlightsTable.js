@@ -30,7 +30,7 @@ const FlightsTable = (props) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 customFetch('DELETE', `${type}`, {body: data})
-                    .then(() => setDeleted(true))
+                    .then(() => setDeleted(true), setModalIsOpen(false))
                     Swal.fire(
                         'Deleted!',
                         'Your flight has been deleted. Please refresh the page.',

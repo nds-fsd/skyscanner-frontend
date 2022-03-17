@@ -64,7 +64,6 @@ function FlightCard (props) {
         }
         customFetch("POST", `favorite`, {body: addFavFlight })
         setIsFav(true);
-        console.log("fetch", {body: addFavFlight })
         Swal.fire({
             position: 'top',
             icon: 'success',

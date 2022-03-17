@@ -3,6 +3,7 @@ import "./bookingResult.css";
 import { UserContext } from '../../../context/userContext';
 import FlightsTable from '../../flightsTable/FlightsTable';
 import customFetch from '../../../api';
+import loading from "../../../files/spinner.gif";
 
 const BookingResult = (props) => {
   const {user} = useContext(UserContext);
@@ -28,7 +29,7 @@ const BookingResult = (props) => {
   return (
       <section className="bookings-container">
           <h2 className='header-bookings'>Flights bookings</h2>
-          {spinner ? <p>Loading booked flights ...</p> : <div className="bookings">{bookedFlights.length === 0 ?
+          {spinner ? <div style={{display:"flex", justifyContent: "center", margin:"10%"}}><img alt="loading..." src={loading} height="60px" /></div> : <div className="bookings">{bookedFlights.length === 0 ?
               <p className='no-bookings'>Sorry, we can't show you any flights yet.</p>
             : 
               <FlightsTable flights={bookedFlights} setModalIsOpen={setModalIsOpen} setSelectedFlight={setSelectedFlight} type={"booking"} setDeleted={setDeleted}/>

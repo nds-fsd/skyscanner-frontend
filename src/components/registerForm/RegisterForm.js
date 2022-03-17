@@ -15,7 +15,6 @@ const Register = () => {
   const {register, handleSubmit, watch} = useForm({mode: 'onTouched', shouldUseNativeValidation: true});
   
   password.current = watch("password", "");
-  //console.log(password.current)
 
   const onSubmit = (data) => {
     customFetch("POST", "user", {body: data})

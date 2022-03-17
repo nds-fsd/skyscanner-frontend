@@ -23,7 +23,6 @@ const ReturnFlightPage = () => {
         //setReturnFlights(flights);
             customFetch("GET", `flights/search?from=${to}&to=${from}&dedate=${retdate}`)
             .then((json) => {
-                console.log(json);
                 setReturnFlights(json);
                 
             }).catch(error => {
