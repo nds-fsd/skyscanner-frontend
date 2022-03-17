@@ -7,7 +7,7 @@ import moment from 'moment';
 import { getUserToken } from '../../api/auth';
 import customFetch from '../../api';
 import { UserContext } from '../../context/userContext';
-
+import Swal from 'sweetalert2';
 
 const BookingPage = () => {
     const params = useParams();
@@ -24,7 +24,19 @@ const BookingPage = () => {
         const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${outboundFlight._id}`, "passangers": `${params.passangers}`}
         const returnBooking = {"user_id": `${user?._id}`, "flight_id": `${returnFlight._id}`, "passangers": `${params.passangers}`}
         if(!token) { 
-            navigate("/login");
+            Swal.fire({
+                title: 'You must be logged in',
+                text: "To book any flight you have to be logged in.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Log in'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login");
+                }
+              })
             return;
         }
         customFetch("POST", `booking`, {body: outboundBooking })

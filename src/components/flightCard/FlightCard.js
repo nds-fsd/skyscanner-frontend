@@ -43,7 +43,19 @@ function FlightCard (props) {
         const outboundBooking = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`, "passangers": `${searchParams.passangers}`}
         
         if(!token) { 
-            navigate("/login");
+            Swal.fire({
+                title: 'You must be logged in',
+                text: "To book any flight you have to be logged in.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Log in'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login");
+                }
+              })
             return;
         }
         customFetch("POST", `booking`, {body: outboundBooking })
@@ -59,7 +71,19 @@ function FlightCard (props) {
 
         const addFavFlight = {"user_id": `${user?._id}`, "flight_id": `${flight._id}`}
         if(!token) {
-            navigate("/login");
+            Swal.fire({
+                title: 'You must be logged in',
+                text: "To save any flight to favorites you have to be logged in.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Log in'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login");
+                }
+              })
             return;
         }
         customFetch("POST", `favorite`, {body: addFavFlight })

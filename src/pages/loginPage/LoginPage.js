@@ -9,6 +9,7 @@ const login = () => {
         <div className="login-form">
           <h2 className="login-title">Log in to your account</h2>
           <LoginForm />
+          <p>You don't have an account? <a href="/signup"> Sign up</a></p>
         </div>
     </div>
   );

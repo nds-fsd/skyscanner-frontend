@@ -28,6 +28,16 @@
     border-radius: 20px;
 }
 
+.register-form p{
+    font-size: 12px;
+    display: flex;
+    margin:auto
+}
+
+.register-form a{
+    margin-left: 3px;
+}
+
 .register-options {
     display: flex;
     flex-direction: column;
