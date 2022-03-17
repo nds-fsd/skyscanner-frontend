@@ -11,7 +11,7 @@ const ModalChangePwd = ({setShowModalChangePwd}) => {
     const password = useRef({});
     password.current = watch("password", "");
     const onSubmit = (data) => {
-        customFetch("PUT", `profile/${user._id}`, {body: data})
+        customFetch("POST", `profile/${user._id}`, {body: data})
             .then(()=> Swal.fire('Password changed!', '', 'success'))
             .then(()=> setShowModalChangePwd(false))
             .catch(error => {
