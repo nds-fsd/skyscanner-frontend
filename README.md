@@ -42,6 +42,73 @@ Las librerías usadas en la aplicación son:
 | SweetAlert2 | Alertas de interacción con Backend |
 
 Todas ellas han sido instaladas y gestionadas mediante el gestor de paquetes **npm**.
+
+## Piezas de código destacables
+
+Una de los componentes más trabajados de la aplicación són las cards de vuelos que se muestran en distintas rutas de la app. 
+
+```JSX
+<div className="card">
+   <div className={`${airline?.replace(/\s/g, '').toLowerCase()} card-color `} />
+   <div className="card-content">
+      <div className="fav-flight" style={styleFav} onClick={() => addToFavFlight(flight._id)}>♥</div>
+      <div className="logo-container">
+         {airline?.replace(/\s/g, '').toLowerCase() === "vueling" && <img className="airline-logo" alt={airline} src={vuelingLogo}/>}
+         {airline?.replace(/\s/g, '').toLowerCase() === "ryanair" && <img className="airline-logo" alt={airline} src={ryanairLogo}/>}
+         {airline?.replace(/\s/g, '').toLowerCase() === "iberia" && <img className="airline-logo" alt={airline} src={iberiaLogo}/>}
+         {airline?.replace(/\s/g, '').toLowerCase() === "aireuropa" && <img className="airline-logo" alt={airline} src={aireuropaLogo}/>}
+         {airline?.replace(/\s/g, '').toLowerCase() === "bintercanarias" && <img className="airline-logo" alt={airline} src={bintercanariasLogo}/>}
+      </div>
+      <div className="flight-info">
+         <div className="from-to">
+            <p className="city-name">{from}</p>
+            <span className="de-arr-time">{moment(dedate).format('LT')}</span>
+         </div>
+         <div className="trip">
+            <img src={cardimage} alt="trip-icon"/>
+            <div className="duration">
+                  <span>DIRECT</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="clock-icon" fill="E5E5E5" width="10px" height="10px" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{minutsToHHMM(flighttime)}</span>
+            </div>
+         </div>
+         <div className="from-to">
+            <p className="city-name">{to}</p>
+            <span className="de-arr-time">{(moment(Date.parse(dedate)+(flighttime*60000)).format('LT'))}</span>
+         </div>
+      </div>
+      <div className="divider"></div>
+      <div className="actions">
+         <p className="price">{searchParams.passangers * price} €</p>
+         {searchParams.passangers !== "1" && <p className="price-unitary">{price} €</p>}
+         <span className="price-info">Price for 1 passenger</span>
+         {flight.seats < 5 && <span className="seats-info">{flight.seats === 1 ? "Only 1 seat left available!" : flight.seats + " available seats !"}</span>}
+         {!returnFlight ? <div>
+            {outboundFlight && flight._id === outboundFlight._id ? 
+            <button className="book-btn" onClick={handleBookingClick}>
+                  🔒 Book flight
+            </button> : 
+            <button className="buttonSelect" onClick={handleClick}>
+                     Select flight
+            </button>}
+         </div> : <div></div> }
+      </div>
+   </div>
+</div>
+```
+
+El componente renderizado se muestra de la siguiente manera:
+
+![alt text](./src/files/readme/flightCard.png)
+
+El componente muestra las características principales del vuelo asi como el precio unitario, precio total en función de los pasajeros seleccionados y alertas que se muestran cuando quedan menos de 5 plazas. También dispone de botones que abilitan funcionalidades como guardar el vuelo como favorito o seleccionarlo para passar a la siguiente página. Por último, otro feature destacable es que el componente padre detecta y etiqueta los vuelos de características especiales como por ejemplo el más corto.
+
+## Deploy
+El dolpoy se ejecuta tal y como muestra la siguiente ilustración:
+
+![alt text](./src/files/readme/deploy-frontend.png)
 ## Mapa estructural del código
 
 ```
