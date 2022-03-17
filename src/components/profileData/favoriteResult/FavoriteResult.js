@@ -26,7 +26,7 @@ const FavoriteResult = (props) => {
 
     return (
         <section className="favorite-container">
-            <h2 className='header-favorite'>Your favorite flights</h2>
+            <h2 className='header-favorite'>Favorite flights</h2>
             {spinner ? <p>Loading favorite flights ...</p> : <div className="bookings">{favoriteFlights.length === 0 ?
                     <p className='no-favorites'>You don't have any favorite flights</p>
                 : 

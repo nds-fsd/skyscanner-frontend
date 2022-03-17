@@ -51,7 +51,7 @@ const BookingPage = () => {
             <div>
                 <div className="selected-flight">
                     <br/>
-                    <h3 className="flight-direction-ida">Departure<span className="date">{moment(outboundFlight.dedate).format('LLLL')}</span></h3>
+                    <h3 className="flight-direction-ida">Departure<span className="date">{moment(outboundFlight.dedate).format('LL')}</span></h3>
                     <div className="flight selected">
                         <FlightCard 
                             flight={outboundFlight} 
@@ -61,7 +61,7 @@ const BookingPage = () => {
                     </div>
                 </div>
                 <div className="selected-flight">
-                    <h3 className="flight-direction">Return<span className="date">{moment(returnFlight.dedate).format('LLLL')}</span></h3>
+                    <h3 className="flight-direction">Return<span className="date">{moment(returnFlight.dedate).format('LL')}</span></h3>
                     <div className="flight selected">
                         <FlightCard 
                             flight={returnFlight} 

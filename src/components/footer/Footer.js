@@ -7,7 +7,7 @@ import './footer.css'
 
 const Footer = () => {
   return (
-    <div>
+    <div className="footer">
         <div className="footer-logo">
             <a href="/flights/barcelona/london/2022-03-15/2022-03-22/1"><img src={logo} alt="logo"/></a>
         </div>

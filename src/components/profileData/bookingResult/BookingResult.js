@@ -27,7 +27,7 @@ const BookingResult = (props) => {
 
   return (
       <section className="bookings-container">
-          <h2 className='header-bookings'>Your bookings</h2>
+          <h2 className='header-bookings'>Flights bookings</h2>
           {spinner ? <p>Loading booked flights ...</p> : <div className="bookings">{bookedFlights.length === 0 ?
               <p className='no-bookings'>Sorry, we can't show you any flights yet.</p>
             : 

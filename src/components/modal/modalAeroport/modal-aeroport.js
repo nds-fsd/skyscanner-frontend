@@ -9,13 +9,14 @@ import Swal from 'sweetalert2';
 const Modal = ({setShowModal }) => {
 
   const { register, handleSubmit, formState: { errors }} = useForm();
-  const {user} = useContext(UserContext);
+  const {user, forceReloadUser} = useContext(UserContext);
   const onSubmit = (data) => {
       customFetch("PUT", `profile/favairport/${user._id}`, {body: data})
           .then(() => 
-              Swal.fire('Aeroport Saved!', '', 'success')
+              Swal.fire('Aeroport Saved!', '', 'success'),
+              setShowModal(false)
           )
-          .then(()=> setShowModal(false))
+          .then(() => forceReloadUser())
           .catch(error => {
               console.error(error);
               if (error.status === 404 || error.status === 500) {

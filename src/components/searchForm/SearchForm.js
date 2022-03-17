@@ -6,8 +6,7 @@ import { UserContext } from '../../context/userContext';
 
 const Search = () => {
     const {user} = useContext(UserContext);
-    const { register, handleSubmit} = useForm(
-        
+    const { register, handleSubmit} = useForm(        
         {defaultValues: {from:user?.prefairport}
     });
     const navigate = useNavigate();

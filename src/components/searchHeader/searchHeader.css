@@ -1,5 +1,6 @@
 .flight-summary {
     width: 100%;
+    min-width: 950px;
     height: 125px;
     background-color: #17385C;
     border-radius: 0 0 15px 15px;
