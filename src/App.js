@@ -5,7 +5,7 @@ import Layout from './pages/layout/Layout';
 import { IconContext } from "react-icons";
 
 function App() {
-  document.title = "Skyreader";
+  document.title = "Skyreader - Find the best flights";
   const [user, setUser] = useState ();
   const [reloadUser, setReloadUser] = useState (false);
 

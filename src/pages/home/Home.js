@@ -14,9 +14,18 @@ const Home = () => {
                      <h2 className="title-homepage">
                         Find the best flight and save
                     </h2>
-                    <Search />
+                    <Search/>
                 </div>
             </section>
+            <div className="section-suggested">
+                <div className="suggested-title">Suggested destinations</div>
+                <div className="suggested">
+                    <div className="suggested-card-1">Sevilla</div>
+                    <div className="suggested-card-2">Oviedo</div>
+                    <div className="suggested-card-3">Tarragona</div>
+                    <div className="suggested-card-4">Zaragoza</div>
+                </div>
+            </div>
             <section className="section-man">
                 <div className="little-man-img" />
                 <div className="little-man-text" >

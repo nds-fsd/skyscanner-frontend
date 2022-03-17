@@ -12,6 +12,8 @@ import moment from 'moment';
 import { UserContext } from '../../context/userContext';
 import NavBar from "../../components/navbar/Navbar";
 import noResultsFound from "../../files/no-results-found.png";
+import Swal from 'sweetalert2';
+import loading from "../../files/spinner.gif";
 
 function ResultsPage () {
     const [flights, setFlights] = useState([]);
@@ -24,12 +26,12 @@ function ResultsPage () {
     const {from, to, dedate, retdate, deid, passangers} = useParams();
     const [order, setOrder] = useState();
     const [maxPrice, setMaxPrice] = useState(1000);
+    const [spinner, setSpinner] = useState(false); 
 
     const compareHours = (a, b) => {
         if(a !== 0) {
             let bHour = parseInt(moment(b).format('HH:mm').split(":")[0]);
             let aHour = parseInt(a.split(':')[0]);
-            console.log(aHour, bHour,  aHour < bHour);
             return aHour < bHour;
         }
     }
@@ -60,15 +62,19 @@ function ResultsPage () {
     }, [filters, flights]);
 
     useEffect( () => {
+        setSpinner(true);
         customFetch("GET", `flights/search?from=${from}&to=${to}&dedate=${dedate}`)
-        .then((json) => {
-            //console.log(json);
-            setFlights(json);
-            setFilteredFlights(json);
-
-        }).catch(error => {
-            console.error(error);
-        });
+            .then((json) => {
+                //console.log(json);
+                setFlights(json);
+                setFilteredFlights(json);
+                setSpinner(false);
+            })
+            // .then(setSpinner(false))
+            .catch(error => {
+                console.error(error);
+                setSpinner(false);
+            });
     }, [from, to, dedate]);
 
     const {user} = useContext(UserContext);
@@ -84,6 +90,14 @@ function ResultsPage () {
             console.error(error);
         });}
     }, [user, rutaFavUserId]);
+
+    const hint = () => {
+        Swal.fire(
+            'No results?',
+            'Try searching flights from Barcelona to London from 15/03/2022 to 22/03/2022.',
+            'question'
+          )
+    }
     
     return (
         <div className="wrapper">
@@ -94,17 +108,22 @@ function ResultsPage () {
                     <SearchHeader from={!deid ? from : to} to={!deid ? to : from} date={!deid ? dedate : retdate}/>
                     <TopBar setOrder={setOrder}/>
                     <div className="results-section">
-                        {flights.length === 0 ? 
-                            <div className="no-results">
-                                <img src={noResultsFound} alt="No results found" className="no-results-logo"/>
-                                <h5>No se han encontrado vuelos para esta búsqueda</h5> 
-                            </div> :
-                            <Results 
-                                flights={flights} 
-                                filteredFlights={filteredFlights}
-                                order={order}
-                                favedArray={favedArray}
-                            />
+                        
+                        {spinner ? <div style={{display:"flex", justifyContent: "center", margin:"10%"}}><img alt="loading..." src={loading} height="60px" /></div> : <div>{flights.length === 0 ? 
+                                <div className="no-results">
+                                    <img src={noResultsFound} alt="No results found" className="no-results-logo"/>
+                                    <h5>No flights found for this search</h5> 
+                                    <p style={{fontSize:"18px"}} onClick={hint}>💡 Hint</p>
+                                </div>
+                                :
+                                <Results 
+                                    flights={flights} 
+                                    filteredFlights={filteredFlights}
+                                    order={order}
+                                    favedArray={favedArray}
+                                />
+                            }
+                            </div>
                         }
                     </div>
                 </div>

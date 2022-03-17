@@ -48,7 +48,7 @@ const ProfileSidebar = ({component, setComponent}) => {
                         <div className='option-logo'>
                             <MdAirplaneTicket />
                         </div>
-                        <p>My reservations</p>
+                        <p>My bookings</p>
                         {showBooking &&
                             <BookingResult setShowReservation={setShowBooking}/>
                         }

@@ -23,7 +23,6 @@ const ReturnFlightPage = () => {
         //setReturnFlights(flights);
             customFetch("GET", `flights/search?from=${to}&to=${from}&dedate=${retdate}`)
             .then((json) => {
-                console.log(json);
                 setReturnFlights(json);
                 
             }).catch(error => {
@@ -55,7 +54,7 @@ const ReturnFlightPage = () => {
             <NavBar/>
             <SearchHeader from={to} to={from} date={retdate}/>
             <div className="selected-flight">
-                <h3 className="flight-direction">Departure<span className="date">{moment(selectedFlightParsed.dedate).format('LLLL')}</span></h3>
+                <h3 className="flight-direction">Departure<span className="date">{moment(selectedFlightParsed.dedate).format('LL')}</span></h3>
                 <div className="flight selected">
                     <FlightCard 
                         flight={selectedFlightParsed} 

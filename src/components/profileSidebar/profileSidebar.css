@@ -30,6 +30,7 @@
   font-size: 20px;
   color: grey;
   margin-top: 0;
+  text-transform: capitalize;
 }
 
 .list {
@@ -107,6 +108,7 @@
 .travel {
   height: 185px;
   margin: 0 auto;
+  margin-top: 40px;
 }
 
 .button-profile {

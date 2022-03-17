@@ -9,15 +9,19 @@
 }
 
 .flights-table tr {
-    height: 40px;
     text-align: center;
     color: rgb(65, 65, 65);
     border-bottom: 0.5px solid rgb(241, 241, 241);
+    text-transform: capitalize;
 }
 .flights-table tr:hover {
-    cursor: auto;
+    /* cursor: auto; */
     color: rgb(19, 19, 19);
     font-weight: 500;
+}
+
+.header-table{
+    height: 50px;
 }
 
 .flights-table thead {
@@ -29,19 +33,36 @@
     font-size: 14px;
 }
 
+.airline-logo{
+    width: 80px;
+}
+
+.body-table{
+    font-size: 18px;
+    height: 90px;
+}
+
+.body-table:hover{
+    cursor: pointer;
+}
+
+.body-table:hover{
+    background: rgb(246, 246, 246);
+}
+
 .table-btn-delete {
     padding: 5px 10px;
-    border: 1px solid rgb(102, 0, 0);
-    color:rgb(102, 0, 0);
+    border: 1px solid transparent;
+    color:rgb(214, 0, 0);
     background: transparent;
     outline: none;
     border-radius: 5px;
     margin: auto 5px;
 }
 .table-btn-delete:hover {
-    border: 1px solid rgb(102, 0, 0);
+    border: 1px solid rgb(214, 0, 0);
     color:rgb(238, 238, 238);
-    background: rgb(102, 0, 0);
+    background: rgb(214, 0, 0);
     outline: none;
     border-radius: 10px;
     transition: all 0.5s ease;
@@ -50,17 +71,17 @@
 
 .table-btn-see {
     padding: 5px 10px;
-    border: 1px solid rgb(0, 77, 90);
-    color:rgb(0, 77, 90);
+    border: 1px solid transparent;
+    color: #0770E3;
     background: transparent;
     outline: none;
     border-radius: 5px;
     margin: auto 5px;
 }
 .table-btn-see:hover {
-    border: 1px solid rgb(0, 77, 90);
+    border: 1px solid #0770E3;
     color:rgb(238, 238, 238);
-    background: rgb(0, 77, 90);
+    background: #0770E3;
     outline: none;
     border-radius: 10px;
     transition: all 0.5s ease;

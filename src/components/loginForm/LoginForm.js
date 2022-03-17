@@ -6,6 +6,7 @@ import { setUserSession, getUserToken } from '../../api/auth';
 import customFetch from '../../api';
 import { UserContext } from "../../context/userContext";
 import jwt_decode from "jwt-decode";
+import Swal from 'sweetalert2';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors }} = useForm();
@@ -32,7 +33,17 @@ const LoginForm = () => {
             }).catch(error => {
                 console.error(error);
                 if (error.status === 400) {
-                    alert("invalid email or password");
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'error',
+                        title: 'Invalid email or password',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        padding: '0.50em',
+                        width: '18rem',
+                        timerProgressBar: true
+                      })
+                    // alert("invalid email or password");
                 }
             });
     };
@@ -41,16 +52,16 @@ const LoginForm = () => {
         
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.inputDiv}>
-                <label className={styles.infoLabel}>Introduce tu nombre de usuario</label>
+                <label className={styles.infoLabel}>Email</label>
                 <input className={styles.credentialsInput} {...register("email", { required: true })} placeholder="Email" type="text"/>
                 {errors.email && <span className={styles.errorLabel}>This field is required</span>}
             </div>
             <div className={styles.inputDiv}>
-                <label className={styles.infoLabel}>Introduce tu contraseña</label>
-                <input className={styles.credentialsInput} {...register("password", { required: true })} placeholder="Contraseña" type="password" />
+                <label className={styles.infoLabel}>Password</label>
+                <input className={styles.credentialsInput} {...register("password", { required: true })} placeholder="Password" type="password" />
                 {errors.password && <span className={styles.errorLabel}>This field is required</span>}
             </div>
-            <input type="submit" className={styles.loginSubmit}/>
+            <input type="submit" className={styles.loginSubmit} value="Log in"/>
             
        
         
