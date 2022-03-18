@@ -43,7 +43,7 @@ Las librerías usadas en la aplicación son:
 
 Todas ellas han sido instaladas y gestionadas mediante el gestor de paquetes **npm**.
 
-## Piezas de código destacables
+## Pieza de código destacables
 
 Una de los componentes más trabajados de la aplicación són las cards de vuelos que se muestran en distintas rutas de la app. 
 
