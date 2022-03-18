@@ -1,6 +1,6 @@
 # Skyscanner - Frontend
 
-Skyscanner es un proyecto llevado a cabo por un equipo de desarrolladores del máster en Full Stack Developement de la escuela Nuclio Digital School. El objeto del proyecto es un aplicativo web full stack orientado a la búsqueda y gestión de vuelos nacionales. Entre otras funcionalidades, la aplicación ofrece al usuario funciones como la aplicación de filtros sobre los resultados, la creación y gestión de sesiones de usuario y la posibilidad de guardar y reservar vuelos, entre otras.
+Skyscanner es un proyecto llevado a cabo por un equipo de desarrolladores del máster en Full Stack Developement de la escuela Nuclio Digital School. El objetivo del proyecto es una aplicación web full stack orientada a la búsqueda y gestión de vuelos. Entre otras funcionalidades, la web app ofrece al usuario funciones como la aplicación de filtros sobre los resultados, la creación y gestión de sesiones de usuario y la posibilidad de guardar y reservar vuelos, entre otras.
 
 ![alt text](./src/files/readme/home.png)
 ## Acceso web
@@ -45,7 +45,7 @@ Todas ellas han sido instaladas y gestionadas mediante el gestor de paquetes **n
 
 ## Pieza de código destacables
 
-Una de los componentes más trabajados de la aplicación són las cards de vuelos que se muestran en distintas rutas de la app. 
+Una de los componentes más trabajados de la aplicación son las cards de vuelos que se muestran en distintas rutas de la app. 
 
 ```JSX
 <div className="card">
@@ -103,10 +103,10 @@ El componente renderizado se muestra de la siguiente manera:
 
 ![alt text](./src/files/readme/flightCard.png)
 
-El componente muestra las características principales del vuelo asi como el precio unitario, precio total en función de los pasajeros seleccionados y alertas que se muestran cuando quedan menos de 5 plazas. También dispone de botones que abilitan funcionalidades como guardar el vuelo como favorito o seleccionarlo para passar a la siguiente página. Por último, otro feature destacable es que el componente padre detecta y etiqueta los vuelos de características especiales como por ejemplo el más corto.
+El componente muestra las características principales del vuelo así como el precio unitario, precio total en función de los pasajeros seleccionados y alertas que se muestran cuando quedan menos de 5 plazas. También dispone de botones que habilitan funcionalidades como guardar el vuelo como favorito o seleccionarlo para pasar a la siguiente página. Por último, otro feature destacable es que el componente padre detecta y etiqueta los vuelos de características especiales, como por ejemplo el más corto.
 
 ## Deploy
-El dolpoy se ejecuta tal y como muestra la siguiente ilustración:
+El deploy se ejecuta tal y como muestra la siguiente ilustración:
 
 ![alt text](./src/files/readme/deploy-frontend.png)
 ## Mapa estructural del código
